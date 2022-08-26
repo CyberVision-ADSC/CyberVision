@@ -3,7 +3,7 @@
       src="https://i.imgur.com/ezlNkz8.png"
       alt="logo Cybervision" 
       width="250" 
-      height="28.06"
+      height="40"
     />
 </p>
 
