@@ -1,9 +1,9 @@
 <p align="center">
     <img 
-      src="https://i.imgur.com/ezlNkz8.png"
+      src="https://i.imgur.com/IocV0nM.png"
       alt="logo Cybervision" 
-      width="250" 
-      height="40"
+      width="154" 
+      height="45"
     />
 </p>
 
