@@ -10,10 +10,6 @@
 <h3 align="center">CyberVision</h3>
 <p align="center">Um sistema de monitoramento de máquinas em faculdades.s</p>
 
-
-## Sobre o Projeto
-
-
 ## Tecnologias
 - HTML, CSS e Javascript - Estrutura do site
 - Java - Monitoramento do hardware
