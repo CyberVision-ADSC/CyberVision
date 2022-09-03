@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberVision</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/servicesArea.css">
+    <link rel="stylesheet" href="css/aboutUs.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:wght@400;600&display=swap');
+    </style>
+</head>
+
+<body>
+    <div class="header_container">
+        <header>
+            <img src="icons/logo.svg" alt="Logo CyberVision">
+            <nav>
+                <a href="#about" class="hide_mobile">Sobre</a>
+                <a href="#services" class="hide_mobile">Serviços</a>
+                <a href="#contact" class="hide_mobile">Contato</a>
+                <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <img src="icons/icon-menu.svg" alt="Toque para ver mais opções" class="icon_menu">
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#about">Sobre</a></li>
+                        <li><a class="dropdown-item" href="#services">Serviços</a></li>
+                        <li><a class="dropdown-item" href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <a href="login.html" class="entrar">Entrar</a>
+            </nav>
+        </header>
+    </div>
+    <div class="container_home">
+        <div class="slogan">
+            <span>Sua faculdade precisa de ajuda?</span>
+            <p>A transformação para o seu ambiente de educação agora está mais próximo do que nunca.</p>
+
+            <a href="#downloadArea">
+                <button>Obter agora!</button>
+            </a>
+        </div>
+    </div>
+    <div>
+        <div class="downloadArea" id="downloadArea">
+            <h1>Monitore Máquinas a qualquer momento!</h1>
+            <div class="containerFlex">
+                <p>Baixe agora nosso aplicativo, disponível nas plataformas</p>
+                <div>
+                    <img src="icons/icon-windows.svg" />
+                    <img src="icons/icon-linux.svg" />
+                    <img src="icons/icon-mac.svg" />
+                </div>
+            </div>
+            <button>Baixar agora</button>
+        </div>
+
+        <div class="servicesArea" id="services">
+            <div class="container">
+                <h1>Nossos serviços</h1>
+                <div class="containerSlides">
+                    <div
+                        style="background-image: url('https://images.pexels.com/photos/3912976/pexels-photo-3912976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+                        <div class="effect"></div>
+                        <h1>Monitoramento em tempo real</h1>
+                    </div>
+                    <div
+                        style="background-image: url('https://images.pexels.com/photos/3912976/pexels-photo-3912976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+                        <div class="effect"></div>
+                        <h1>Finalização de processos à distancia</h1>
+                    </div>
+                    <div
+                        style="background-image: url('https://images.pexels.com/photos/3912976/pexels-photo-3912976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+                        <div class="effect"></div>
+                        <h1>Organização de salas e máquinas</h1>
+                    </div>
+                    <div
+                        style="background-image: url('https://images.pexels.com/photos/3912976/pexels-photo-3912976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+                        <div class="effect"></div>
+                        <h1>Inclusão de reporte manualmente</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="SobreNos" id="about">
+        <div class="containerSobre">
+            <h1>Sobre Nós</h1>
+            <div class="txtSobre">
+                <p>Somos uma empresa focada em monitoramento de máquinas estudantis, atuamos para que o seu suporte
+                    técnico seja mais eficiente e rápido.</p>
+            </div>
+        </div>
+        <div class="fotosEquipe">
+            <div class="foto1"></div>
+            <div class="foto2"></div>
+            <div class="foto3"></div>
+            <div class="foto4"></div>
+            <div class="foto5"></div>
+        </div>
+    </div>
+    <div class="duvidas" id="contact">
+        <div class="containerDuvidas">
+            <h1>Alguma dúvida?</h1>
+            <div class="txtDuvidas">
+                <p>Ainda com alguma dúvida? Entre em contato conosco pelo número:</p>
+            </div>
+            <div class="numeroDuvidas">
+                <h1>4002-8922</h1>
+            </div>
+        </div>
+        <div class="caixasDuvidas">
+            <details>
+                <summary>Como obtenho acesso a plataforma?</summary>
+                <p>- Entre em contato com nossa equipe pelo número 4002-8922 e obtenha mais informações</p>
+            </details>
+            <details>
+                <summary>Como redefinir minha senha?</summary>
+                <p>- Ao acessar nosso site clique em <b>Entrar</b></p>
+                <p>- Após acessar a tela de login, clique em <b>Recuperar senha</b></p>
+            </details>
+            <details>
+                <summary>Como cadastro uma máquina em minha conta?</summary>
+                <p>- Ao acessar nosso site clique em <b>Entrar</b></p>
+                <p>- No painel de controle acesse a opção <b>Minhas máquinas</b></p>
+                <p>- Clique em <b>Novo cadastro</b></p>
+            </details>
+        </div>
+    </div>
+    <div class="semiRodape">
+        <div class="sloganIcons">
+            <img src="icons/logo.svg" class="icon_cybervision">
+            <div class="fraseSup">
+                <p>Para um suporte mais eficiente e rápido</p>
+            </div>
+            <div class="iconsRedesSociais">
+                <img src="icons/icon-instagram.svg" alt="nos siga no instagram">
+                <img src="icons/icon-facebook.svg" alt="nos siga no facebook">
+                <img src="icons/icon-twitter.svg" alt="nos siga no twitter">
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="frase01">
+            <p> © 2022 - Todos os direitos reservados - CyberVision </p>
+        </div>
+        <div class="frase02e03">
+            <div>
+                <p>Termos de serviço</p>
+            </div>
+            <div>
+                <p>Politica de privacidade</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
