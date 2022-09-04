@@ -13,7 +13,7 @@
 
 <body>
     <div class="container">
-        <form class="form">
+        <div class="form">
             <a href="index.html">
                 <img src="icons/logo.svg" alt="Logo CyberVision" />
             </a>
@@ -41,7 +41,6 @@
                     <input type="number" class="inp_cep" autofocus placeholder="Confirme sua senha" />
                 </div>
                 <button class="btn_pagina" onclick="trocarPagina()">Próxima página</button>
-
             </div>
 
             <div id="etapa1" style="display: none;">
@@ -57,10 +56,9 @@
                     <label>Confirmar senha</label>
                     <input type="password" class="inp_confirma_senha" autofocus placeholder="Confirme sua senha" />
                 </div>
-                <button class="btn_cadastro" type="submit" onclick="enviar()">Cadastar</button>
+                <button class="btn_cadastro" type="button" onclick="enviar()">Cadastar</button>
             </div>
-
-        </form>
+        </div>
         <a href="login.html" class="link">Já tenho uma conta.</a>
     </div>
 </body>
