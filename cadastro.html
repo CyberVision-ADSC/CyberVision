@@ -8,42 +8,57 @@
     <title>CyberVision - Cadastro</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/login&cadastro.css" />
+    <link rel="stylesheet" href="css/barra.css" />
     <script src="js/cadastro.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <div class="form">
+        <form class="form">
             <a href="index.html">
                 <img src="icons/logo.svg" alt="Logo CyberVision" />
             </a>
-            <div class="progresso">
+            <!-- <div class="controle_progresso">
+                <div class="progresso_linha"></div>
+            <div class="progresso_circulos">
                 <span><img src="images/etapa_circulo.png" alt=""></span>
                 <span><img src="images/etapa_circulo.png" alt=""></span>
                 <span><img src="images/etapa_circulo.png" alt=""></span>
             </div>
+        </div> -->
+            <!-- <div class="ContainerProgress">
+            <div class="container">
+                <div class="linhaHorizontal"></div>
+                <div class="progressbar">
+                        <li></li>
+                </div>
+            </div>
+        </div> -->
+            <span id="span_etapa">Etapa 1/2</span>
             <h1>Cadastre-se</h1>
-            <div id="etapa0" style="display: '';">
+            <div id="etapa0" style="display: ''">
                 <div class="div_cadastro">
                     <label>Nome fantasia</label>
-                    <input type="text" class="inp_nome" autofocus placeholder="Digite seu email" />
+                    <input type="text" class="inp_nome" autofocus placeholder="Nome da sua empresa" />
                 </div>
                 <div class="div_cadastro">
                     <label>Razão social</label>
-                    <input type="text" class="inp_razao" autofocus placeholder="Digite sua senha" />
+                    <input type="text" class="inp_razao" autofocus placeholder="Razão social da sua empresa" />
                 </div>
                 <div class="div_cadastro">
                     <label>CNPJ</label>
-                    <input type="number" class="inp_cnpj" autofocus placeholder="Confirme sua senha" />
+                    <input type="number" class="inp_cnpj" autofocus placeholder="Digite o CNPJ" />
                 </div>
                 <div class="div_cadastro">
                     <label>CEP</label>
-                    <input type="number" class="inp_cep" autofocus placeholder="Confirme sua senha" />
+                    <input type="number" class="inp_cep" autofocus placeholder="Digite o CEP" />
                 </div>
-                <button class="btn_pagina" onclick="trocarPagina()">Próxima página</button>
+                <button class="btn_pagina" type="button" onclick="trocarPagina()">
+                    <span>Próxima</span>
+                </button>
             </div>
 
-            <div id="etapa1" style="display: none;">
+            <div id="etapa1" style="display: none">
                 <div class="div_cadastro">
                     <label>Email</label>
                     <input type="text" class="inp_email" autofocus placeholder="Digite seu email" />
@@ -56,9 +71,14 @@
                     <label>Confirmar senha</label>
                     <input type="password" class="inp_confirma_senha" autofocus placeholder="Confirme sua senha" />
                 </div>
-                <button class="btn_cadastro" type="button" onclick="enviar()">Cadastar</button>
+                <div class="navegacao_form">
+                    <button class="volta" onclick="voltar()">Voltar</button>
+                    <button class="btn_cadastro" type="button" onclick="enviar()">
+                        Cadastar
+                    </button>
+                </div>
             </div>
-        </div>
+        </form>
         <a href="login.html" class="link">Já tenho uma conta.</a>
     </div>
 </body>

@@ -8,13 +8,15 @@ body {
   justify-content: center;
   font-family: "Montserrat", sans-serif;
 
-  background: linear-gradient(107.5deg,
-      #03768f 0%,
-      rgba(9, 161, 194, 0.58) 41.9%,
-      rgba(69, 145, 227, 0.56) 55.07%,
-      rgba(49, 89, 209, 0.56) 68.63%,
-      rgba(54, 78, 227, 0.581722) 78.25%,
-      rgba(5, 10, 251, 0.51) 91.67%);
+  background: linear-gradient(
+    107.5deg,
+    #03768f 0%,
+    rgba(9, 161, 194, 0.58) 41.9%,
+    rgba(69, 145, 227, 0.56) 55.07%,
+    rgba(49, 89, 209, 0.56) 68.63%,
+    rgba(54, 78, 227, 0.581722) 78.25%,
+    rgba(5, 10, 251, 0.51) 91.67%
+  );
 }
 
 .container {
@@ -30,12 +32,13 @@ body {
 h1 {
   font-style: normal;
   font-weight: 700;
+  /* Ajustando margin no h1 - maria */
   margin-bottom: 37px;
   margin-top: 16px;
   font-size: 30px;
 }
 
-.form {
+form {
   width: 100%;
   height: 100%;
   display: flex;
@@ -46,32 +49,66 @@ h1 {
 }
 
 #etapa0 {
-  display: block;
-  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#etapa1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 label {
   margin-left: 1%;
   margin-bottom: 10px;
+  /*Alterando margin - maria*/
 }
 
-.form input {
+form input {
   border-radius: 15px;
   border: 1px solid #d8d8d8;
-  height: 50px;
+  height: 7vh;
   width: 20vw;
   font-family: "Montserrat", sans-serif;
   margin-bottom: 5%;
+  /* Adicionando config para layout input - maria */
   outline: none;
-  padding-left: 15px;
+  padding-left: 0px;
   font-size: 16px;
 }
 
-.progresso {
+.progresso_controle {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 5vh;
+  width: 20vw;
+}
+
+.progresso_controle div {
+  padding: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+
+.progresso_linha {
+  background-color: aqua;
+  display: flex;
+  background-image: url("../images/linha.png");
+  width: 20vw;
+  height: 1vh;
+}
+
+.progresso_circulos {
   display: flex;
   justify-content: space-between;
-  width: 50%;
-  background-image: url("../images/linha.png");
+  background-color: none;
+  width: 100%;
+  z-index: 10;
 }
 
 .div_cadastro,
@@ -86,11 +123,20 @@ label {
 
 a {
   text-decoration: none;
+  cursor: pointer;
+  /* Adicionando config no link - maria */
   font-family: "Poppins";
   font-weight: 400;
   color: #073c5a;
   font-size: 16px;
   margin: 20px 0;
+}
+
+.navegacao_form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 22vw;
 }
 
 button {
@@ -99,10 +145,12 @@ button {
   font-weight: bolder;
   font-size: larger;
   color: aliceblue;
-  height: fit-content;
-  min-height: 5vh;
+  cursor: pointer;
   overflow-wrap: break-word;
+  height: 5vh;
+  max-height: 5vh;
   width: 10vw;
+  max-width: 10vw;
   border-radius: 15px;
   border: none;
 }
@@ -115,8 +163,33 @@ button {
     align-items: center;
   }
 
-  .form-title::after {
-    content: "\a";
-    white-space: pre;
+  h1, .form_titulo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: fit-content;
+    max-width: 5vw;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  input {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  button {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .btn_pagina span {
+    display: none;
+  }
+  .btn_pagina::after {
+    content: "Próxima";
   }
 }
