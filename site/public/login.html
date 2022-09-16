@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/login&cadastro.css">
     <script src="js/login.js"></script>
+    <script src="js/funcoes.js"></script>
 </head>
 
 <body>
@@ -20,13 +21,13 @@
             <h1><span class="form_titulo">Entre com sua conta</span></h1>
             <div class="div_login">
                 <label>Email</label>
-                <input type="text" class="inp_email" autofocus placeholder="Digite seu email">
+                <input type="text" id="input_email" autofocus placeholder="Digite seu email">
             </div>
             <div class="div_login">
                 <label>Senha</label>
-                <input type="password" class="inp_senha" autofocus placeholder="Digite sua senha">
+                <input type="password" id="input_senha" autofocus placeholder="Digite sua senha">
             </div>
-            <button type="submit">Entrar</button> <br>
+            <button onclick="entrar()">Entrar</button> <br>
         </form>
         <a href="cadastro.html" class="link">Não tem conta? Registre-se!</a>
     </div>

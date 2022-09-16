@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/login&cadastro.css" />
     <link rel="stylesheet" href="css/barra.css" />
     <script src="js/cadastro.js"></script>
+    <script src="js/funcoes.js"></script>
 </head>
 
 <body>
@@ -39,19 +40,19 @@
             <div id="etapa0" style="display: ''">
                 <div class="div_cadastro">
                     <label>Nome fantasia</label>
-                    <input type="text" class="inp_nome" autofocus placeholder="Nome da sua empresa" />
+                    <input type="text" id="input_nome_fantasia" autofocus placeholder="Nome da sua empresa" />
                 </div>
                 <div class="div_cadastro">
                     <label>Razão social</label>
-                    <input type="text" class="inp_razao" autofocus placeholder="Razão social da sua empresa" />
+                    <input type="text" id="input_razao" autofocus placeholder="Razão social da sua empresa" />
                 </div>
                 <div class="div_cadastro">
                     <label>CNPJ</label>
-                    <input type="number" class="inp_cnpj" autofocus placeholder="Digite o CNPJ" />
+                    <input type="number" id="input_cnpj" autofocus placeholder="Digite o CNPJ" />
                 </div>
                 <div class="div_cadastro">
                     <label>CEP</label>
-                    <input type="number" class="inp_cep" autofocus placeholder="Digite o CEP" />
+                    <input type="number" id="input_cep" autofocus placeholder="Digite o CEP" />
                 </div>
                 <button class="btn_pagina" type="button" onclick="trocarPagina()">
                     <span>Próxima</span>
@@ -60,16 +61,20 @@
 
             <div id="etapa1" style="display: none">
                 <div class="div_cadastro">
+                    <label> Nome</label>
+                    <input type="text" id="input_nome" autofocus placeholder="Digite seu nome" />
+                </div>
+                <div class="div_cadastro">
                     <label>Email</label>
-                    <input type="text" class="inp_email" autofocus placeholder="Digite seu email" />
+                    <input type="text" id="input_email" autofocus placeholder="Digite seu email" />
                 </div>
                 <div class="div_cadastro">
                     <label>Senha</label>
-                    <input type="password" class="inp_senha" autofocus placeholder="Digite sua senha" />
+                    <input type="password" id="input_senha" autofocus placeholder="Digite sua senha" />
                 </div>
                 <div class="div_cadastro">
                     <label>Confirmar senha</label>
-                    <input type="password" class="inp_confirma_senha" autofocus placeholder="Confirme sua senha" />
+                    <input type="password" id="input_confirmar_senha" autofocus placeholder="Confirme sua senha" />
                 </div>
                 <div class="navegacao_form">
                     <button class="volta" onclick="voltar()">Voltar</button>
