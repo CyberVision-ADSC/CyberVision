@@ -37,7 +37,7 @@ h1 {
     margin: 50px 0 47px 0;
 }
 
-form {
+.form {
     width: 100%;
     max-width: 800px;
     height: 100%;
@@ -53,7 +53,7 @@ label {
     margin-bottom: 10px;
 }
 
-form input {
+.form input {
     height: 50px;
     width: 400px;
     border-radius: 15px;

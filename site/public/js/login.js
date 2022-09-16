@@ -38,7 +38,7 @@ function entrar() {
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        console.log("chegamo familia")
+                        
                         window.location = "index.html";
                     }, 1000); // apenas para exibir o loading
 
@@ -46,11 +46,18 @@ function entrar() {
 
             } else {
                 alert("Usuário nao encontrado")
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
             }
 
         }).catch(function (erro) {
             console.log(erro);
         })
+
+        return false;
 
     }
 }
