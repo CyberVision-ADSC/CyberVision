@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de controle</title>
+    <link rel="stylesheet" href="dash_navbar.css">
+    <link rel="stylesheet" href="dash_painel.css">
+    <script src="dash.js"></script>
+</head>
+
+<body>
+
+    <div class="navbar_deitada">
+
+      
+            <img src="img_cyber.png" alt="">
+
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="icon-menu.svg" alt="Toque para ver mais opções" class="icon_menu">
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#about">Painel de controle</a></li>
+                    <li><a class="dropdown-item" href="#services">Máquinas</a></li>
+                    <li><a class="dropdown-item" href="#contact">Acessos</a></li>
+                    <li><a class="dropdown-item" href="#contact">Chamados</a></li>
+                    <li><a class="dropdown-item" href="#contact">Configurações</a></li>
+                    <li><a class="dropdown-item" href="#contact">Sair</a></li>
+
+
+
+                </ul>
+            </div>
+
+        
+    </div>
+
+    <div class="navbar">
+        <div class="div_img_cyber">
+            <img src="img_cyber.png" alt="">
+        </div>
+
+        <div id="div_painel" onclick="mostrar_painel()">
+            <img class="imgs_navbar" src="bxs_dashboard.png" alt=""> Painel de controle
+        </div>
+
+        <div id="div_maquinas" onclick="mostrar_maquinas()">
+            <img class="imgs_navbar" src="line-md_computer.png" alt=""> Máquinas
+        </div>
+
+        <div id="div_acessos" onclick="mostrar_acessos()">
+            <img class="imgs_navbar" src="ic_outline-manage-accounts (4).png" alt=""> Acessos
+        </div>
+
+        <div id="div_chamados" onclick="mostrar_chamados()">
+            <img class="imgs_navbar" src="Vector.png" alt=""> Chamados
+        </div>
+
+        <div id="div_config" onclick="mostrar_config()">
+            <img class="imgs_navbar" src="settings.png" alt=""> Configurações
+        </div>
+
+        <div id="div_sair" onclick="sair()">
+            <img class="imgs_navbar" src="ant-design_logout-outlined.png" alt=""> Sair
+        </div>
+
+
+    </div>
+
+
+    
+
+    <div id="painel_de_controle">
+
+        <div class="div_primeira">
+            <span class="span_titulo">Dashboard</span>
+
+            <div class="div_pai_chamados">
+
+                <div class="div_chamados_abertos">
+                    <img class="img_circulo" src="Ellipse 10.png" alt="">
+                    <div class="div_dados_chamados">
+                        <span class="span_texto">Chamados abertos</span>
+                        <span id="span_numero">25</span>
+
+                    </div>
+
+                </div>
+
+                <div class="div_chamados_abertos">
+                    <img class="img_circulo" src="Ellipse 10.png" alt="">
+                    <div class="div_dados_chamados">
+                        <span class="span_texto">Chamados abertos</span>
+                        <span id="span_numero">25</span>
+
+                    </div>
+                </div>
+
+                <div class="div_chamados_abertos">
+                    <img class="img_circulo" src="Ellipse 10.png" alt="">
+                    <div class="div_dados_chamados">
+                        <span class="span_texto">Chamados abertos</span>
+                        <span id="span_numero">25</span>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="div_grafico_principal">
+                <span class="span_maquinas_problemas">Máquinas com problemas</span>
+            </div>
+
+        </div>
+
+        <div class="div_segunda">
+
+            <div class="div_grafico_um"></div>
+            <div class="div_grafico_dois"></div>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
