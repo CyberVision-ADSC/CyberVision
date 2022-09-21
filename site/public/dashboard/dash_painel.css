@@ -11,10 +11,8 @@ body {
 
 }
 
-
-
 #painel_de_controle {
-    background-color: #B6B6B6;
+    background-color: #F5F6F8;
     width: 85%;
     height: 100%;
     display: flex;
@@ -26,9 +24,6 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-
-
-
 }
 
 .span_titulo {
@@ -38,7 +33,6 @@ body {
     font-weight: 700;
     margin-top: 44px;
     margin-left: 36px;
-
 }
 
 .div_pai_chamados {
@@ -48,8 +42,6 @@ body {
     flex-direction: row;
     margin-top: 65px;
     justify-content: flex-end;
-
-
 }
 
 .div_chamados_abertos {
@@ -60,7 +52,6 @@ body {
     border-radius: 15px;
     display: flex;
     align-items: center;
-
 }
 
 .img_circulo {
@@ -80,8 +71,6 @@ body {
     color: #222359;
     font-style: normal;
     font-weight: 600;
-
-
 }
 
 #span_numero {
@@ -91,8 +80,6 @@ body {
     font-size: 120%;
     color: #FFC107;
 }
-
-
 
 .div_grafico_principal {
     width: 96%;
@@ -120,8 +107,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
 }
 
 .div_grafico_um {
@@ -130,7 +115,6 @@ body {
     background-color: #ffff;
     border-radius: 15px;
     margin-top: 131px;
-
 }
 
 .div_grafico_dois {
@@ -139,8 +123,6 @@ body {
     background-color: #ffff;
     border-radius: 15px;
     margin-top: 29px;
-
-
 }
 
 
@@ -149,28 +131,21 @@ body {
     .span_texto {
         font-size: 50%;
         text-align: center;
-
-
-
     }
 
     #span_numero {
         font-size: 100%;
-
     }
 
     .div_grafico_principal {
         width: 96%;
         height: 55%;
         margin-top: 25px;
-
     }
 
 
     .span_maquinas_problemas {
-
         font-size: 80%;
-
     }
 
     .div_grafico_um {
@@ -179,7 +154,6 @@ body {
         background-color: #ffff;
         border-radius: 15px;
         margin-top: 131px;
-
     }
 
     .div_grafico_dois {
@@ -188,13 +162,8 @@ body {
         background-color: #ffff;
         border-radius: 15px;
         margin-top: 29px;
-
-
     }
-
 }
-
-
 
 @media (max-width: 768px) {
 
@@ -206,7 +175,6 @@ body {
     }
 
     #painel_de_controle {
-
         width: 100%;
         height: 89%;
         display: flex;
@@ -214,11 +182,9 @@ body {
         align-items: center;
     }
 
-
     .div_primeira {
         width: 90%;
     }
-
 
     .div_pai_chamados {
         width: 100%;
@@ -227,8 +193,6 @@ body {
         flex-direction: row;
         margin-top: 45px;
         justify-content: flex-end;
-
-
     }
 
     .div_chamados_abertos {
@@ -239,7 +203,6 @@ body {
         border-radius: 15px;
         display: flex;
         align-items: center;
-
     }
 
     .img_circulo {
@@ -260,9 +223,6 @@ body {
         color: #222359;
         font-style: normal;
         font-weight: 600;
-
-
-
     }
 
     #span_numero {
@@ -272,8 +232,6 @@ body {
         font-size: 120%;
         color: #FFC107;
     }
-
-
 
     .div_grafico_principal {
         width: 90%;
@@ -285,7 +243,6 @@ body {
         display: flex;
     }
 
-
     .div_segunda {
         width: 90%;
         height: 100%;
@@ -295,14 +252,12 @@ body {
         justify-content: space-evenly;
     }
 
-
     .div_grafico_um {
         width: 40%;
         height: 35.5%;
         background-color: #ffff;
         border-radius: 15px;
         margin-top: -165px;
-
     }
 
     .div_grafico_dois {
@@ -311,15 +266,8 @@ body {
         background-color: #ffff;
         border-radius: 15px;
         margin-top: -165px;
-
-
     }
-
-
 }
-
-
-
 
 @media (max-width: 540px) {
 
@@ -339,14 +287,12 @@ body {
         align-items: center;
     }
 
-
     .div_primeira {
         height: 65%;
         width: 85%;
         display: flex;
         align-items: center;
     }
-
 
     .div_pai_chamados {
         width: 100%;
@@ -355,8 +301,6 @@ body {
         flex-direction: row;
         margin-top: 45px;
         justify-content: space-between;
-
-
     }
 
     .div_chamados_abertos {
