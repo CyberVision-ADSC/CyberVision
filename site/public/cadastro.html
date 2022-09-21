@@ -41,44 +41,52 @@
                 <div class="div_cadastro">
                     <label>Nome fantasia</label>
                     <input type="text" id="input_nome_fantasia" autofocus placeholder="Nome da sua empresa" />
+                    <small id = "valida_nome_fantasia"></small>
                 </div>
                 <div class="div_cadastro">
                     <label>Razão social</label>
                     <input type="text" id="input_razao" autofocus placeholder="Razão social da sua empresa" />
+                    <small id = "valida_razao"></small>
                 </div>
                 <div class="div_cadastro">
                     <label>CNPJ</label>
                     <input type="number" id="input_cnpj" autofocus placeholder="Digite o CNPJ" />
+                    <small id = "valida_cnpj"></small>
                 </div>
                 <div class="div_cadastro">
                     <label>CEP</label>
                     <input type="number" id="input_cep" autofocus placeholder="Digite o CEP" />
+                    <small id = "valida_cep"></small>
                 </div>
-                <button class="btn_pagina" type="button" onclick="trocarPagina()">
+                <button class="btn_pagina" type="button" onclick="validarCadastroE1()">
                     <span>Próxima</span>
                 </button>
             </div>
 
             <div id="etapa1" style="display: none">
                 <div class="div_cadastro">
-                    <label> Nome</label>
+                    <label>Nome</label>
                     <input type="text" id="input_nome" autofocus placeholder="Digite seu nome" />
+                    <small id = "valida_nome"></small>
                 </div>
                 <div class="div_cadastro">
                     <label>Email</label>
                     <input type="text" id="input_email" autofocus placeholder="Digite seu email" />
+                    <small id = "valida_email"></small>
                 </div>
                 <div class="div_cadastro">
                     <label>Senha</label>
                     <input type="password" id="input_senha" autofocus placeholder="Digite sua senha" />
+                    <small id = "valida_senha"></small>
                 </div>
                 <div class="div_cadastro">
                     <label>Confirmar senha</label>
                     <input type="password" id="input_confirmar_senha" autofocus placeholder="Confirme sua senha" />
+                    <small id = "valida_confirma_senha"></small>
                 </div>
                 <div class="navegacao_form">
                     <button class="volta" onclick="voltar()">Voltar</button>
-                    <button class="btn_cadastro" type="button" onclick="enviar()">
+                    <button class="btn_cadastro" type="button" onclick="validarCadastroE2()">
                         Cadastar
                     </button>
                 </div>
