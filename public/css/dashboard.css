@@ -1,19 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
 body {
-    margin: 0;
-    padding: 0;
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: row;
-
 }
 
-#painel_de_controle {
+#painel {
     background-color: #F5F6F8;
-    width: 85%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -125,7 +119,6 @@ body {
     margin-top: 29px;
 }
 
-
 @media (max-width: 1024px) {
 
     .span_texto {
@@ -142,7 +135,6 @@ body {
         height: 55%;
         margin-top: 25px;
     }
-
 
     .span_maquinas_problemas {
         font-size: 80%;
@@ -174,7 +166,7 @@ body {
         flex-direction: column;
     }
 
-    #painel_de_controle {
+    #painel {
         width: 100%;
         height: 89%;
         display: flex;
@@ -270,7 +262,6 @@ body {
 }
 
 @media (max-width: 540px) {
-
     body {
         width: 100vw;
         height: 100vh;
@@ -278,8 +269,7 @@ body {
         flex-direction: column;
     }
 
-    #painel_de_controle {
-
+    #painel {
         width: 100%;
         height: 89%;
         display: flex;
@@ -311,7 +301,6 @@ body {
         display: flex;
         align-items: center;
         margin-left: 0;
-
     }
 
     .img_circulo {
@@ -334,8 +323,6 @@ body {
         font-style: normal;
         font-weight: 600;
 
-
-
     }
 
     #span_numero {
@@ -345,8 +332,6 @@ body {
         font-size: 120%;
         color: #FFC107;
     }
-
-
 
     .div_grafico_principal {
         width: 96%;
@@ -358,7 +343,6 @@ body {
         display: flex;
     }
 
-
     .div_segunda {
         width: 90%;
         height: 35%;
@@ -368,14 +352,12 @@ body {
         justify-content: space-evenly;
     }
 
-
     .div_grafico_um {
         width: 40%;
         height: 50%;
         background-color: #ffff;
         border-radius: 15px;
         margin-top: 0;
-
     }
 
     .div_grafico_dois {
@@ -384,14 +366,8 @@ body {
         background-color: #ffff;
         border-radius: 15px;
         margin-top: 0;
-
-
     }
-
-
 }
-
-
 
 @media (max-width: 415px) {
 
@@ -402,15 +378,13 @@ body {
         flex-direction: column;
     }
 
-    #painel_de_controle {
-
+    #painel {
         width: 100%;
         height: 89%;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-
 
     .div_primeira {
         height: 65%;
@@ -419,7 +393,6 @@ body {
         align-items: center;
     }
 
-
     .div_pai_chamados {
         width: 100%;
         height: 35%;
@@ -427,8 +400,6 @@ body {
         flex-direction: row;
         margin-top: 45px;
         justify-content: space-between;
-
-
     }
 
     .div_chamados_abertos {
@@ -440,7 +411,6 @@ body {
         align-items: center;
         flex-direction: column;
         margin-left: 0;
-
     }
 
     .img_circulo {
@@ -463,9 +433,6 @@ body {
         font-style: normal;
         font-weight: 600;
         margin-top: 10px;
-
-
-
     }
 
     #span_numero {
@@ -475,8 +442,6 @@ body {
         font-size: 130%;
         color: #FFC107;
     }
-
-
 
     .div_grafico_principal {
         width: 96%;
@@ -488,7 +453,6 @@ body {
         display: flex;
     }
 
-
     .div_segunda {
         width: 90%;
         height: 35%;
@@ -498,14 +462,12 @@ body {
         justify-content: space-evenly;
     }
 
-
     .div_grafico_um {
         width: 40%;
         height: 50%;
         background-color: #ffff;
         border-radius: 15px;
         margin-top: -50px;
-
     }
 
     .div_grafico_dois {
@@ -514,9 +476,5 @@ body {
         background-color: #ffff;
         border-radius: 15px;
         margin-top: -50px;
-
-
     }
-
-
 }
