@@ -1,18 +1,8 @@
 function entrar() {
+    const email = input_email.value;
+    const senha = input_senha.value;
 
-    var emailVar = input_email.value;
-    var senhaVar = input_senha.value;
-
-    if (emailVar == "" || senhaVar == "") {
-
-        alert("Preencha todos os campos")
-
-    } else {
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-
+    if (email.length && senha.length) {
 
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -20,33 +10,40 @@ function entrar() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
+                emailServer: email,
+                senhaServer: senha
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
             if (resposta.ok) {
-                console.log(resposta);
-
                 resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-
-                    setTimeout(function () {
-                        
-                        window.location = "index.html";
-                    }, 1000); // apenas para exibir o loading
-
+                    sessionStorage.ID_USUARIO = json.id_usuario;
                 });
 
-            } else {
-                alert("Usuário nao encontrado")
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        setInterval(() => {
+                            window.location.href = 'dashboard.html'
+                        }, 1500);
+                    }
+                })
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Logado com sucesso!'
+                })
 
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Usuário ou senha inválidos',
+                  })
                 resposta.text().then(texto => {
                     console.error(texto);
                     finalizarAguardar(texto);
@@ -54,10 +51,17 @@ function entrar() {
             }
 
         }).catch(function (erro) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Usuário ou senha inválidos',
+              })
+
             console.log(erro);
         })
 
-        return false;
-
+    } else {
+        document.getElementById("errorLabel").style.opacity = 1
+        document.getElementById("errorLabel").textContent = "Preencha os campos necessários!"
     }
 }

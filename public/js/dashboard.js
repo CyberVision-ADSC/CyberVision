@@ -1,3 +1,13 @@
+function validarSessao() {
+    idUsuario = sessionStorage.ID_USUARIO
+    nome = sessionStorage.NOME_USUARIO
+    email = sessionStorage.EMAIL_USUARIO
+  
+    if (idUsuario == null && nome == null && email == null) {
+      window.location = "login.html";
+    }
+}
+
 function openSidebar() {
     document.getElementById("sidebar").style.marginLeft = 0
     document.getElementById("backgroundCloseOffCanva").style.display = 'flex'
@@ -61,5 +71,6 @@ function changeView(view) {
 }
 
 function loggout() {
-    console.log("sair da aplicacao")
-}
+    sessionStorage.clear()
+    window.location.href = 'login.html'
+  }
