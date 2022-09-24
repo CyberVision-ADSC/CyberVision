@@ -8,8 +8,8 @@
     <title>CyberVision - Entrar</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/cadastro.css">
-    <script src="js/login.js"></script>
-    <script src="js/funcoes.js"></script>
+    <link rel="stylesheet" href="css/switchButton.css">
+    <script src="js/cadastro.js"></script>
 </head>
 
 <body>
@@ -19,40 +19,49 @@
                 <img src="icons/icon-back.svg" alt="voltar">
             </a>
             <img src="icons/logo.svg" alt="Logo CyberVision">
-            <h1><span class="form_titulo">Bem vindo de volta!</span></h1>
-            <div id="user" style="display: none;">
-                <div class="div_login">
-                    <label>Nome</label>
-                    <input type="text" id="input_email" autofocus placeholder="Digite seu email">
-                </div>
-                <div class="div_login">
-                    <label>Email</label>
-                    <input type="text" id="input_email" autofocus placeholder="Digite seu email">
-                </div>
-                <div class="div_login">
-                    <label>Senha</label>
-                    <input type="password" id="input_senha" autofocus placeholder="Digite sua senha">
-                </div>
+            <div class="btn-container">
+                <label class="switch btn-color-mode-switch">
+                    <input disabled type="checkbox" name="color_mode" id="checkbox">
+                    <label for="color_mode" data-on="Usuário" data-off="Empresa"
+                        class="btn-color-mode-switch-inner"></label>
+                </label>
             </div>
+            <label id="errorLabel">_</label>
             <div id="business">
                 <div class="div_login">
                     <label>Razão social</label>
-                    <input id="input_razao_social" autofocus placeholder="Digite seu email">
+                    <input id="inputRazaoSocial" placeholder="Digite a razão social">
                 </div>
                 <div class="div_login">
                     <label>Nome fantasia</label>
-                    <input id="input_nome_fantasia" autofocus placeholder="Digite seu email">
+                    <input id="inputNomeFantasia" placeholder="Digite o nome fantasia">
                 </div>
                 <div class="div_login">
                     <label>CNPJ</label>
-                    <input id="input_cnpj" autofocus placeholder="Digite sua senha">
+                    <input id="inputCnpj" type="number" placeholder="00.000.000/0000-00" maxlength="14">
                 </div>
                 <div class="div_login">
                     <label>CEP</label>
-                    <input id="input_cep" autofocus placeholder="Digite seu cep">
+                    <input id="inputCep" maxlength="8" type="number" placeholder="00000-000">
                 </div>
+                <button onclick="nextEtapa()">Proxima etapa</button>
             </div>
-            <button onclick="entrar()">Cadastrar</button>
+            <div id="user" style="display: none;">
+                <div class="div_login">
+                    <label>Nome</label>
+                    <input type="text" id="inputNome" placeholder="Digite seu nome">
+                </div>
+                <div class="div_login">
+                    <label>Email</label>
+                    <input type="text" id="inputEmail" placeholder="Digite seu email">
+                </div>
+                <div class="div_login">
+                    <label>Senha</label>
+                    <input type="password" id="inputSenha" placeholder="Digite sua senha">
+                </div>
+
+                <button onclick="cadastrar()">Cadastrar</button>
+            </div>
         </div>
         <div class="bg"></div>
     </div>
