@@ -1,11 +1,9 @@
 var database = require("../database/config")
 
 function listar() {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
         SELECT * FROM usuario;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
@@ -18,34 +16,33 @@ function entrar(email, senha) {
     return database.executar(instrucao);
 }
 
-// Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar_empresa(nomeFantasia, razao, cnpj, cep) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar_empresa():", nomeFantasia, razao, cnpj, cep);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
+async function cadastrar(nomeFantasia, razao, cnpj, cep, nome, email, senha) {
     var instrucao = `
-        INSERT INTO faculdade (nome_fantasia, razao_social, cnpj, cep) VALUES ('${nomeFantasia}', '${razao}', '${cnpj}', '${cep}');
+    INSERT INTO faculdade (nome_fantasia, razao_social, cnpj, cep) VALUES ('${nomeFantasia}', '${razao}', '${cnpj}', '${cep}');
     `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
+    await database.executar(instrucao);
+    return cadastroUsuario(nome, email, senha, cnpj)
 }
 
-function cadastrar_usuario(nome, email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar_usuario():", nome, email, senha);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    var instrucao = `
-        INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
+async function cadastroUsuario(nome, email, senha, cnpj) {
+    var instrucaoSelect = `
+    SELECT id_faculdade FROM faculdade WHERE cnpj = '${cnpj}';`
+    await database.executar(instrucaoSelect).then(async (faculdade) => {
+        var fkFaculdade = Object.values(JSON.parse(JSON.stringify(faculdade)))
+        var idFaculdade = fkFaculdade[0].id_faculdade
+
+        var instrucao = `
+            INSERT INTO usuario(nome, email, senha, fk_faculdade) VALUES ('${nome}', '${email}', '${senha}', ${idFaculdade});
+        `;
+        return await database.executar(instrucao);
+    }).catch((err) => {
+        console.log(err)
+    })
 }
 
 module.exports = {
     entrar,
-    cadastrar_empresa,
-    cadastrar_usuario,
     listar,
+    cadastrar,
+    cadastroUsuario
 };

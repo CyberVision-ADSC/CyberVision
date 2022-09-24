@@ -29,7 +29,7 @@ function entrar() {
                     timerProgressBar: true,
                     didOpen: () => {
                         setInterval(() => {
-                            window.location.href = 'dashboard.html'
+                            // window.location.href = 'dashboard.html'
                         }, 1500);
                     }
                 })

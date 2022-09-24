@@ -1,4 +1,3 @@
-
 function ativarCheckbox() {
     var checkbox = document.querySelector("#checkbox");
     checkbox.checked = true;
@@ -29,7 +28,53 @@ function cadastrar() {
     const email = inputEmail.value
     const senha = inputSenha.value
 
-    if (razaoSocial.lenght > 2 && nomeFantasia.lenght > 2 && cnpj.lenght == 14 && cep.lenght == 8 && nome.lenght > 2 && email.lenght > 2 && email.indexOf('@') > 0 && email.indexOf('.') > 0 && senha.lenght >= 8) {
-       alert("usuario cadastrado")
+    if (razaoSocial, nomeFantasia, cnpj, cep, nome, email, senha) {
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeServer: nome,
+                emailServer: email,
+                senhaServer: senha,
+                cnpjServer: cnpj,
+                nomeFantasiaServer: nomeFantasia,
+                razaoServer: razaoSocial,
+                cepServer: cep,
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        setInterval(() => {
+                            window.location.href = 'login.html'
+                        }, 1500);
+                    }
+                })
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Cadastrado com sucesso!'
+                })
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Houve um erro ao tentar realizar o cadastro!',
+                  })
+            }
+        }).catch(function (resposta) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Houve um erro ao tentar realizar o cadastro!',
+              })
+            console.log(`#ERRO: ${resposta}`);
+        });
     }
 }
