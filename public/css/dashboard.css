@@ -5,8 +5,9 @@ body {
     flex-direction: row;
 }
 
+
 #painel {
-    background-color: #F5F6F8;
+    background-color: #F5F6F8  ;
     width: 100%;
     height: 100%;
     display: flex;
@@ -34,7 +35,7 @@ body {
     height: 11%;
     display: flex;
     flex-direction: row;
-    margin-top: 65px;
+    margin-top: 60px;
     justify-content: flex-end;
 }
 
@@ -46,6 +47,7 @@ body {
     border-radius: 15px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .img_circulo {
@@ -56,7 +58,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 18px;
+
 }
 
 .span_texto {
@@ -143,7 +145,6 @@ body {
     .div_grafico_um {
         width: 80%;
         height: 33%;
-        background-color: #ffff;
         border-radius: 15px;
         margin-top: 131px;
     }
@@ -151,7 +152,6 @@ body {
     .div_grafico_dois {
         width: 80%;
         height: 33%;
-        background-color: #ffff;
         border-radius: 15px;
         margin-top: 29px;
     }
@@ -168,44 +168,56 @@ body {
 
     #painel {
         width: 100%;
-        height: 89%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
+
+    .span_titulo {
+        font-family: Montserrat;
+        color: #222359;
+        font-size: 120%;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-left: 0;
+    }
+
     .div_primeira {
         width: 90%;
+        height: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
     }
 
     .div_pai_chamados {
-        width: 100%;
-        height: 22%;
+        width: 70%;
+        height: 90%;
         display: flex;
-        flex-direction: row;
-        margin-top: 45px;
-        justify-content: flex-end;
-    }
-
-    .div_chamados_abertos {
-        width: 30%;
-        height: 100%;
-        background-color: #ffff;
-        margin-left: 24px;
-        border-radius: 15px;
-        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+        justify-content: space-evenly;
         align-items: center;
     }
 
-    .img_circulo {
-        margin-left: 22px;
+    .div_chamados_abertos {
+        width: 45%;
+        height: 30%;
+        margin-left: 0;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
     }
+
 
     .div_dados_chamados {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-left: 18px;
+        justify-content: center;
     }
 
     .span_texto {
@@ -226,38 +238,37 @@ body {
     }
 
     .div_grafico_principal {
-        width: 90%;
+        width: 70%;
         height: 75%;
-        margin-top: 25px;
+        margin-top: 15px;
         border-radius: 15px;
-        background-color: #ffff;
-        margin-left: 27px;
         display: flex;
+        margin-left: 0;
     }
 
     .div_segunda {
         width: 90%;
-        height: 100%;
+        height: 35%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-evenly;
+
     }
 
     .div_grafico_um {
-        width: 40%;
-        height: 35.5%;
-        background-color: #ffff;
+        width: 50%;
+        height: 47%;
         border-radius: 15px;
-        margin-top: -165px;
+        margin-top: 15px;
+
     }
 
     .div_grafico_dois {
-        width: 40%;
-        height: 35.5%;
-        background-color: #ffff;
+        width: 50%;
+        height: 47%;
         border-radius: 15px;
-        margin-top: -165px;
+        margin-top: 15px;
+
     }
 }
 
@@ -271,7 +282,7 @@ body {
 
     #painel {
         width: 100%;
-        height: 89%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -286,25 +297,20 @@ body {
 
     .div_pai_chamados {
         width: 100%;
-        height: 40%;
+        height: 90%;
         display: flex;
-        flex-direction: row;
-        margin-top: 45px;
-        justify-content: space-between;
+        flex-direction: column;
+        margin-top: 20px;
+        justify-content: space-evenly;
     }
 
     .div_chamados_abertos {
-        width: 30%;
-        height: 100%;
-        background-color: #ffff;
+        width: 40%;
+        height: 30%;
         border-radius: 15px;
         display: flex;
         align-items: center;
         margin-left: 0;
-    }
-
-    .img_circulo {
-        margin-left: 22px;
     }
 
     .div_dados_chamados {
@@ -336,34 +342,32 @@ body {
     .div_grafico_principal {
         width: 96%;
         height: 75%;
-        margin-top: 25px;
+        margin-top: 15px;
         border-radius: 15px;
-        background-color: #ffff;
         margin-left: 0;
         display: flex;
     }
 
     .div_segunda {
+        margin-top: 25px;
         width: 90%;
         height: 35%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
     }
 
     .div_grafico_um {
-        width: 40%;
-        height: 50%;
-        background-color: #ffff;
+        width: 50%;
+        height: 45%;
         border-radius: 15px;
         margin-top: 0;
     }
 
     .div_grafico_dois {
-        width: 40%;
-        height: 50%;
-        background-color: #ffff;
+        width: 50%;
+        height: 45%;
         border-radius: 15px;
         margin-top: 0;
     }
@@ -380,7 +384,7 @@ body {
 
     #painel {
         width: 100%;
-        height: 89%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -394,18 +398,17 @@ body {
     }
 
     .div_pai_chamados {
-        width: 100%;
-        height: 35%;
+        width: 60%;
+        height: 80%;
         display: flex;
-        flex-direction: row;
-        margin-top: 45px;
-        justify-content: space-between;
+        flex-direction: column;
+        margin-top: 15px;
+        justify-content: space-evenly;
     }
 
     .div_chamados_abertos {
-        width: 30%;
-        height: 100%;
-        background-color: #ffff;
+        width: 70%;
+        height: 30%;
         border-radius: 15px;
         display: flex;
         align-items: center;
@@ -446,35 +449,33 @@ body {
     .div_grafico_principal {
         width: 96%;
         height: 75%;
-        margin-top: 25px;
+        margin-top: 10px;
         border-radius: 15px;
-        background-color: #ffff;
         margin-left: 0;
         display: flex;
     }
 
     .div_segunda {
         width: 90%;
-        height: 35%;
+        height: 40%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
+        margin-top: 0;
     }
 
     .div_grafico_um {
-        width: 40%;
-        height: 50%;
-        background-color: #ffff;
+        width: 60%;
+        height: 40%;
         border-radius: 15px;
-        margin-top: -50px;
+       
     }
 
     .div_grafico_dois {
-        width: 40%;
-        height: 50%;
-        background-color: #ffff;
+        width: 60%;
+        height: 40%;
         border-radius: 15px;
-        margin-top: -50px;
+       
     }
 }

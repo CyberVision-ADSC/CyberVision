@@ -3,9 +3,9 @@ function validarSessao() {
     nome = sessionStorage.NOME_USUARIO
     email = sessionStorage.EMAIL_USUARIO
   
-    if (idUsuario == null && nome == null && email == null) {
-      window.location = "login.html";
-    }
+    // if (idUsuario == null && nome == null && email == null) {
+    //   window.location = "login.html";
+    // }
 }
 
 function openSidebar() {
