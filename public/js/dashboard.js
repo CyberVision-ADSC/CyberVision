@@ -33,6 +33,7 @@ function changeView(view) {
             document.getElementById("acessos").style.display = 'none'
             document.getElementById("chamados").style.display = 'none'
             document.getElementById("configuracao").style.display = 'none'
+            loadMaquinas()
             break;
         case "acessos":
             document.getElementById("painel").style.display = 'none'
@@ -47,6 +48,7 @@ function changeView(view) {
             document.getElementById("acessos").style.display = 'none'
             document.getElementById("chamados").style.display = 'flex'
             document.getElementById("configuracao").style.display = 'none'
+            loadTickets()
             break;
         case "configuracao":
             document.getElementById("painel").style.display = 'none'
