@@ -4,6 +4,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    padding: 0 45px;
+    overflow-y: auto;
 }
 
 #acessos h1 {
@@ -12,5 +14,85 @@
     font-size: 120%;
     font-weight: 700;
     margin-top: 44px;
-    margin-left: 36px;
+    
+}
+
+.div_nav_acesso{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.foto_superior{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 100px;
+    margin-top: 20px;
+}
+
+.filtrar_maquinas {
+    padding-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filtrar_maquinas select {
+    font-weight: 300;
+    border: 0px;
+    width: 150px;
+}
+
+.filtrar_maquinas button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    width: 230px;
+    height: 40px;
+    border: 0px;
+    border-radius: 12px;
+    background-color: #7197F9;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.div_perfil_acesso{
+    width: 100%;
+    height: 9%;
+    margin-top: 2.5%;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.foto_card{
+    width: 37px;
+    height: 37px;
+    background-color: red;
+    border-radius: 50px;
+    
+}
+
+.caixa_infos{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 20%;
+    
+}
+
+.caixa_icons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 7%;
+    
 }
