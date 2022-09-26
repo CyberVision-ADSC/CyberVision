@@ -19,7 +19,7 @@
 ![image](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![image](https://img.shields.io/badge/Microsoft_Azure-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white)
 
-## Nosso time
+## 🤝 Colaboradores
 - **Gabriel Maximiano** - [GabrielMaxi1602](https://github.com/GabrielMaxi1602)
 - **Maria Eduarda** - [ferreiramadu](https://github.com/ferreiramadu)
 - **Leonardo Nacagawa** - [nakaleo13](https://github.com/nakaleo13)
