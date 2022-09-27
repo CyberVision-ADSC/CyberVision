@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 #configuracao {
     background-color: #F5F6F8;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 #configuracao h1 {
@@ -13,4 +16,85 @@
     font-weight: 700;
     margin-top: 44px;
     margin-left: 36px;
+}
+
+#configuracao::-webkit-scrollbar {
+    display: none;
+}
+
+.div_nav_configuracoes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 45px 0 0;
+}
+
+.usuario_container{
+    padding: 45px;
+}
+
+.usuario_container label{
+    font-family: 'Poppins';
+    color: #073C5A;
+    margin-top: 7vh;
+    margin-bottom: 1%;
+}
+
+.usuario_container span{
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-size: larger;
+}
+
+.dados_usuario{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 135px;
+    background-color: #FFF;
+    border-radius: 15px;
+    padding: 30px 40px;
+    margin-bottom: 5vh;
+}
+
+.dados_usuario input{
+    height: 6vh;
+    width: 30%;
+    border-radius: 10px;
+    border: 2px solid #D8D8D8;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    outline: none;
+}
+
+.dados_empresa{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 135px;
+    background-color: #FFF;
+    border-radius: 15px;
+    padding: 30px 40px;
+}
+
+.empresa_container{
+    display: flex;
+    /* justify-content: space-between; */
+    width: 100%;   
+}
+
+.empresa_container div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.empresa_container input{
+    height: 6vh;
+    width: 60%;
+    border-radius: 10px;
+    border: 2px solid #D8D8D8;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    outline: none;
 }
