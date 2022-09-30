@@ -1,4 +1,4 @@
-var acessoModel = require("../models/usuarioModel");
+var acessoModel = require("../models/acessoModel");
 
 function listar(req, res) {
     var idFaculdade = req.query.idFaculdade
@@ -56,7 +56,6 @@ function atualizar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var idFaculdade = req.body.idFaculdadeServer
     var idAcesso = req.body.idAcessoServer
 
     if (nome == undefined) {
@@ -65,12 +64,10 @@ function atualizar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (idFaculdade == undefined) {
-        res.status(400).send("O ID da faculdade está undefined!");
     } else if (idAcesso == undefined) {
         res.status(400).send("O ID do Acesso está undefined!");
     } else {
-        acessoModel.atualizar(nome, email, senha, idFaculdade, idAcesso)
+        acessoModel.atualizar(nome, email, senha, idAcesso)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -94,7 +91,7 @@ function excluir(req, res) {
     if (idAcesso == undefined) {
         res.status(400).send("O ID do acesso está undefined!");
     } else {
-        acessoModel.atualizar(idAcesso)
+        acessoModel.excluir(idAcesso)
         .then(
             function (resultado) {
                 res.json(resultado);
