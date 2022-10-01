@@ -1,10 +1,33 @@
 var database = require("../database/config")
 
-function listar(idSala) {
+function listarMaquinasPorFaculdade(idFaculdade) {
+    var instrucao = `
+    SELECT computador.* FROM faculdade
+    INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+    INNER JOIN sala ON andar.id_andar = sala.fk_andar
+    INNER JOIN computador ON sala.id_sala = computador.fk_sala
+    WHERE faculdade.id_faculdade = ${idFaculdade};
+    `;
+    return database.executar(instrucao);
+}
+
+function listarMaquinasPorSala(idSala) {
     var instrucao = `
         SELECT * FROM computador WHERE fk_sala = ${idSala};
     `;
     return database.executar(instrucao);
+}
+
+function listarMaquinasComProblemas(idFaculdade) {
+    var instrucao = `
+    SELECT computador.* FROM faculdade
+    INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+    INNER JOIN sala ON andar.id_andar = sala.fk_andar
+    INNER JOIN computador ON sala.id_sala = computador.fk_sala
+    INNER JOIN relatorio ON computador.id_computador = relatorio.id_relatorio
+    WHERE faculdade.id_faculdade = ${idFaculdade} AND relatorio.uso_ram >= 80 OR relatorio.uso_disco >= 80 OR relatorio.uso_cpu >= 80;
+`;
+return database.executar(instrucao);
 }
 
 function cadastrar(processador, placaMae, ram, memoria, sistemaOperacional, fkSala) {
@@ -33,8 +56,11 @@ function excluir(idComputador) {
 }
 
 module.exports = {
-    listar,
     cadastrar,
     atualizar,
-    excluir
+    excluir,
+
+    listarMaquinasPorFaculdade,
+    listarMaquinasPorSala,
+    listarMaquinasComProblemas
 };

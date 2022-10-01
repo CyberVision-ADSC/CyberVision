@@ -4,7 +4,15 @@ var router = express.Router();
 var maquinaController = require("../controllers/maquinaController");
 
 router.get("/listar", function (req, res) {
-    maquinaController.listar(req, res);
+    maquinaController.listarMaquinasPorFaculdade(req, res);
+})
+
+router.get("/listarProblemas", function (req, res) {
+    maquinaController.listarMaquinasComProblemas(req, res);
+})
+
+router.get("/listarPorSala", function (req, res) {
+    maquinaController.listarMaquinasPorSala(req, res);
 })
 
 router.post("/cadastrar", function (req, res) {

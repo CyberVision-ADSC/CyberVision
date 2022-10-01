@@ -1,9 +1,47 @@
 var maquinaModel = require("../models/maquinaModel");
 
-function listar(req, res) {
+function listarMaquinasPorFaculdade(req, res) {
+    var idFaculdade = req.query.idFaculdade
+
+    maquinaModel.listarMaquinasPorFaculdade(idFaculdade)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(404).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
+function listarMaquinasPorSala(req, res) {
     var idSala = req.query.idSala
 
-    maquinaModel.listar(idSala)
+    maquinaModel.listarMaquinasPorSala(idSala)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(404).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
+function listarMaquinasComProblemas(req, res) {
+    var idFaculdade = req.query.idFaculdade
+
+    maquinaModel.listarMaquinasComProblemas(idFaculdade)
     .then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -126,8 +164,11 @@ function excluir(req, res) {
 }
 
 module.exports = {
-    listar,
     cadastrar,
     atualizar,
-    excluir
+    excluir,
+
+    listarMaquinasPorFaculdade,
+    listarMaquinasPorSala,
+    listarMaquinasComProblemas
 }
