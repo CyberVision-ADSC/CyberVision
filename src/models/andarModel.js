@@ -24,9 +24,9 @@ function atualizar(idAndar, numeroAndar, descricaoAndar) {
     return database.executar(instrucao);
 }
 
-function excluir(idAcesso) {
+function excluir(idAndar) {
     var instrucao = `
-        DELETE FROM andar where id_andar = ${idAcesso}
+        DELETE FROM andar where id_andar = ${idAndar}
     `;
     return database.executar(instrucao);
 }

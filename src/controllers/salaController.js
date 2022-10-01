@@ -1,9 +1,9 @@
-var andarModel = require("../models/andarModel");
+var salaModel = require("../models/salaModel");
 
 function listar(req, res) {
-    var idFaculdade = req.query.idFaculdade
+    var idAndar = req.query.idAndar
 
-    andarModel.listar(idFaculdade)
+    salaModel.listar(idAndar)
     .then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -20,18 +20,18 @@ function listar(req, res) {
 }
 
 function cadastrar(req, res) {
-    var numeroAndar = req.body.numeroAndarServer;
-    var descricaoAndar = req.body.descricaoServer;
-    var idFaculdade = req.body.idFaculdadeServer;
+    var numeroSala = req.body.numeroSalaServer;
+    var descricaoSala = req.body.descricaoServer;
+    var idAndar = req.body.idAndarServer;
 
-    if (numeroAndar == undefined) {
-        res.status(400).send("O numero do andar está undefined!");
-    } else if (descricaoAndar == undefined) {
-        res.status(400).send("A descricao do andar está undefined!");
-    } else if (idFaculdade == undefined) {
-        res.status(400).send("O ID da faculdade está undefined!");
+    if (numeroSala == undefined) {
+        res.status(400).send("O numero da sala está undefined!");
+    } else if (descricaoSala == undefined) {
+        res.status(400).send("A descricao da sala está undefined!");
+    } else if (idAndar == undefined) {
+        res.status(400).send("O ID da sala está undefined!");
     } else {
-        andarModel.cadastrar(numeroAndar, descricaoAndar, idFaculdade)
+        salaModel.cadastrar(numeroSala, descricaoSala, idAndar)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -50,18 +50,18 @@ function cadastrar(req, res) {
 }
 
 function atualizar(req, res) {
-    var idAndar = req.body.idAndarServer
-    var numeroAndar = req.body.numeroAndarServer;
-    var descricaoAndar = req.body.descricaoServer;
+    var numeroSala = req.body.numeroSalaServer;
+    var descricaoSala = req.body.descricaoServer;
+    var idSala = req.body.idSalaServer;
 
-    if (numeroAndar == undefined) {
-        res.status(400).send("O numero do andar está undefined!");
-    } else if (descricaoAndar == undefined) {
-        res.status(400).send("A descricao do andar está undefined!");
-    } else if (idAndar == undefined) {
-        res.status(400).send("O ID do andar está undefined!");
+    if (numeroSala == undefined) {
+        res.status(400).send("O numero da sala está undefined!");
+    } else if (descricaoSala == undefined) {
+        res.status(400).send("A descricao da sala está undefined!");
+    } else if (idSala == undefined) {
+        res.status(400).send("O ID da sala está undefined!");
     } else {
-        andarModel.atualizar(idAndar, numeroAndar, descricaoAndar)
+        salaModel.cadastrar(numeroSala, descricaoSala, idSala)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -80,12 +80,12 @@ function atualizar(req, res) {
 }
 
 function excluir(req, res) {
-    var idAndar = req.body.idAndarServer
+    var idSala = req.body.idAndarServer
 
-    if (idAndar == undefined) {
+    if (idSala == undefined) {
         res.status(400).send("O ID do acesso está undefined!");
     } else {
-        andarModel.excluir(idAndar)
+        salaModel.excluir(idSala)
         .then(
             function (resultado) {
                 res.json(resultado);

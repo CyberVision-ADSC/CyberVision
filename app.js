@@ -9,7 +9,9 @@ var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 8080;
 var app = express();
 var usuarioRouter = require("./src/routes/usuarios");
 var acessosRouter = require("./src/routes/acessos");
-var andaresRouter = require("./src/routes/Andares");
+var andaresRouter = require("./src/routes/andares");
+var salasRouter = require("./src/routes/salas");
+var maquinasRouter = require("./src/routes/maquinas")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,6 +22,9 @@ app.use(cors());
 app.use("/usuarios", usuarioRouter);
 app.use("/acessos", acessosRouter);
 app.use("/andares", andaresRouter);
+app.use("/salas", salasRouter);
+app.use("/maquinas", maquinasRouter);
+
 
 
 app.listen(PORTA, function () {
