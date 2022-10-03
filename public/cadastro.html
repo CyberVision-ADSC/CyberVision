@@ -9,7 +9,6 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet" href="css/switchButton.css">
-    <script src="js/cadastro.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
     <link rel="icon" href="./images/logo_cybervision.png">
 </head>
@@ -18,7 +17,7 @@
     <div class="container">
         <div class="form">
             <a class="goback" href="index.html">
-                <img src="icons/icon-back.svg" alt="voltar">
+                <img src="icons/icon_home.png" alt="voltar">
             </a>
             <img src="icons/logo.svg" alt="Logo CyberVision">
             <div class="btn-container">
@@ -40,11 +39,11 @@
                 </div>
                 <div class="div_login">
                     <label>CNPJ</label>
-                    <input id="inputCnpj" type="number" placeholder="00.000.000/0000-00" maxlength="14">
+                    <input id="inputCnpj" type="text" placeholder="00.000.000/0000-00" maxlength="18" onkeyup="mscFunc()">
                 </div>
                 <div class="div_login">
                     <label>CEP</label>
-                    <input id="inputCep" maxlength="8" type="number" placeholder="00000-000">
+                    <input id="inputCep" type="text" placeholder="00000-000" maxlength="9" onkeyup="mscFunc()">
                 </div>
                 <button onclick="nextEtapa()">Próxima etapa</button>
             </div>
@@ -68,5 +67,5 @@
         <div class="bg"></div>
     </div>
 </body>
-
+<script src="js/cadastro.js"></script>
 </html>
