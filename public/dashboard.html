@@ -132,65 +132,34 @@
                 <img src="./icons/icon-menu.svg">
             </button>
         </div>
-        <div class="div_nav_acesso">
+        <div>
             <h1>Acessos</h1>
-            <div class="foto_superior"></div>
 
-        </div>
-        <div class="filtrar_maquinas">
-            <div class="filtrar">
-                <span>Filtrar por:</span>
-                <select name="" id="">
-                    <option value="">Mais recente</option>
-                    <option value="">ID</option>
-                    <option value="">Sala</option>
-                    <option value="">Andar</option>
-                </select>
-            </div>
-            <button class="add_maquina">Adicionar máquina
-                <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
-            </button>
-        </div>
-        <div class="div_perfil_acesso">
-
-            <div class="caixa_infos">
-                <div class="foto_card"></div>
-                <span>NOME PESSOA</span>
+            <div class="filtrar_acessos">
+                <div class="filtrar">
+                    <span>Filtrar por:</span>
+                    <select name="" id="">
+                        <option value="">Mais recente</option>
+                    </select>
+                </div>
+                <button class="add_maquina" onclick="openModalCriar()">Adicionar Acesso
+                    <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
+                </button>
             </div>
 
-            <div class="caixa_icons">
-                <img src="./icons/icon_editar.png" alt="Adicionar" style="margin-left: 5px;">
-                <img src="./icons/icon_excluir.png" alt="Adicionar" style="margin-left: 5px;">
+            <div id="containerAcessos">
+                <div class="itemAcesso">
+                    <div>
+                        <p>Nome: <span>Teste Usuário</span></p>
+                        <p>Email: <span>teste@usuario.com</span></p>
+                        <p>Nível de acesso: <span>Comum</span></p>
+                    </div>
+                    <div>
+                        <img onclick="openModalEditar()" src="./icons/icon_editar.png" alt="Adicionar" style="margin-left: 5px;">
+                        <img onclick="desativarAcesso()" src="./icons/icon_excluir.png" alt="Adicionar" style="margin-left: 5px;">
+                    </div>
+                </div>
             </div>
-
-        </div>
-
-        <div class="div_perfil_acesso">
-
-            <div class="caixa_infos">
-                <div class="foto_card"></div>
-                <span>NOME PESSOA</span>
-            </div>
-
-            <div class="caixa_icons">
-                <img src="./icons/icon_editar.png" alt="Adicionar" style="margin-left: 5px;">
-                <img src="./icons/icon_excluir.png" alt="Adicionar" style="margin-left: 5px;">
-            </div>
-
-        </div>
-
-        <div class="div_perfil_acesso">
-
-            <div class="caixa_infos">
-                <div class="foto_card"></div>
-                <span>NOME PESSOA</span>
-            </div>
-
-            <div class="caixa_icons">
-                <img src="./icons/icon_editar.png" alt="Adicionar" style="margin-left: 5px;">
-                <img src="./icons/icon_excluir.png" alt="Adicionar" style="margin-left: 5px;">
-            </div>
-
         </div>
     </div>
 

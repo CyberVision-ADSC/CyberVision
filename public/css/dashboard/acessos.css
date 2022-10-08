@@ -14,37 +14,59 @@
     font-size: 18px;
     font-weight: 700;
     margin-top: 44px;
-    
+    margin-left: 36px;
 }
 
-.div_nav_acesso{
+#containerAcessos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 45px 0;
+}
+
+#containerAcessos .itemAcesso {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    width: 100%;
+    background-color: #FFF;
+    padding: 15px 30px;
+    margin: 36px 0;
+    border-radius: 15px;
 }
 
-.foto_superior{
-    width: 50px;
-    height: 50px;
-    background-color: red;
-    border-radius: 100px;
-    margin-top: 20px;
+#containerAcessos .itemAcesso div:first-child {
+    display: flex;
 }
 
-.filtrar_maquinas {
+#containerAcessos .itemAcesso p {
+    margin: 0 20px 0 0;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-weight: 600;
+    color: #666666;
+    padding: 5px 0;
+}
+
+#containerAcessos .itemAcesso p span {
+    color: #000;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.filtrar_acessos {
     padding-top: 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.filtrar_maquinas select {
+.filtrar_acessos select {
     font-weight: 300;
     border: 0px;
     width: 150px;
 }
 
-.filtrar_maquinas button {
+.filtrar_acessos button {
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     width: 230px;
@@ -59,40 +81,34 @@
     font-weight: 600;
 }
 
-.div_perfil_acesso{
-    width: 100%;
-    height: 9%;
-    margin-top: 2.5%;
-    background-color: #FFFFFF;
-    border-radius: 20px;
-    padding: 0 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+@media screen and (max-width: 700px) {
+    .itemAcesso {
+        display: flex;
+        flex-direction: column;
+    }
 
-.foto_card{
-    width: 37px;
-    height: 37px;
-    background-color: red;
-    border-radius: 50px;
-    
-}
+    #acessos {
+        padding: 0 20px;
+    }
 
-.caixa_infos{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    width: 20%;
-    
-}
+    #containerAcessos .itemAcesso p {
+        margin-bottom: 10px;
+    }
 
-.caixa_icons{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    width: 7%;
-    
+    .itemAcesso div:first-child {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filtrar_acessos {
+        flex-direction: column;
+    }
+
+    .filtrar_acessos button {
+        margin-top: 20px;
+    }
+
+    .itemAcesso div:last-child {
+        margin: 0 auto;
+    }
 }

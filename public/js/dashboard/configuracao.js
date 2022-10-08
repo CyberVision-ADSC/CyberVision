@@ -18,8 +18,12 @@ function setViewConfig() {
             <label for="senhaPerfil">Senha</label>
             <input type="email" value="********" disabled id="senhaPerfil">
         </div>
+        <div>
+            <label>Nível de acesso</label>
+            <input type="text" disabled value="Comum">
+        </div>
 
-        <button>Atualizar informações</button>
+        <button onclick="atualizarUsuario()">Atualizar informações</button>
     </div>
 
     <div>
@@ -40,8 +44,10 @@ function setViewConfig() {
             <label for="cepPerfil">CEP</label>
             <input type="text" id="cepPerfil">
         </div>
+        <div>
+    </div>
 
-        <button>Atualizar informações</button>
+        <button onclick="atualizarEmpresa()">Atualizar informações</button>
     </div>
     `
     } else {
@@ -59,6 +65,10 @@ function setViewConfig() {
         <div>
             <label for="senhaPerfil">Senha</label>
             <input type="email" value="********" disabled id="senhaPerfil">
+        </div>
+        <div>
+            <label>Nível de acesso</label>
+            <input type="text" disabled value="Administrador">
         </div>
 
         <div class="avisoPerfil">
@@ -96,9 +106,17 @@ function setViewConfig() {
 }
 
 function atualizarUsuario() {
-
+    Swal.fire({
+        icon: 'success',
+        title: 'OK!!',
+        text: 'Informações do usuário atualizadas com sucesso.',
+    })
 }
 
 function atualizarEmpresa() {
-
+    Swal.fire({
+        icon: 'success',
+        title: 'OK!!',
+        text: 'Informações da empresa atualizadas com sucesso.',
+    })
 }

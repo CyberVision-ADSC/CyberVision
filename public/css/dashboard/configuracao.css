@@ -109,3 +109,18 @@
     margin-bottom: 0;
     text-align: center;
 }
+
+@media screen and (max-width: 540px) {
+    #containerPerfil>div input {
+        width: 90%;
+    }
+
+    #containerPerfil div button {
+        width: 90%;
+    }
+
+    #containerPerfil {
+        padding: 45px 20px;
+
+    }
+}
