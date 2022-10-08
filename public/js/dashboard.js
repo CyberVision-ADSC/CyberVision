@@ -61,6 +61,7 @@ function changeView(view) {
             document.getElementById("chamados").style.display = 'none'
             document.getElementById("configuracao").style.display = 'flex'
             setSelected("div_config")
+            setViewConfig()
             break;
         default:
             document.getElementById("painel").style.display = 'flex'

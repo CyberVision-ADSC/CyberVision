@@ -19,6 +19,7 @@ function entrar() {
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id_usuario;
+                    sessionStorage.TIPO_USUARIO = json.tipo_usuario;
                 });
 
                 const Toast = Swal.mixin({

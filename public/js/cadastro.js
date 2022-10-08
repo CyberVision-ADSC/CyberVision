@@ -17,6 +17,7 @@ function dicas(){
        this.style.border = "1px solid green";
     }
 
+
 }
 document.getElementById("inputRazaoSocial").addEventListener('blur', dicas);
 document.getElementById("inputNomeFantasia").addEventListener('blur', dicas);
@@ -29,11 +30,8 @@ function nextEtapa() {
   const cnpj = inputCnpj.value;
   const cep = inputCep.value;
 
-  var cepRegex =  /^(\d{5})(\d{3})/;
-  var cnpjRegex = /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/;
-
   if (razaoSocial && nomeFantasia && cnpj && cep) {
-    if (cnpj && cep) {
+    if (cnpj.length == 22 && cep.length == 11) {
       document.getElementById("business").style.display = "none";
       document.getElementById("user").style.display = "flex";
       ativarCheckbox();
