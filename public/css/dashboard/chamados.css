@@ -14,7 +14,7 @@
 #chamados h1 {
     font-family: 'Montserrat';
     color: #222359;
-    font-size: 120%;
+    font-size: 18px;
     font-weight: 700;
     margin-top: 44px;
     margin-left: 36px;
@@ -84,6 +84,19 @@
 
 .chamado .btn-pendente {
     background-color: #FF5353;
+}
+
+.filtrar_maquinas {
+    padding:  0 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filtrar_maquinas select {
+    font-weight: 300;
+    border: 0px;
+    width: 150px;
 }
 
 @media screen and (max-width: 900px) {

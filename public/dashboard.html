@@ -29,7 +29,7 @@
     <link rel="icon" href="./images/logo_cybervision.png">
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), setSelected('div_painel')">
     <div class="sidebar" id="sidebar">
         <div class="logo">
             <img src="./icons/logo.svg" height="35" alt="CyberVision">
@@ -64,7 +64,7 @@
                     </button>
                 </div>
             </div>
-            <span class="span_titulo">Dashboard</span>
+            <span class="span_titulo">Painel de controle</span>
             <div class="div_pai_chamados">
                 <div class="div_chamados_abertos">
                     <div class="div_dados_chamados">
@@ -194,9 +194,6 @@
         </div>
     </div>
 
-
-
-    </div>
     <div id="chamados" style="display: none;">
         <div class="sidebarButton">
             <button onclick="openSidebar()">
@@ -206,6 +203,15 @@
         <div>
             <h1>Chamados</h1>
 
+            <div class="filtrar_maquinas">
+                <div class="filtrar">
+                    <span>Filtrar por:</span>
+                    <select name="" id="">
+                        <option value="">Problemas Físico</option>
+                        <option value="">Travamento ou lentidão</option>
+                    </select>
+                </div>
+            </div>
             <div id="containerChamados"></div>
         </div>
     </div>
@@ -216,34 +222,52 @@
                 <img src="./icons/icon-menu.svg">
             </button>
         </div>
-        <div class="div_nav_configuracoes">
-            <h1>Configurações</h1>
-            <div class="foto_superior"></div>
-        </div>
-        <div class="usuario_container">
-            <div class="dados_usuario">
-                <span>Dados do usuário</span>
-                <label for="nome">Nome</label>
-                <input type="text" class="nome">
-                <label for="email">Email</label>
-                <input type="text" class="email">
-            </div>
-            <div class="dados_empresa">
-                <span>Dados da empresa</span>
-                <div class="empresa_container">
-                    <div class="dados_alfabeticos">
-                        <label for="nome_empresa">Nome</label>
-                        <input type="text" class="nome_empresa">
-                        <label for="razao">Razão social</label>
-                        <input type="text" class="razao">
-                    </div>
+        <h1>Configurações</h1>
 
-                    <div class="dados_numericos">
-                        <label for="cnpj">CNPJ</label>
-                        <input type="text" class="cnpj">
-                        <label for="cep">CEP</label>
-                        <input type="text" class="cep">
-                    </div>
+        <div class="container">
+            <div>
+                <span>Dados do usuário</span>
+                <div>
+                    <label for="nomePerfil">Nome</label>
+                    <input type="text" disabled id="nomePerfil">
+                </div>
+                <div>
+                    <label for="emailPerfil">Email</label>
+                    <input type="email" disabled id="emailPerfil">
+                </div>
+                <div>
+                    <label for="senhaPerfil">Senha</label>
+                    <input type="email" value="********" disabled id="senhaPerfil">
+                </div>
+
+                <div class="avisoPerfil">
+                    <image src="icons/icon-warning.svg" alt="Informativo">
+                    <p>Para sua segurança desabilitamos campos considerados sensíveis. Caso necessite alterar alguma informação desabilitada entre em contato com nosso Suporte</p>
+                </div>
+            </div>
+
+            <div>
+                <span>Dados da empresa</span>
+                <div>
+                    <label for="razaoSocialPerfil">Razão social</label>
+                    <input type="text" disabled id="razaoSocialPerfil">
+                </div>
+                <div>
+                    <label for="nomeFantasiaPerfil">Nome fantasia</label>
+                    <input type="text" disabled id="nomeFantasiaPerfil">
+                </div>
+                <div>
+                    <label for="cnpjPerfil">CNPJ</label>
+                    <input type="text" disabled id="cnpjPerfil">
+                </div>
+                <div>
+                    <label for="cepPerfil">CEP</label>
+                    <input type="text" disabled id="cepPerfil">
+                </div>
+
+                <div class="avisoPerfil">
+                    <image src="icons/icon-warning.svg" alt="Informativo">
+                    <p>Para sua segurança desabilitamos campos considerados sensíveis. Caso necessite alterar alguma informação desabilitada entre em contato com nosso Suporte</p>
                 </div>
             </div>
         </div>

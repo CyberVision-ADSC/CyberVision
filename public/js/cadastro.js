@@ -33,8 +33,7 @@ function nextEtapa() {
   var cnpjRegex = /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/;
 
   if (razaoSocial && nomeFantasia && cnpj && cep) {
-    // Validação para valores de preenchimento do cep e cnpj
-    if (cnpj.match(cnpjRegex) && cep.match(cepRegex)) {
+    if (cnpj && cep) {
       document.getElementById("business").style.display = "none";
       document.getElementById("user").style.display = "flex";
       ativarCheckbox();

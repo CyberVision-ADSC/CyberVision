@@ -12,7 +12,7 @@
 #configuracao h1 {
     font-family: 'Montserrat';
     color: #222359;
-    font-size: 120%;
+    font-size: 18px;
     font-weight: 700;
     margin-top: 44px;
     margin-left: 36px;
@@ -22,79 +22,76 @@
     display: none;
 }
 
-.div_nav_configuracoes{
+.container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 45px 0 0;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 40px;
 }
 
-.usuario_container{
-    padding: 45px;
+.container>div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #FFF;
+    padding: 30px;
+    margin: 36px 0;
+    border-radius: 15px;
 }
 
-.usuario_container label{
-    font-family: 'Poppins';
-    color: #073C5A;
-    margin-top: 7vh;
-    margin-bottom: 1%;
-}
-
-.usuario_container span{
+.container>div span {
     font-family: 'Montserrat';
-    font-weight: bold;
-    font-size: larger;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4B4A4C;
+    margin-bottom: 40px;
 }
 
-.dados_usuario{
+.container>div div {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    min-height: 135px;
-    background-color: #FFF;
-    border-radius: 15px;
-    padding: 30px 40px;
-    margin-bottom: 5vh;
 }
 
-.dados_usuario input{
-    height: 6vh;
-    width: 30%;
+.container>div label {
+    font-family: 'Poppins';
+    font-size: 12px;
+    color: #073C5A;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.container>div input {
+    height: 35px;
+    width: 300px;
     border-radius: 10px;
-    border: 2px solid #D8D8D8;
+    border: 1px solid #d8d8d8;
     font-family: "Montserrat", sans-serif;
     font-weight: 300;
     outline: none;
+    padding-left: 15px;
+    font-size: 14px;
+    margin-bottom: 30px;
 }
 
-.dados_empresa{
+.avisoPerfil {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 135px;
-    background-color: #FFF;
-    border-radius: 15px;
-    padding: 30px 40px;
-}
-
-.empresa_container{
-    display: flex;
-    /* justify-content: space-between; */
-    width: 100%;   
-}
-
-.empresa_container div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.empresa_container input{
-    height: 6vh;
-    width: 60%;
+    width: 80%;
+    padding: 25px;
+    border: 1px solid #d8d8d8;
     border-radius: 10px;
-    border: 2px solid #D8D8D8;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 300;
-    outline: none;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.avisoPerfil img {
+    width: 25px;
+    height: 25px;
+    margin: 0 auto 10px auto;
+}
+
+.avisoPerfil p {
+    font-family: 'Poppins';
+    font-size: 12px;
+    margin-bottom: 0;
+    text-align: center;
 }
