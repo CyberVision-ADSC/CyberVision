@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberVision - Entrar</title>
+    <title>CyberVision - Cadastrar</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet" href="css/switchButton.css">
@@ -17,7 +17,8 @@
     <div class="container">
         <div class="form">
             <a class="goback" href="index.html">
-                <img src="icons/icon_home.png" alt="voltar">
+                <img src="icons/icon-arrow-left.svg" alt="voltar">
+                Voltar
             </a>
             <img src="icons/logo.svg" alt="Logo CyberVision">
             <div class="btn-container">
@@ -39,11 +40,11 @@
                 </div>
                 <div class="div_login">
                     <label>CNPJ</label>
-                    <input id="inputCnpj" type="text" placeholder="00.000.000/0000-00" maxlength="18" onkeyup="mscFunc()">
+                    <input id="inputCnpj" type="text" placeholder="00.000.000/0000-00" maxlength="18" onkeyup="mascara('cnpj')">
                 </div>
                 <div class="div_login">
                     <label>CEP</label>
-                    <input id="inputCep" type="text" placeholder="00000-000" maxlength="9" onkeyup="mscFunc()">
+                    <input id="inputCep" type="text" placeholder="00000-000" maxlength="9" onkeyup="mascara('cep')">
                 </div>
                 <button onclick="nextEtapa()">Próxima etapa</button>
             </div>
@@ -61,11 +62,15 @@
                     <input type="password" id="inputSenha" placeholder="Digite sua senha">
                 </div>
 
-                <button onclick="cadastrar()">Cadastrar</button>
+                <div class="button_couple">
+                    <button onclick="voltarEtapa()">Voltar etapa</button>
+                    <button onclick="cadastrar()">Cadastrar</button>
+                </div>
             </div>
         </div>
         <div class="bg"></div>
     </div>
 </body>
 <script src="js/cadastro.js"></script>
+
 </html>

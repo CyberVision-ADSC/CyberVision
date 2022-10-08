@@ -3,6 +3,11 @@ function ativarCheckbox() {
   checkbox.checked = true;
 }
 
+function desativarCheckbox() {
+  var checkbox = document.querySelector("#checkbox");
+  checkbox.checked = false;
+}
+
 function dicas(){
     // Altera a cor da borda das inputs do cadastro caso o usuário não
     // preencha-as corretamente
@@ -27,8 +32,6 @@ function nextEtapa() {
   var cepRegex =  /^(\d{5})(\d{3})/;
   var cnpjRegex = /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/;
 
-  
-
   if (razaoSocial && nomeFantasia && cnpj && cep) {
     // Validação para valores de preenchimento do cep e cnpj
     if (cnpj.match(cnpjRegex) && cep.match(cepRegex)) {
@@ -41,6 +44,12 @@ function nextEtapa() {
     document.getElementById("errorLabel").textContent =
       "Preencha os campos necessários!";
   }
+}
+
+function voltarEtapa() {
+  document.getElementById("business").style.display = "";
+  document.getElementById("user").style.display = "none";
+  desativarCheckbox()
 }
 
 function cadastrar() {
@@ -102,5 +111,13 @@ function cadastrar() {
         });
         console.log(`#ERRO: ${resposta}`);
       });
+  }
+}
+
+function mascara(type) {
+  if (type == "cnpj") {
+    inputCnpj.value =  inputCnpj.value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
+  } else {
+    inputCep.value = inputCep.value.replace(/^([\d]{2})\.*([\d]{3})-*([\d]{3})/, "$1.$2-$3")
   }
 }

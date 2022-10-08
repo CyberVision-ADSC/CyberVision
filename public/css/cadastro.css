@@ -7,12 +7,21 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
-.goback img {
+.goback {
     position: absolute;
-    top: 50px;
-    left: 50px;
-    width: 30px;
-    height: 30px;
+    top: 30px;
+    left: 40px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: #D8D8D8;
+    font-size: 14px;
+}
+
+.goback img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
 }
 
 .container {
@@ -97,6 +106,19 @@ a {
     width: 22vw;
 }
 
+.button_couple {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button_couple button {
+    width: 48%; 
+}
+
+.button_couple button:first-child {
+    background-color: #91adf5;
+}
+
 button {
     background-color: #7197F9;
     font-family: "Montserrat", sans-serif;
@@ -157,3 +179,11 @@ button:hover {
     display: none;
    }
 }
+
+@media screen and (max-width: 960px) {
+    .form input {
+        width: 90%;
+        font-size: 13px;
+    }
+}
+
