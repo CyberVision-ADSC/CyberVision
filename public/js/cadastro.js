@@ -24,8 +24,8 @@ function nextEtapa() {
   const cnpj = inputCnpj.value;
   const cep = inputCep.value;
 
-  var cepRegex =  /^(\d{5})-(\d{3})/;
-  var cnpjRegex = /^(\d{2}).(\d{3}).(\d{3}).(\d{4})-(\d{2})/;
+  var cepRegex =  /^(\d{5})(\d{3})/;
+  var cnpjRegex = /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/;
 
   
 
