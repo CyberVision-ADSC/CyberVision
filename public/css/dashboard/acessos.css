@@ -14,14 +14,13 @@
     font-size: 18px;
     font-weight: 700;
     margin-top: 44px;
-    margin-left: 36px;
 }
 
 #containerAcessos {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 45px 0;
+    padding: 20px 0;
 }
 
 #containerAcessos .itemAcesso {

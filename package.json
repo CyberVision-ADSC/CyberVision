@@ -10,6 +10,8 @@
   "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
   "license": "MIT",
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.3",
+    "chart.js": "^3.9.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mssql": "^7.1.3",

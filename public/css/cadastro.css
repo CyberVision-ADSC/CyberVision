@@ -137,6 +137,12 @@ button {
     cursor: pointer;
 }
 
+#voltarEtapa {
+    background-color: transparent !important;
+    border: 2px solid #7197F9 !important;
+    color: #7197F9 !important;
+}
+
 button:hover {
     background-color: #91adf5;
 }
