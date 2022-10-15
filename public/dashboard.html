@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./css/dashboard/configuracao.css">
     <link rel="stylesheet" href="./css/dashboard/maquinas.css">
     <link rel="stylesheet" href="./css/dashboard/graficos.css">
+    <link rel="stylesheet" href="./css/dashboard/modalDetalheMaquina.css">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
     <script src="./js/dashboard.js"></script>
@@ -245,6 +246,59 @@
 
         <div id="containerPerfil"></div>
     </div>
+
+    <div id="modalDetalheMaquina" class="modalDetalheMaquina" style="margin-right: -576px;">
+        <div>
+            <div onclick="closeModalDetalheMaquina()">
+                <img src="icons/maquina/icon-close-modal.svg" alt="fechar">
+            </div>
+            <p>Detalhamento da Máquina</p>
+        </div>
+        <div class="divUsoGrafico">
+            <p>Uso em tempo real</p>
+            <div>
+                <canvas id="grafico3" class="canvas1"></canvas>
+            </div>
+        </div>
+        <div class="divInfoHardware">
+            <p>Informações da máquina</p>
+            <p><span>Hostname: </span> <span>Sistema operacional:</span></p>
+            <p><span>Processador: </span> <span>Disco:</span></p>
+            <p><span>arquitetura: </span> <span>Ram:</span></p>
+            <p><span>Fabricante: </span> <span>Sala: Andar:</span></p>
+        </div>
+        <div class="divProcessosTempoReal">
+            <p>Processos em tempo real</p>
+            <div id="listaDeProcessos">
+                <div class="itemProcesso">
+                    <div>
+                        <p>Nome: <span>Google chrome</span></p>
+                    </div>
+                    <div>
+                        <img src="icons/maquina/icon-more-options.svg" alt="Ver mais opcoes">
+                    </div>
+                </div>
+                <div class="itemProcesso">
+                    <div>
+                        <p>Nome: <span>Google chrome</span></p>
+                    </div>
+                    <div>
+                        <img src="icons/maquina/icon-more-options.svg" alt="Ver mais opcoes">
+                    </div>
+                </div>
+                <div class="itemProcesso">
+                    <div>
+                        <p>Nome: <span>Google chrome</span></p>
+                    </div>
+                    <div>
+                        <img src="icons/maquina/icon-more-options.svg" alt="Ver mais opcoes">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="backgroundCloseOffCanvaDetalheMaquina" id="backgroundCloseOffCanvaDetalheMaquina"
+        onclick="closeModalDetalheMaquina()" style="display: none;"></div>
 </body>
 
 <script>
@@ -321,4 +375,38 @@
 
 </script>
 
+<script>
+    const ctx3 = document.getElementById('grafico3');
+    const myChart3 = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ['CPU', 'RAM', 'DISCO', 'FÍSICO'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
 </html>

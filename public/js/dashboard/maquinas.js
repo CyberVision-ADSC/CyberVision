@@ -11,12 +11,35 @@ function loadMaquinas() {
         // style="background-color: #E911B9" ram
         // style="background-color: #FFBE72" fisico
 
-        containerMaquinas.innerHTML += `
-            <div class="item">
+        if (posicao == 0) {
+            containerMaquinas.innerHTML += `
+            <div class="item" onclick="openModalDetalheMaquina()">
+                <div class="status">
+                    <div class="circle" style="background-color: #E9DF00"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle" style="background-color: #FFBE72"></div>
+                </div>
+                <div class="pc">
+                    <img src="images/pc.png" alt="ver detalhes">
+                </div>
+                <span class="apelido">Apelido</span>
+                <div class="dados">
+                    <span>ANDAR <span>1</span></span>
+                    <span>SALA <span>2</span></span>
+                </div>
+                <div class="hostname">
+                    <span>#NOT7578383</span>
+                </div>
+            </div>
+            `
+        } else if (posicao == 1) {
+            containerMaquinas.innerHTML += `
+            <div class="item" onclick="openModalDetalheMaquina()">
                 <div class="status">
                     <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
+                    <div class="circle" style="background-color: #FF7272" disco></div>
+                    <div class="circle" style="background-color: #E911B9" ram></div>
                     <div class="circle"></div>
                 </div>
                 <div class="pc">
@@ -32,6 +55,29 @@ function loadMaquinas() {
                 </div>
             </div>
             `
+        } else {
+            containerMaquinas.innerHTML += `
+            <div class="item" onclick="openModalDetalheMaquina()">
+                <div class="status">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle" style="background-color: #FFBE72"></div>
+                </div>
+                <div class="pc">
+                    <img src="images/pc.png" alt="ver detalhes">
+                </div>
+                <span class="apelido">Apelido</span>
+                <div class="dados">
+                    <span>ANDAR <span>1</span></span>
+                    <span>SALA <span>2</span></span>
+                </div>
+                <div class="hostname">
+                    <span>#NOT7578383</span>
+                </div>
+            </div>
+            `
+        }
     }
 }
 
@@ -90,14 +136,14 @@ function loadSalas() {
 }
 
 function loadMaquinasEspecificas() {
-    
+
     document.getElementById("containerMaquinasEspecificas").innerHTML = " /  andar 1 / sala 1 / visão geral das máquinas"
 
     containerMaquinasEspecificas.innerHTML = ""
 
     for (var posicao = 0; posicao < 12; posicao++) {
         containerMaquinasEspecificas.innerHTML += `
-            <div class="item">
+            <div class="item" onclick="openModalDetalheMaquina()">
                 <div class="status">
                     <div class="circle"></div>
                     <div class="circle"></div>
@@ -163,4 +209,14 @@ function changeViewMaquinas(params) {
             loadMaquinas()
             break;
     }
+}
+
+function openModalDetalheMaquina() {
+    document.getElementById("modalDetalheMaquina").style.marginRight = 0
+    document.getElementById("backgroundCloseOffCanvaDetalheMaquina").style.display = 'flex'
+}
+
+function closeModalDetalheMaquina() {
+    document.getElementById("modalDetalheMaquina").style.marginRight = "-576px"
+    document.getElementById("backgroundCloseOffCanvaDetalheMaquina").style.display = 'none'
 }
