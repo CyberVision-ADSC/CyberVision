@@ -33,7 +33,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 </head>
 
-<body onload="validarSessao(), setSelected('div_painel')">
+<body onload="validarSessao(), setSelected('div_painel'), loadIndicators()">
     <div class="sidebar" id="sidebar">
         <div class="logo">
             <img src="./icons/logo.svg" height="35" alt="CyberVision">
@@ -72,21 +72,12 @@
 
             <div class="containerKpi">
                 <div class="itemKpi">
-                    <div style="background-color: #D5DA00;">
-                        <img src="icons/icon-chat-dash.svg">
-                    </div>
-                    <div>
-                        <span>Chamados pendentes</span>
-                        <p>5</p>
-                    </div>
-                </div>
-                <div class="itemKpi">
                     <div style="background-color: #5AB543;">
                         <img src="icons/icon-maquina-ok.svg">
                     </div>
                     <div>
                         <span>Máquinas ativas</span>
-                        <p>5</p>
+                        <p id="indicadorMaquinasAtivas">0</p>
                     </div>
                 </div>
                 <div class="itemKpi">
@@ -94,17 +85,26 @@
                         <img src="icons/icon-maquina-off.svg">
                     </div>
                     <div>
-                        <span>Máquinas inativas</span>
-                        <p>5</p>
+                        <span>Máquinas com problema</span>
+                        <p id="indicadorMaquinasProblema">0</pi>
                     </div>
                 </div>
                 <div class="itemKpi">
-                    <div style="background-color: #FFBE3F;">
-                        <img src="icons/icon-upgrade.svg">
+                    <div style="background-color: #b900e7e7;">
+                        <img src="icons/icon-maquina-disabled.svg">
                     </div>
                     <div>
-                        <span>Andares para upgrade</span>
-                        <p>2</p>
+                        <span>Máquinas inativas</span>
+                        <p id="indicadorMaquinasInativas">0</p>
+                    </div>
+                </div>
+                <div class="itemKpi">
+                    <div style="background-color: #D5DA00;">
+                        <img src="icons/icon-chat-dash.svg">
+                    </div>
+                    <div>
+                        <span>Chamados pendentes</span>
+                        <p id="indicadorChamadosPendentes">0</p>
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                 <div class="graficoItem">
                     <div>
                         <div>
-                            <p>Categorias com mais índices de problemas</p>
+                            <p>Principais problemas</p>
                             <span><img src="icons/icon-check.svg"> Últimos 10 dias</span>
                         </div>
                         <div style="cursor: pointer;">
@@ -140,13 +140,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="containerSectiontwo">
-                <div>
-                    <p>Lista de processos</p>
-                </div>
-                <div></div>
-            </div> -->
         </div>
     </div>
 
@@ -157,27 +150,42 @@
             </button>
         </div>
         <div class="header">
-            <h1>Máquinas</h1>
+            <h1>Máquinas <span id="tituloMaquinas"></span></h1>
             <div class="input">
-                <input type="text" placeholder="Pesquisar por ID, Salas ou andares">
+                <input type="text" placeholder="Pesquisar por hostname, Salas ou andares">
                 <img class="imgInput" src="./icons/icon-search.svg">
             </div>
         </div>
         <div class="filtrar_maquinas">
-            <div class="filtrar">
-                <span>Filtrar por:</span>
-                <select name="" id="">
-                    <option value="">Mais recente</option>
-                    <option value="">ID</option>
-                    <option value="">Sala</option>
-                    <option value="">Andar</option>
-                </select>
+            <div class="selecionarVisao">
+                <div class="active" onclick="changeViewMaquinas('maquinasComProblemas')">
+                    <img src="icons/maquina/icon-maquina-white.svg">
+                    <img style="display: none;" src="icons/maquina/icon-maquina-purple.svg">
+                    <p>Máquinas com problemas</p>
+                </div>
+                <div onclick="changeViewMaquinas('andares')">
+                    <img src="icons/maquina/icon-grid-purple.svg">
+                    <img style="display: none;" src="icons/maquina/icon-grid-white.svg">
+                    <p>Visão geral</p>
+                    </d>
+                </div>
             </div>
+
             <button class="add_maquina">Adicionar máquina
                 <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
             </button>
         </div>
+        <div class="container-btn-filter" id="filtrosCategorias">
+            <button style="background-color: #E9DF00">CPU (<span>2</span>)</button>
+            <button style="background-color: #FF7272">Disco (<span>2</span>)</button>
+            <button style="background-color: #E911B9">RAM (<span>2</span>)</button>
+            <button style="background-color: #FFBE72">Físico (<span>2</span>)</button>
+        </div>
+
         <div id="containerMaquinas"></div>
+        <div id="containerAndares"></div>
+        <div id="containerSalas"></div>
+        <div id="containerMaquinasEspecificas"></div>
     </div>
 
     <div id="acessos" style="display: none;">
@@ -201,21 +209,7 @@
                 </button>
             </div>
 
-            <div id="containerAcessos">
-                <div class="itemAcesso">
-                    <div>
-                        <p>Nome: <span>Teste Usuário</span></p>
-                        <p>Email: <span>teste@usuario.com</span></p>
-                        <p>Nível de acesso: <span>Comum</span></p>
-                    </div>
-                    <div>
-                        <img onclick="openModalEditar()" src="./icons/icon_editar.png" alt="Adicionar"
-                            style="margin-left: 5px;">
-                        <img onclick="desativarAcesso()" src="./icons/icon_excluir.png" alt="Adicionar"
-                            style="margin-left: 5px;">
-                    </div>
-                </div>
-            </div>
+            <div id="containerAcessos"></div>
         </div>
     </div>
 
@@ -258,10 +252,10 @@
     const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ['1º Andar', '2º Andar', '3º Andar', '4º Andar', '5º Andar', '6º Andar'],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: 'Problemas',
+                data: [10, 19, 2, 5, 2, 20],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -295,27 +289,23 @@
 <script>
     const ctx2 = document.getElementById('grafico2');
     const myChart2 = new Chart(ctx2, {
-        type: 'line',
+        type: 'pie',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ['CPU', 'RAM', 'DISCO', 'FÍSICO'],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [12, 19, 3, 5],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
                     'rgba(255, 206, 86, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)',
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 1
             }]

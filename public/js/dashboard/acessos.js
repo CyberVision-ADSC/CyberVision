@@ -1,3 +1,22 @@
+function loadAcessos() {
+  document.getElementById("containerAcessos").innerHTML = ""
+  document.getElementById("containerAcessos").innerHTML += `
+            <div class="itemAcesso">
+                    <div>
+                        <p>Nome: <span>Teste Usuário</span></p>
+                        <p>Email: <span>teste@usuario.com</span></p>
+                        <p>Nível de acesso: <span>Comum</span></p>
+                    </div>
+                    <div>
+                        <img onclick="openModalEditar()" src="icons/icon-editar.svg" alt="editar"
+                            style="margin-left: 5px;">
+                        <img onclick="desativarAcesso()" src="icons/icon-deletar.svg" alt="apagar"
+                            style="margin-left: 5px;">
+                    </div>
+                </div>
+  `
+}
+
 function openModalCriar() {
 
 }

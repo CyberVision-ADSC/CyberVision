@@ -44,6 +44,7 @@ function changeView(view) {
             document.getElementById("chamados").style.display = 'none'
             document.getElementById("configuracao").style.display = 'none'
             setSelected("div_acessos")
+            loadAcessos()
             break;
         case "chamados":
             document.getElementById("painel").style.display = 'none'
