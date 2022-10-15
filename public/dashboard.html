@@ -159,14 +159,14 @@
         </div>
         <div class="filtrar_maquinas">
             <div class="selecionarVisao">
-                <div class="active" onclick="changeViewMaquinas('maquinasComProblemas')">
-                    <img src="icons/maquina/icon-maquina-white.svg">
-                    <img style="display: none;" src="icons/maquina/icon-maquina-purple.svg">
+                <div id="visao-maquinas-filtro" class="active" onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
+                    <img id="icone-maquinas-white" src="icons/maquina/icon-maquina-white.svg">
+                    <img id="icone-maquinas-purple" style="display: none;" src="icons/maquina/icon-maquina-purple.svg">
                     <p>Máquinas com problemas</p>
                 </div>
-                <div onclick="changeViewMaquinas('andares')">
-                    <img src="icons/maquina/icon-grid-purple.svg">
-                    <img style="display: none;" src="icons/maquina/icon-grid-white.svg">
+                <div id="visao-geral-filtro" onclick="changeViewMaquinas('andares'), alterarVisao('geral')">
+                    <img id="icone-geral-purple" src="icons/maquina/icon-grid-purple.svg">
+                    <img id="icone-geral-white" style="display: none;" src="icons/maquina/icon-grid-white.svg">
                     <p>Visão geral</p>
                     </d>
                 </div>
@@ -227,8 +227,10 @@
                 <div class="filtrar">
                     <span>Filtrar por:</span>
                     <select name="" id="">
-                        <option value="">Problemas Físico</option>
-                        <option value="">Travamento ou lentidão</option>
+                        <option value="">Problemas de CPU</option>
+                        <option value="">Problemas de Disco</option>
+                        <option value="">Problemas de Ram</option>
+                        <option value="">Problemas Físicos</option>
                     </select>
                 </div>
             </div>

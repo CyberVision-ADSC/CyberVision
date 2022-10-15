@@ -220,3 +220,29 @@ function closeModalDetalheMaquina() {
     document.getElementById("modalDetalheMaquina").style.marginRight = "-576px"
     document.getElementById("backgroundCloseOffCanvaDetalheMaquina").style.display = 'none'
 }
+
+function alterarVisao(params) {
+    switch (params) {
+        case "maquinas":
+            document.getElementById("visao-maquinas-filtro").classList.add("active")
+            document.getElementById("visao-geral-filtro").classList.remove("active")
+
+            document.getElementById("icone-maquinas-white").style.display = 'flex'
+            document.getElementById("icone-maquinas-purple").style.display = 'none'
+            document.getElementById("icone-geral-white").style.display = 'none'
+            document.getElementById("icone-geral-purple").style.display = 'flex'
+            break;
+        case "geral":
+            document.getElementById("visao-maquinas-filtro").classList.remove("active")
+            document.getElementById("visao-geral-filtro").classList.add("active")
+
+            document.getElementById("icone-geral-white").style.display = 'flex'
+            document.getElementById("icone-geral-purple").style.display = 'none'
+            document.getElementById("icone-maquinas-white").style.display = 'none'
+            document.getElementById("icone-maquinas-purple").style.display = 'flex'
+            break;
+    
+        default:
+            break;
+    }
+}
