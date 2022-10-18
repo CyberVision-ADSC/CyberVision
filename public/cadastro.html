@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="css/switchButton.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
     <link rel="icon" href="./images/logo_cybervision.png">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous">
+</script>
+
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
+    integrity=
+"sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA="
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -40,11 +50,11 @@
                 </div>
                 <div class="div_login">
                     <label>CNPJ</label>
-                    <input id="inputCnpj" type="text" placeholder="00.000.000/0000-00" maxlength="18" onkeyup="mascara('cnpj')">
+                    <input id="inputCnpj" type="text" placeholder="00.000.000/0000-00" maxlength="18">
                 </div>
                 <div class="div_login">
                     <label>CEP</label>
-                    <input id="inputCep" type="text" placeholder="00000-000" maxlength="9" onkeyup="mascara('cep')">
+                    <input id="inputCep" type="text" placeholder="00000-000" maxlength="9" >
                 </div>
                 <button onclick="nextEtapa()">Próxima etapa</button>
             </div>
@@ -55,11 +65,11 @@
                 </div>
                 <div class="div_login">
                     <label>Email</label>
-                    <input type="text" id="inputEmail" placeholder="Digite seu email">
+                    <input type="text" id="inputEmail" placeholder="email@provedor.com">
                 </div>
                 <div class="div_login">
                     <label>Senha</label>
-                    <input type="password" id="inputSenha" placeholder="Digite sua senha">
+                    <input type="password" id="inputSenha" placeholder="********">
                 </div>
 
                 <div class="button_couple">

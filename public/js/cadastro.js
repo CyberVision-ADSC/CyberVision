@@ -31,7 +31,7 @@ function nextEtapa() {
   const cep = inputCep.value;
 
   if (razaoSocial && nomeFantasia && cnpj && cep) {
-    if (cnpj.length == 22 && cep.length == 11) {
+    if (cnpj.length == 18 && cep.length == 9) {
       document.getElementById("business").style.display = "none";
       document.getElementById("user").style.display = "flex";
       ativarCheckbox();
@@ -111,10 +111,13 @@ function cadastrar() {
   }
 }
 
-function mascara(type) {
-  if (type == "cnpj") {
-    inputCnpj.value =  inputCnpj.value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
-  } else {
-    inputCep.value = inputCep.value.replace(/^([\d]{2})\.*([\d]{3})-*([\d]{3})/, "$1.$2-$3")
-  }
-}
+// function mascara(type) {
+//   if (type == "cnpj") {
+//     inputCnpj.value =  inputCnpj.value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
+//   } else {
+//     inputCep.value = inputCep.value.replace(/^([\d]{2})\.*([\d]{3})-*([\d]{3})/, "$1.$2-$3")
+//   }
+// }
+
+$('input[id="inputCnpj"]').mask('00.000.000/0000-00');
+$('input[id="inputCep"]').mask('00000-000');
