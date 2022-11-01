@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberVision - Entrar</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
+    <link rel="icon" href="./images/logo_cybervision.png">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <a class="goback" href="index.html">
+                <img src="icons/icon-arrow-left.svg" alt="voltar">
+                Voltar
+            </a>
+            <img src="icons/logo.svg" alt="Logo CyberVision">
+            <h1><span class="form_titulo">Bem vindo de volta!</span></h1>
+            <div class="div_login">
+                <label>Email</label>
+                <input type="email" id="input_email" autofocus placeholder="Digite seu email">
+            </div>
+            <div class="div_login">
+                <label>Senha</label>
+                <input type="password" id="input_senha" autofocus placeholder="Digite sua senha">
+            </div>
+            <button onclick="entrar()">Entrar</button>
+            <a href="cadastro.html" class="link">Não tem conta? <b>Registre-se!</b></a>
+        </div>
+        <div class="bg"></div>
+    </div>
+</body>
+
+</html>

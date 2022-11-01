@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberVision - Cadastrar</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="css/switchButton.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
+    <link rel="icon" href="./images/logo_cybervision.png">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous">
+</script>
+
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
+    integrity=
+"sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <a class="goback" href="index.html">
+                <img src="icons/icon-arrow-left.svg" alt="voltar">
+                Voltar
+            </a>
+            <img src="icons/logo.svg" alt="Logo CyberVision">
+            <div class="btn-container">
+                <label class="switch btn-color-mode-switch">
+                    <input disabled type="checkbox" name="color_mode" id="checkbox">
+                    <label for="color_mode" data-on="Usuário" data-off="Empresa"
+                        class="btn-color-mode-switch-inner"></label>
+                </label>
+            </div>
+            <label id="errorLabel">_</label>
+            <div id="business">
+                <div class="div_login">
+                    <label>Razão social</label>
+                    <input id="inputRazaoSocial" placeholder="Digite a razão social">
+                </div>
+                <div class="div_login">
+                    <label>Nome fantasia</label>
+                    <input id="inputNomeFantasia" placeholder="Digite o nome fantasia">
+                </div>
+                <div class="div_login">
+                    <label>CNPJ</label>
+                    <input id="inputCnpj" type="text" placeholder="00.000.000/0000-00" maxlength="18">
+                </div>
+                <div class="div_login">
+                    <label>CEP</label>
+                    <input id="inputCep" type="text" placeholder="00000-000" maxlength="9" >
+                </div>
+                <button onclick="nextEtapa()">Próxima etapa</button>
+            </div>
+            <div id="user" style="display: none;">
+                <div class="div_login">
+                    <label>Nome</label>
+                    <input type="text" id="inputNome" placeholder="Digite seu nome">
+                </div>
+                <div class="div_login">
+                    <label>Email</label>
+                    <input type="text" id="inputEmail" placeholder="email@provedor.com">
+                </div>
+                <div class="div_login">
+                    <label>Senha</label>
+                    <input type="password" id="inputSenha" placeholder="********">
+                </div>
+
+                <div class="button_couple">
+                    <button id="voltarEtapa" onclick="voltarEtapa()">Voltar etapa</button>
+                    <button onclick="cadastrar()">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+        <div class="bg"></div>
+    </div>
+</body>
+<script src="js/cadastro.js"></script>
+
+</html>

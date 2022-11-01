@@ -1,0 +1,99 @@
+.div_sidebar{
+    display: none;
+}
+
+.sidebar {
+    background-color: #ffff;
+    max-width: 250px;
+    min-width: 250px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Poppins';
+    font-size: 85%;
+    font-style: normal;
+    color: #073C5A;
+    transition: 300ms ease-in;
+    margin-left: 0;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 66px;
+}
+
+.imgs_navbar {
+    width: 20px;
+    height: 20px;
+    margin-left: 18px;
+    margin-right: 12px;
+}
+
+#div_painel {
+    width: 100%;
+    height: 38px;
+    background-color: #ffff;
+    margin-top: 63px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebar div:not(.sidebar .logo) {
+    width: 100%;
+    height: 38px;
+    background-color: #ffff;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#div_sair {
+    margin-top: 200px;
+}
+
+.backgroundCloseOffCanva {
+    display: none;
+    width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(48, 48, 48, 50%);
+    z-index: 1;
+}
+
+.sidebarButton {
+    margin: 25px 0 0 25px;
+}
+
+.sidebarButton button {
+    outline: none;
+    border: 0;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 900px) {
+    .sidebar {
+        position: absolute;
+        z-index: 11;
+        min-height: 100% !important;
+        margin-left: -250px;
+    }
+
+    .div_sidebar{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .sidebarButton {
+        display: none;
+    }
+}

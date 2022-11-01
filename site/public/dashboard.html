@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberVision - Painel de controle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/reset.css">
+
+    <link rel="stylesheet" href="./css/dashboard/Painel.css">
+    <link rel="stylesheet" href="./css/dashboard/acessos.css">
+    <link rel="stylesheet" href="./css/dashboard/chamados.css">
+    <link rel="stylesheet" href="./css/dashboard/configuracao.css">
+    <link rel="stylesheet" href="./css/dashboard/maquinas.css">
+    <link rel="stylesheet" href="./css/dashboard/graficos.css">
+    <link rel="stylesheet" href="./css/dashboard/modalDetalheMaquina.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
+    <script src="./js/dashboard.js"></script>
+    <script src="./js/dashboard/painel.js"></script>
+    <script src="./js/dashboard/chamados.js"></script>
+    <script src="./js/dashboard/acessos.js"></script>
+    <script src="./js/dashboard/maquinas.js"></script>
+    <script src="./js/dashboard/configuracao.js"></script>
+    <script src="./js/dashboard/graficos.js"></script>
+
+    <link rel="icon" href="./images/logo_cybervision.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body onload="validarSessao(), setSelected('div_painel'), loadIndicators()">
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="./icons/logo.svg" height="35" alt="CyberVision">
+        </div>
+        <div id="div_painel" onclick="changeView('painel')">
+            <img class="imgs_navbar" src="./icons/icon-dashboard.svg" alt="Painel de controle"> Painel de controle
+        </div>
+        <div id="div_maquinas" onclick="changeView('maquinas')">
+            <img class="imgs_navbar" src="./icons/icon-computer.svg" alt="Máquinas"> Máquinas
+        </div>
+        <div id="div_acessos" onclick="changeView('acessos')">
+            <img class="imgs_navbar" src="./icons/icon-userConfig.svg" alt="Acessos"> Acessos
+        </div>
+        <div id="div_chamados" onclick="changeView('chamados')">
+            <img class="imgs_navbar" src="./icons/icon-chat.svg" alt="Chamados"> Chamados
+        </div>
+        <div id="div_config" onclick="changeView('configuracao')">
+            <img class="imgs_navbar" src="./icons/icon-settings.svg" alt="Configurações"> Configurações
+        </div>
+        <div id="div_sair" onclick="loggout()">
+            <img class="imgs_navbar" src="./icons/icon-logout.svg" alt=""> Sair
+        </div>
+    </div>
+    <div class="backgroundCloseOffCanva" id="backgroundCloseOffCanva" onclick="closeSidebar()"></div>
+
+    <div id="painel">
+        <div>
+            <div class="div_sidebar">
+                <div class="sidebarButton">
+                    <button onclick="openSidebar()">
+                        <img src="./icons/icon-menu.svg">
+                    </button>
+                </div>
+            </div>
+            <h1 class="span_titulo">Painel de controle</h1>
+
+            <div class="containerKpi">
+                <div class="itemKpi">
+                    <div style="background-color: #5AB543;">
+                        <img src="icons/icon-maquina-ok.svg">
+                    </div>
+                    <div>
+                        <span>Máquinas ativas</span>
+                        <p id="indicadorMaquinasAtivas">0</p>
+                    </div>
+                </div>
+                <div class="itemKpi">
+                    <div style="background-color: #FF3232;">
+                        <img src="icons/icon-maquina-off.svg">
+                    </div>
+                    <div>
+                        <span>Máquinas com problema</span>
+                        <p id="indicadorMaquinasProblema">0</pi>
+                    </div>
+                </div>
+                <div class="itemKpi">
+                    <div style="background-color: #b900e7e7;">
+                        <img src="icons/icon-maquina-disabled.svg">
+                    </div>
+                    <div>
+                        <span>Máquinas inativas</span>
+                        <p id="indicadorMaquinasInativas">0</p>
+                    </div>
+                </div>
+                <div class="itemKpi">
+                    <div style="background-color: #D5DA00;">
+                        <img src="icons/icon-chat-dash.svg">
+                    </div>
+                    <div>
+                        <span>Chamados pendentes</span>
+                        <p id="indicadorChamadosPendentes">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="containerGraficos">
+                <div class="graficoItem">
+                    <div>
+                        <div>
+                            <p>Andares com alto indices de problemas</p>
+                            <span><img src="icons/icon-check.svg"> Últimos 10 dias</span>
+                        </div>
+                        <div style="cursor: pointer;">
+                            <img width="20" height="20" src="icons/icon-info.svg">
+                        </div>
+                    </div>
+                    <div class="divGrafico1">
+                        <canvas id="grafico1" class="canvas1"></canvas>
+                    </div>
+                </div>
+
+                <div class="graficoItem">
+                    <div>
+                        <div>
+                            <p>Principais problemas</p>
+                            <span><img src="icons/icon-check.svg"> Últimos 10 dias</span>
+                        </div>
+                        <div style="cursor: pointer;">
+                            <img width="20" height="20" src="icons/icon-info.svg">
+                        </div>
+                    </div>
+                    <div class="divGrafico2">
+                        <canvas id="grafico2" class="canvas1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="maquinas" style="display: none;">
+        <div class="sidebarButton">
+            <button onclick="openSidebar()">
+                <img src="./icons/icon-menu.svg">
+            </button>
+        </div>
+        <div class="header">
+            <h1>Máquinas <span id="tituloMaquinas"></span></h1>
+            <div class="input">
+                <input type="text" placeholder="Pesquisar por hostname, Salas ou andares">
+                <img class="imgInput" src="./icons/icon-search.svg">
+            </div>
+        </div>
+        <div class="filtrar_maquinas">
+            <div class="selecionarVisao">
+                <div id="visao-maquinas-filtro" class="active" onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
+                    <img id="icone-maquinas-white" src="icons/maquina/icon-maquina-white.svg">
+                    <img id="icone-maquinas-purple" style="display: none;" src="icons/maquina/icon-maquina-purple.svg">
+                    <p>Máquinas com problemas</p>
+                </div>
+                <div id="visao-geral-filtro" onclick="changeViewMaquinas('andares'), alterarVisao('geral')">
+                    <img id="icone-geral-purple" src="icons/maquina/icon-grid-purple.svg">
+                    <img id="icone-geral-white" style="display: none;" src="icons/maquina/icon-grid-white.svg">
+                    <p>Visão geral</p>
+                    </d>
+                </div>
+            </div>
+
+            <button class="add_maquina">Adicionar máquina
+                <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
+            </button>
+        </div>
+        <div class="container-btn-filter" id="filtrosCategorias">
+            <button style="background-color: #E9DF00">CPU (<span>2</span>)</button>
+            <button style="background-color: #FF7272">Disco (<span>2</span>)</button>
+            <button style="background-color: #E911B9">RAM (<span>2</span>)</button>
+            <button style="background-color: #FFBE72">Físico (<span>2</span>)</button>
+        </div>
+
+        <div id="containerMaquinas"></div>
+        <div id="containerAndares"></div>
+        <div id="containerSalas"></div>
+        <div id="containerMaquinasEspecificas"></div>
+    </div>
+
+    <div id="acessos" style="display: none;">
+        <div class="sidebarButton">
+            <button onclick="openSidebar()">
+                <img src="./icons/icon-menu.svg">
+            </button>
+        </div>
+        <div>
+            <h1>Acessos</h1>
+
+            <div class="filtrar_acessos">
+                <div class="filtrar">
+                    <span>Filtrar por:</span>
+                    <select name="" id="">
+                        <option value="">Mais recente</option>
+                    </select>
+                </div>
+                <button class="add_maquina" onclick="openModalCriar()">Adicionar Acesso
+                    <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
+                </button>
+            </div>
+
+            <div id="containerAcessos"></div>
+        </div>
+    </div>
+
+    <div id="chamados" style="display: none;">
+        <div class="sidebarButton">
+            <button onclick="openSidebar()">
+                <img src="./icons/icon-menu.svg">
+            </button>
+        </div>
+        <div>
+            <h1>Chamados</h1>
+
+            <div class="filtrar_maquinas_chamado">
+                <div class="filtrar">
+                    <span>Filtrar por:</span>
+                    <select name="" id="">
+                        <option value="">Problemas de CPU</option>
+                        <option value="">Problemas de Disco</option>
+                        <option value="">Problemas de Ram</option>
+                        <option value="">Problemas Físicos</option>
+                    </select>
+                </div>
+            </div>
+            <div id="containerChamados"></div>
+        </div>
+    </div>
+
+    <div id="configuracao" style="display: none;">
+        <div class="sidebarButton">
+            <button onclick="openSidebar()">
+                <img src="./icons/icon-menu.svg">
+            </button>
+        </div>
+        <h1>Configurações</h1>
+
+        <div id="containerPerfil"></div>
+    </div>
+
+    <div id="modalDetalheMaquina" class="modalDetalheMaquina" style="margin-right: -576px;">
+        <div>
+            <div onclick="closeModalDetalheMaquina()">
+                <img src="icons/maquina/icon-close-modal.svg" alt="fechar">
+            </div>
+            <p>Detalhamento da Máquina</p>
+        </div>
+        <div class="divUsoGrafico">
+            <p>Uso em tempo real</p>
+            <div>
+                <canvas id="grafico3" class="canvas1"></canvas>
+            </div>
+        </div>
+        <div class="divInfoHardware">
+            <p>Informações da máquina</p>
+            <p><span>Hostname: </span> <span>Sistema operacional:</span></p>
+            <p><span>Processador: </span> <span>Disco:</span></p>
+            <p><span>arquitetura: </span> <span>Ram:</span></p>
+            <p><span>Fabricante: </span> <span>Sala: Andar:</span></p>
+        </div>
+        <div class="divProcessosTempoReal">
+            <p>Processos em tempo real</p>
+            <div id="listaDeProcessos">
+                <div class="itemProcesso">
+                    <div>
+                        <p>Nome: <span>Google chrome</span></p>
+                    </div>
+                    <div>
+                        <img src="icons/maquina/icon-more-options.svg" alt="Ver mais opcoes">
+                    </div>
+                </div>
+                <div class="itemProcesso">
+                    <div>
+                        <p>Nome: <span>Google chrome</span></p>
+                    </div>
+                    <div>
+                        <img src="icons/maquina/icon-more-options.svg" alt="Ver mais opcoes">
+                    </div>
+                </div>
+                <div class="itemProcesso">
+                    <div>
+                        <p>Nome: <span>Google chrome</span></p>
+                    </div>
+                    <div>
+                        <img src="icons/maquina/icon-more-options.svg" alt="Ver mais opcoes">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="backgroundCloseOffCanvaDetalheMaquina" id="backgroundCloseOffCanvaDetalheMaquina"
+        onclick="closeModalDetalheMaquina()" style="display: none;"></div>
+</body>
+
+<script>
+    const ctx = document.getElementById('grafico1');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['1º Andar', '2º Andar', '3º Andar', '4º Andar', '5º Andar', '6º Andar'],
+            datasets: [{
+                label: 'Problemas',
+                data: [10, 19, 2, 5, 2, 20],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
+
+<script>
+    const ctx2 = document.getElementById('grafico2');
+    const myChart2 = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: ['CPU', 'RAM', 'DISCO', 'FÍSICO'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
+
+<script>
+    const ctx3 = document.getElementById('grafico3');
+    const myChart3 = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ['CPU', 'RAM', 'DISCO', 'FÍSICO'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
+</html>

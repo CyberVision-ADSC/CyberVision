@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+#configuracao {
+    background-color: #F5F6F8;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+#configuracao h1 {
+    font-family: 'Montserrat';
+    color: #222359;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 44px;
+    margin-left: 36px;
+}
+
+#configuracao::-webkit-scrollbar {
+    display: none;
+}
+
+#containerPerfil {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 45px;
+}
+
+#containerPerfil>div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #FFF;
+    padding: 30px;
+    margin: 36px 0;
+    border-radius: 15px;
+}
+
+#containerPerfil>div span {
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-weight: 600;
+    color: #4B4A4C;
+    margin-bottom: 40px;
+}
+
+#containerPerfil>div div {
+    display: flex;
+    flex-direction: column;
+}
+
+#containerPerfil>div label {
+    font-family: 'Poppins';
+    font-size: 12px;
+    color: #073C5A;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+#containerPerfil>div input {
+    height: 35px;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid #d8d8d8;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    outline: none;
+    padding-left: 15px;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+#containerPerfil div button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    width: 230px;
+    min-width: 100px;
+    height: 35px;
+    border: 0px;
+    border-radius: 12px;
+    background-color: #7197F9;
+    color: white;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.avisoPerfil {
+    display: flex;
+    width: 80%;
+    padding: 25px;
+    border: 1px solid #d8d8d8;
+    border-radius: 10px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.avisoPerfil img {
+    width: 25px;
+    height: 25px;
+    margin: 0 auto 10px auto;
+}
+
+.avisoPerfil p {
+    font-family: 'Poppins';
+    font-size: 12px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+@media screen and (max-width: 540px) {
+    #containerPerfil>div input {
+        width: 90%;
+    }
+
+    #containerPerfil div button {
+        width: 90%;
+    }
+
+    #containerPerfil {
+        padding: 45px 20px;
+
+    }
+}

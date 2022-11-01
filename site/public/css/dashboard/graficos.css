@@ -1,0 +1,11 @@
+.containerGraficoChart {
+    width: 70%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 20px auto 0 auto;
+}
+
+.grafico {
+    width: 100%;
+}

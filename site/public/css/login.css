@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    font-family: "Montserrat", sans-serif;
+}
+
+.goback {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: #D8D8D8;
+    font-size: 14px;
+}
+
+.goback img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.container {
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+}
+
+.bg {
+    width: 100%;
+    background-image: url("../images/background-notebook.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    width: 100%;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 50px 0 47px 0;
+}
+
+.form {
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    display: flex;
+    margin-top: 0%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+label {
+    margin-left: 1%;
+    margin-bottom: 10px;
+}
+
+.form input {
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid #d8d8d8;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    margin-bottom: 5%;
+    outline: none;
+    padding-left: 15px;
+    font-size: 14px;
+}
+
+.div_login {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    /* Adicionando config no link - maria */
+    font-family: "Poppins";
+    font-weight: 400;
+    color: #073c5a;
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.navegacao_form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 22vw;
+}
+
+button {
+    background-color: #7197F9;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    overflow-wrap: break-word;
+    min-height: 40px;
+    width: 300px;
+    min-width: 150px;
+    border-radius: 10px;
+    border: none;
+    margin: 40px 0 25px 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #91adf5;
+}
+
+.link {
+    font-size: 14px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.link b {
+    color: #7197F9;
+}
+
+.link:hover {
+    border-bottom: 1px solid #7197F9;
+}
+
+#errorLabel {
+    color:rgb(255, 94, 94);
+    font-size: 12px;
+    font-family: 'Poppins';
+    opacity: 0;
+}
+
+
+@media screen and (max-width: 1200px) {
+    input {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    button {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    @media screen and (max-width: 960px) {
+        .bg {
+         display: none;
+        }
+     }
+}
