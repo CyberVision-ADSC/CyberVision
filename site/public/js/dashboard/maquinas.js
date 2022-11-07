@@ -213,11 +213,13 @@ function changeViewMaquinas(params) {
 
 function openModalDetalheMaquina() {
     document.getElementById("modalDetalheMaquina").style.marginRight = 0
+    document.getElementById("modalDetalheMaquina").style.visibility = 'visible'
     document.getElementById("backgroundCloseOffCanvaDetalheMaquina").style.display = 'flex'
 }
 
 function closeModalDetalheMaquina() {
     document.getElementById("modalDetalheMaquina").style.marginRight = "-576px"
+    document.getElementById("modalDetalheMaquina").style.visibility = 'hidden'
     document.getElementById("backgroundCloseOffCanvaDetalheMaquina").style.display = 'none'
 }
 

@@ -29,7 +29,7 @@
     width: 100%;
     background-color: #FFF;
     padding: 15px 30px;
-    margin: 36px 0;
+    margin: 10px 0;
     border-radius: 15px;
 }
 
@@ -78,6 +78,10 @@
     align-items: center;
     justify-content: center;
     font-weight: 600;
+}
+
+#btnAdicionarAcesso {
+    display: none;
 }
 
 @media screen and (max-width: 700px) {

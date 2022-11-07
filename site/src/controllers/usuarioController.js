@@ -83,7 +83,38 @@ function cadastrar(req, res) {
     }
 }
 
+function atualizar(req, res) {
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var idAcesso = req.body.idAcessoServer;
+
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (idAcesso == undefined) {
+        res.status(400).send("O ID do Acesso está undefined!");
+    } else {
+        usuarioModel.atualizar(nome, email, idAcesso)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
 module.exports = {
     entrar,
-    cadastrar
+    cadastrar,
+    atualizar
 }

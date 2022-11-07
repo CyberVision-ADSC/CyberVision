@@ -32,8 +32,17 @@ async function cadastroUsuario(nome, email, senha, cnpj) {
     })
 }
 
+function atualizar(nome, email, idAcesso) {
+    var instrucao = `
+        UPDATE usuario SET nome = '${nome}', email = '${email}' WHERE id_usuario = ${idAcesso};
+    `;
+
+    return database.executar(instrucao);
+}
+
 module.exports = {
     entrar,
     cadastrar,
-    cadastroUsuario
+    cadastroUsuario,
+    atualizar
 };

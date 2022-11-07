@@ -111,13 +111,5 @@ function cadastrar() {
   }
 }
 
-// function mascara(type) {
-//   if (type == "cnpj") {
-//     inputCnpj.value =  inputCnpj.value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
-//   } else {
-//     inputCep.value = inputCep.value.replace(/^([\d]{2})\.*([\d]{3})-*([\d]{3})/, "$1.$2-$3")
-//   }
-// }
-
 $('input[id="inputCnpj"]').mask('00.000.000/0000-00');
 $('input[id="inputCep"]').mask('00000-000');
