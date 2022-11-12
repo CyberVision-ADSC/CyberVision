@@ -7,6 +7,10 @@ router.get("/listar", function (req, res) {
     maquinaController.listarMaquinasPorFaculdade(req, res);
 })
 
+router.get("/listarPorHostname", function (req, res) {
+    maquinaController.listarMaquinasPorHostname(req, res);
+})
+
 router.get("/listarProblemas", function (req, res) {
     maquinaController.listarMaquinasComProblemas(req, res);
 })
@@ -26,5 +30,9 @@ router.post("/atualizar", function (req, res) {
 router.delete("/excluir", function (req, res) {
     maquinaController.excluir(req, res);
 });
+
+router.get("/validarhostname", function (req, res) {
+    maquinaController.validarHostNameExistente(req, res);
+})
 
 module.exports = router;

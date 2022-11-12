@@ -36,6 +36,13 @@ function changeView(view) {
             document.getElementById("configuracao").style.display = 'none'
             loadMaquinas()
             setSelected("div_maquinas")
+            loadFiltros()
+
+            document.getElementById('botaoAdicionar').innerHTML = `
+            <button onclick="adicionarMaquina()" class="add_maquina">Adicionar máquina
+            <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
+            </button>
+            `
             break;
         case "acessos":
             document.getElementById("painel").style.display = 'none'

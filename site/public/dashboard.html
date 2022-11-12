@@ -26,8 +26,12 @@
     <script src="./js/dashboard/chamados.js"></script>
     <script src="./js/dashboard/acessos.js"></script>
     <script src="./js/dashboard/maquinas.js"></script>
+    <script src="./js/dashboard/andar.js"></script>
+    <script src="./js/dashboard/sala.js"></script>
     <script src="./js/dashboard/configuracao.js"></script>
     <script src="./js/dashboard/graficos.js"></script>
+    <script src="./js/dashboard/geralAbaMaquinas.js"></script>
+    <script src="./js/dashboard/filtrosMaquina.js"></script>
 
     <link rel="icon" href="./images/logo_cybervision.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -153,13 +157,15 @@
         <div class="header">
             <h1>Máquinas <span id="tituloMaquinas"></span></h1>
             <div class="input">
-                <input type="text" placeholder="Pesquisar por hostname, Salas ou andares">
+                <input type="text" id="inputPesquisaHostName" onkeyup="listarPorHostname()"
+                    placeholder="Pesquisar por hostname">
                 <img class="imgInput" src="./icons/icon-search.svg">
             </div>
         </div>
         <div class="filtrar_maquinas">
             <div class="selecionarVisao">
-                <div id="visao-maquinas-filtro" class="active" onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
+                <div id="visao-maquinas-filtro" class="active"
+                    onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
                     <img id="icone-maquinas-white" src="icons/maquina/icon-maquina-white.svg">
                     <img id="icone-maquinas-purple" style="display: none;" src="icons/maquina/icon-maquina-purple.svg">
                     <p>Máquinas com problemas</p>
@@ -172,16 +178,9 @@
                 </div>
             </div>
 
-            <button class="add_maquina">Adicionar máquina
-                <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
-            </button>
+            <div id="botaoAdicionar"></div>
         </div>
-        <div class="container-btn-filter" id="filtrosCategorias">
-            <button style="background-color: #E9DF00">CPU (<span>2</span>)</button>
-            <button style="background-color: #FF7272">Disco (<span>2</span>)</button>
-            <button style="background-color: #E911B9">RAM (<span>2</span>)</button>
-            <button style="background-color: #FFBE72">Físico (<span>2</span>)</button>
-        </div>
+        <div class="container-btn-filter" id="filtrosCategorias"></div>
 
         <div id="containerMaquinas"></div>
         <div id="containerAndares"></div>
@@ -226,11 +225,11 @@
             <div class="filtrar_maquinas_chamado">
                 <div class="filtrar">
                     <span>Filtrar por:</span>
-                    <select name="" id="">
-                        <option value="">Problemas de CPU</option>
-                        <option value="">Problemas de Disco</option>
-                        <option value="">Problemas de Ram</option>
-                        <option value="">Problemas Físicos</option>
+                    <select name="filtrarChamados" id="filtrarChamados" onchange="filtrarChamadosPor()">
+                        <option value="CPU">Problemas de CPU</option>
+                        <option value="DISCO">Problemas de Disco</option>
+                        <option value="RAM">Problemas de Ram</option>
+                        <option value="FISICO">Problemas Físicos</option>
                     </select>
                 </div>
             </div>
@@ -411,4 +410,5 @@
     });
 
 </script>
+
 </html>

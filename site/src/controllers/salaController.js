@@ -2,7 +2,7 @@ var salaModel = require("../models/salaModel");
 
 function listar(req, res) {
     var idAndar = req.query.idAndar
-
+    console.log(idAndar, 'aqui na controller')
     salaModel.listar(idAndar)
     .then(function (resultado) {
         if (resultado.length > 0) {
@@ -61,7 +61,7 @@ function atualizar(req, res) {
     } else if (idSala == undefined) {
         res.status(400).send("O ID da sala está undefined!");
     } else {
-        salaModel.cadastrar(numeroSala, descricaoSala, idSala)
+        salaModel.atualizar(numeroSala, descricaoSala, idSala)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -80,7 +80,7 @@ function atualizar(req, res) {
 }
 
 function excluir(req, res) {
-    var idSala = req.body.idAndarServer
+    var idSala = req.body.idSalaServer
 
     if (idSala == undefined) {
         res.status(400).send("O ID do acesso está undefined!");

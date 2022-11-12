@@ -19,6 +19,25 @@ function listarMaquinasPorFaculdade(req, res) {
     );
 }
 
+function listarMaquinasPorHostname(req, res) {
+    var hostname = req.query.hostname
+
+    maquinaModel.listarMaquinasPorHostname(hostname)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(404).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
 function listarMaquinasPorSala(req, res) {
     var idSala = req.query.idSala
 
@@ -58,27 +77,18 @@ function listarMaquinasComProblemas(req, res) {
 }
 
 function cadastrar(req, res) {
-    var processador = req.body.processadorServer;
-    var placaMae = req.body.placaMaeServer;
-    var ram = req.body.ramServer;
-    var memoria = req.body.memoriaServer;
-    var sistemaOperacional = req.body.sistemaOperacionalServer;
-    var fkSala = req.body.fkSalaServer;
+    var identificadorComputador = req.body.identificadorComputadorServer;
+    var idSala = req.body.idSalaServer;
+    var hostname = req.body.hostnameServer;
 
-    if (processador == undefined) {
+    if (identificadorComputador == undefined) {
         res.status(400).send("O processador está undefined!");
-    } else if (placaMae == undefined) {
+    } else if (idSala == undefined) {
         res.status(400).send("A placa mae está undefined!");
-    } else if (ram == undefined) {
+    } else if (hostname == undefined) {
         res.status(400).send("A ram está undefined!");
-    } else if (memoria == undefined) {
-        res.status(400).send("A memoria está undefined!");
-    } else if (sistemaOperacional == undefined) {
-        res.status(400).send("O sistema operacional está undefined!");
-    } else if (fkSala == undefined) {
-        res.status(400).send("O ID da sala está undefined!");
     } else {
-        maquinaModel.cadastrar(processador, placaMae, ram, memoria, sistemaOperacional, fkSala)
+        maquinaModel.cadastrar(identificadorComputador, idSala, hostname)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -97,31 +107,18 @@ function cadastrar(req, res) {
 }
 
 function atualizar(req, res) {
-    var processador = req.body.processadorServer;
-    var placaMae = req.body.placaMaeServer;
-    var ram = req.body.ramServer;
-    var memoria = req.body.memoriaServer;
-    var sistemaOperacional = req.body.sistemaOperacionalServer;
+    var identificadorComputador = req.body.identificadorComputadorServer;
     var idMaquina = req.body.idMaquinaServer;
-    var fkSala = req.body.fkSalaServer;
+    var hostname = req.body.hostnameServer;
 
-    if (processador == undefined) {
-        res.status(400).send("O processador está undefined!");
-    } else if (placaMae == undefined) {
-        res.status(400).send("A placa mae está undefined!");
-    } else if (ram == undefined) {
-        res.status(400).send("A ram está undefined!");
-    } else if (memoria == undefined) {
-        res.status(400).send("A memoria está undefined!");
-    } else if (sistemaOperacional == undefined) {
-        res.status(400).send("O sistema operacional está undefined!");
+    if (identificadorComputador == undefined) {
+        res.status(400).send("O identificador do computador está undefined!");
     } else if (idMaquina == undefined) {
-        res.status(400).send("O ID da maquina está undefined!");
-    } else if (fkSala == undefined) {
-        res.status(400).send("O ID da sala está undefined!");
-   
+        res.status(400).send("o id da maquina está undefined!");
+    } else if (hostname == undefined) {
+        res.status(400).send("o hostname está undefined!");
     } else {
-        maquinaModel.cadastrar(processador, placaMae, ram, memoria, sistemaOperacional, fkSala, idMaquina)
+        maquinaModel.atualizar(identificadorComputador, idMaquina, hostname)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -163,6 +160,25 @@ function excluir(req, res) {
     }
 }
 
+function validarHostNameExistente(req, res) {
+    var hostname = req.query.hostname
+
+    maquinaModel.validarHostNameExistente(hostname)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(true);
+        } else {
+            res.status(200).send(false)
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
 module.exports = {
     cadastrar,
     atualizar,
@@ -170,5 +186,7 @@ module.exports = {
 
     listarMaquinasPorFaculdade,
     listarMaquinasPorSala,
-    listarMaquinasComProblemas
+    listarMaquinasComProblemas,
+    listarMaquinasPorHostname,
+    validarHostNameExistente
 }

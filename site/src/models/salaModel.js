@@ -2,7 +2,10 @@ var database = require("../database/config")
 
 function listar(idAndar) {
     var instrucao = `
-        SELECT * FROM sala WHERE fk_andar = ${idAndar};
+        select sa.*, comp.total_computador from andar 
+        left join sala as sa on andar.id_andar = sa.fk_andar
+        left join (select id_computador, count(*) as total_computador, fk_sala from computador group by fk_sala) as comp on sa.id_sala = comp.fk_sala 
+        where id_andar = ${idAndar};
     `;
     return database.executar(instrucao);
 }
@@ -26,7 +29,7 @@ function atualizar(numeroSala, descricaoSala, idSala) {
 
 function excluir(idSala) {
     var instrucao = `
-        DELETE FROM sala where id_sala = ${idSala}
+        UPDATE sala SET is_ativo = 0 WHERE id_sala = ${idSala};
     `;
     return database.executar(instrucao);
 }

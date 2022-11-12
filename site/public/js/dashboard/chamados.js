@@ -1,7 +1,7 @@
 function loadTickets() {
     containerChamados.innerHTML = ""
 
-    for (var posicao = 0; posicao < 5; posicao++) {
+    for (var posicao = 0; posicao < 2; posicao++) {
         var categoriaChamado = "Problema físico"
         var status = 'pendente'
         var identificadorAluno = '01221083'
@@ -48,5 +48,26 @@ function loadTickets() {
         </div>
             `
         }
+    }
+}
+
+function filtrarChamadosPor() {
+    let opcao = document.getElementById('filtrarChamados').value
+
+    switch (opcao) {
+        case "CPU":
+            console.log('cpu')
+            break;
+        case "DISCO":
+            console.log('disco')
+            break;
+        case "RAM":
+            console.log('ram')
+            break;
+        case "FISICO":
+            console.log('fisico')
+            break;
+        default:
+            break;
     }
 }
