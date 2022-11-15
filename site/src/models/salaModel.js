@@ -12,8 +12,8 @@ function listar(idAndar) {
 
 function cadastrar(numeroSala, descricaoSala, idAndar) {
     var instrucao = `
-        INSERT INTO sala (identificador_sala, descricao_sala, fk_andar)
-        VALUES ('${numeroSala}', '${descricaoSala}', ${idAndar});
+        INSERT INTO sala (identificador_sala, descricao_sala, fk_andar, is_ativo)
+        VALUES ('${numeroSala}', '${descricaoSala}', ${idAndar}, 1);
     `;
     return database.executar(instrucao);
 }
