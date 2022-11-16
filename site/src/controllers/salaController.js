@@ -2,7 +2,6 @@ var salaModel = require("../models/salaModel");
 
 function listar(req, res) {
     var idAndar = req.query.idAndar
-    console.log(idAndar, 'aqui na controller')
     salaModel.listar(idAndar)
     .then(function (resultado) {
         if (resultado.length > 0) {

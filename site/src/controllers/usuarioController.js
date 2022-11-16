@@ -16,7 +16,6 @@ function entrar(req, res) {
             .then(
                 function (resultado) {
                     if (resultado.length == 1) {
-                        console.log(resultado);
                         res.json(resultado[0]);
                     } else if (resultado.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -44,8 +43,6 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-
-    console.log('cheguei na controller')
 
     // Faça as validações dos valores
     if (nomeFantasia == undefined) {

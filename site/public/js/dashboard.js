@@ -36,7 +36,7 @@ function changeView(view) {
             document.getElementById("configuracao").style.display = 'none'
             loadMaquinas()
             setSelected("div_maquinas")
-            loadFiltros()
+            loadFiltros('FACULDADE')
 
             document.getElementById('botaoAdicionar').innerHTML = `
             <button onclick="adicionarMaquina()" class="add_maquina">Adicionar máquina

@@ -34,6 +34,7 @@ function changeViewMaquinas(params, id) {
             document.getElementById("containerSalas").style.display = 'none'
             document.getElementById("containerMaquinasEspecificas").style.display = 'none'
             loadMaquinas()
+            loadFiltros('FACULDADE')
 
             document.getElementById('botaoAdicionar').innerHTML = `
             <button onclick="adicionarMaquina()" class="add_maquina">Adicionar máquina
@@ -76,6 +77,7 @@ function changeViewMaquinas(params, id) {
             document.getElementById("containerSalas").style.display = 'none'
             document.getElementById("containerMaquinasEspecificas").style.display = 'flex'
             loadMaquinasEspecificas(id)
+            loadFiltros('SALAS', id)
 
             document.getElementById('botaoAdicionar').innerHTML = `
             <button onclick="adicionarMaquina()" class="add_maquina">Adicionar máquina

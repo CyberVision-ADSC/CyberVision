@@ -12,7 +12,6 @@ var acessosRouter = require("./src/routes/acessos");
 var andaresRouter = require("./src/routes/andares");
 var salasRouter = require("./src/routes/salas");
 var maquinasRouter = require("./src/routes/maquinas");
-var processosRouter = require("./src/routes/processos");
 var kpiRouter = require("./src/routes/kpi");
 
 app.use(express.json());
@@ -26,7 +25,6 @@ app.use("/acessos", acessosRouter);
 app.use("/andares", andaresRouter);
 app.use("/salas", salasRouter);
 app.use("/maquinas", maquinasRouter);
-app.use("/processos", processosRouter);
 app.use("/kpi", kpiRouter);
 
 app.listen(PORTA, function () {

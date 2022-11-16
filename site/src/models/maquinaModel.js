@@ -2,7 +2,7 @@ var database = require("../database/config")
 
 function listarMaquinasPorFaculdade(idFaculdade) {
     var instrucao = `
-    SELECT computador.*, sala.identificador_sala, andar.identificador_andar FROM faculdade
+    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computador.problema_cpu, computador.problema_disco, computador.problema_memoria, computador.problema_fisico FROM faculdade
     INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
     INNER JOIN sala ON andar.id_andar = sala.fk_andar
     INNER JOIN computador ON sala.id_sala = computador.fk_sala
@@ -24,7 +24,7 @@ function listarMaquinasPorHostname(hostname) {
 
 function listarMaquinasPorSala(idSala) {
     var instrucao = `
-    SELECT computador.*, sala.identificador_sala, andar.identificador_andar FROM faculdade
+    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computador.problema_cpu, computador.problema_disco, computador.problema_memoria, computador.problema_fisico FROM faculdade
     INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
     INNER JOIN sala ON andar.id_andar = sala.fk_andar
     INNER JOIN computador ON sala.id_sala = computador.fk_sala
@@ -33,16 +33,16 @@ function listarMaquinasPorSala(idSala) {
     return database.executar(instrucao);
 }
 
-function listarMaquinasComProblemas(idFaculdade) {
+function listarMaquinaPorId(idMaquina) {
     var instrucao = `
-    SELECT computador.* FROM faculdade
+    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, processo.* FROM faculdade
     INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
     INNER JOIN sala ON andar.id_andar = sala.fk_andar
     INNER JOIN computador ON sala.id_sala = computador.fk_sala
-    INNER JOIN relatorio ON computador.id_computador = relatorio.id_relatorio
-    WHERE faculdade.id_faculdade = ${idFaculdade} AND relatorio.uso_ram >= 80 OR relatorio.uso_disco >= 80 OR relatorio.uso_cpu >= 80;
-`;
-return database.executar(instrucao);
+    left join processo as processo on processo.fk_computador = computador.id_computador 
+    WHERE computador.id_computador = ${idMaquina};
+    `
+    return database.executar(instrucao);
 }
 
 function cadastrar(identificadorComputador, idSala, hostname) {
@@ -65,13 +65,173 @@ function validarHostNameExistente(hostname) {
     return database.executar(instrucao);
 }
 
+function listarQuantidadeFiltroMaquinas(idFaculdade) {
+    var instrucao = `
+    select "Problema-fisico" as problema, count(*) as total FROM faculdade
+        INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+        INNER JOIN sala ON andar.id_andar = sala.fk_andar
+        INNER JOIN computador ON sala.id_sala = computador.fk_sala
+        where computador.problema_fisico = 1 and computador.is_ativo = 1 and faculdade.id_faculdade = ${idFaculdade}
+        union all
+        select "Problema-disco" as problema, count(*) as total FROM faculdade
+        INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+        INNER JOIN sala ON andar.id_andar = sala.fk_andar
+        INNER JOIN computador ON sala.id_sala = computador.fk_sala
+        where computador.problema_disco = 1 and computador.is_ativo = 1 and faculdade.id_faculdade = ${idFaculdade}
+        union all
+        select "Problema-cpu" as problema, count(*) as total FROM faculdade
+        INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+        INNER JOIN sala ON andar.id_andar = sala.fk_andar
+        INNER JOIN computador ON sala.id_sala = computador.fk_sala
+        where computador.problema_cpu = 1 and computador.is_ativo = 1 and faculdade.id_faculdade = ${idFaculdade}
+        union all
+        select "Problema-memoria" as problema, count(*) as total FROM faculdade
+        INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+        INNER JOIN sala ON andar.id_andar = sala.fk_andar
+        INNER JOIN computador ON sala.id_sala = computador.fk_sala
+        where computador.problema_memoria = 1 and computador.is_ativo = 1 and faculdade.id_faculdade = ${idFaculdade};
+    `
+
+    return database.executar(instrucao);
+}
+
+function listarQuantidadeFiltroMaquinasPorSala(idFaculdade, idSala) {
+    var instrucao = `
+    select "Problema-fisico" as problema, count(*) as total FROM faculdade
+        INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+        INNER JOIN sala ON andar.id_andar = sala.fk_andar
+        INNER JOIN computador ON sala.id_sala = computador.fk_sala
+        where computador.problema_fisico = 1 and computador.is_ativo = 1 and faculdade.id_faculdade = ${idFaculdade} and sala.id_sala = ${idSala}
+        union all
+        select "Problema-disco" as problema, count(*) as total FROM faculdade
+        INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+        INNER JOIN sala ON andar.id_andar = sala.fk_andar
+        INNER JOIN computador ON sala.id_sala = computador.fk_sala
+        where computador.problema_disco = 1 and computador.is_ativo = 1 and faculdade.id_faculdade = ${idFaculdade} and sala.id_sala = ${idSala}
+        union all
+        select "Problema-cpu" as problema, count(*) as total FROM faculdade
+        INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+        INNER JOIN sala ON andar.id_andar = sala.fk_andar
+        INNER JOIN computador ON sala.id_sala = computador.fk_sala
+        where computador.problema_cpu = 1 and computador.is_ativo = 1 and faculdade.id_faculdade = ${idFaculdade} and sala.id_sala = ${idSala}
+        union all
+        select "Problema-memoria" as problema, count(*) as total FROM faculdade
+        INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+        INNER JOIN sala ON andar.id_andar = sala.fk_andar
+        INNER JOIN computador ON sala.id_sala = computador.fk_sala
+        where computador.problema_memoria = 1 and computador.is_ativo = 1 and faculdade.id_faculdade = ${idFaculdade} and sala.id_sala = ${idSala};
+    `
+
+    return database.executar(instrucao);
+}
+
+//filtros da dash
+function filtrarPorCpu(idFaculdade) {
+    var instrucao = `
+    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computador.problema_cpu, computador.problema_disco, computador.problema_memoria, computador.problema_fisico FROM faculdade
+    INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+    INNER JOIN sala ON andar.id_andar = sala.fk_andar
+    INNER JOIN computador ON sala.id_sala = computador.fk_sala
+    WHERE faculdade.id_faculdade = ${idFaculdade} AND computador.problema_cpu = 1 AND computador.is_ativo = 1;
+    `;
+    return database.executar(instrucao);
+}
+
+function filtrarPorCpuComSala(idFaculdade, idSala) {
+    var instrucao = `
+    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computador.problema_cpu, computador.problema_disco, computador.problema_memoria, computador.problema_fisico FROM faculdade
+    INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+    INNER JOIN sala ON andar.id_andar = sala.fk_andar
+    INNER JOIN computador ON sala.id_sala = computador.fk_sala
+    WHERE faculdade.id_faculdade = ${idFaculdade} AND sala.id_sala = ${idSala} AND computador.problema_cpu = 1 AND computador.is_ativo = 1;
+    `;
+    return database.executar(instrucao);
+}
+
+function filtrarPorDisco(idFaculdade) {
+    var instrucao = `
+    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computador.problema_cpu, computador.problema_disco, computador.problema_memoria, computador.problema_fisico FROM faculdade
+    INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+    INNER JOIN sala ON andar.id_andar = sala.fk_andar
+    INNER JOIN computador ON sala.id_sala = computador.fk_sala
+    WHERE faculdade.id_faculdade = ${idFaculdade} AND computador.problema_disco = 1 AND computador.is_ativo = 1;
+    `;
+    return database.executar(instrucao);
+}
+
+function filtrarPorDiscoComSala(idFaculdade, idSala) {
+    var instrucao = `
+    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computador.problema_cpu, computador.problema_disco, computador.problema_memoria, computador.problema_fisico FROM faculdade
+    INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+    INNER JOIN sala ON andar.id_andar = sala.fk_andar
+    INNER JOIN computador ON sala.id_sala = computador.fk_sala
+    WHERE faculdade.id_faculdade = ${idFaculdade} AND sala.id_sala = ${idSala} AND computador.problema_disco = 1 AND computador.is_ativo = 1;
+    `;
+    return database.executar(instrucao);
+}
+
+function filtrarPorFisico(idFaculdade) {
+    var instrucao = `
+    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computador.problema_cpu, computador.problema_disco, computador.problema_memoria, computador.problema_fisico FROM faculdade
+    INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+    INNER JOIN sala ON andar.id_andar = sala.fk_andar
+    INNER JOIN computador ON sala.id_sala = computador.fk_sala
+    WHERE faculdade.id_faculdade = ${idFaculdade} AND computador.problema_fisico = 1 AND computador.is_ativo = 1;
+    `;
+    return database.executar(instrucao);
+}
+
+function filtrarPorFisicoComSala(idFaculdade, idSala) {
+    var instrucao = `
+    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computador.problema_cpu, computador.problema_disco, computador.problema_memoria, computador.problema_fisico FROM faculdade
+    INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+    INNER JOIN sala ON andar.id_andar = sala.fk_andar
+    INNER JOIN computador ON sala.id_sala = computador.fk_sala
+    WHERE faculdade.id_faculdade = ${idFaculdade} AND sala.id_sala = ${idSala} AND computador.problema_fisico = 1 AND computador.is_ativo = 1;
+    `;
+    return database.executar(instrucao);
+}
+
+function filtrarPorMemoria(idFaculdade) {
+    var instrucao = `
+    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computador.problema_cpu, computador.problema_disco, computador.problema_memoria, computador.problema_fisico FROM faculdade
+    INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+    INNER JOIN sala ON andar.id_andar = sala.fk_andar
+    INNER JOIN computador ON sala.id_sala = computador.fk_sala
+    WHERE faculdade.id_faculdade = ${idFaculdade} AND computador.problema_memoria = 1 AND computador.is_ativo = 1;
+    `;
+    return database.executar(instrucao);
+}
+
+function filtrarPorMemoriaComSala(idFaculdade, idSala) {
+    var instrucao = `
+    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computador.problema_cpu, computador.problema_disco, computador.problema_memoria, computador.problema_fisico FROM faculdade
+    INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+    INNER JOIN sala ON andar.id_andar = sala.fk_andar
+    INNER JOIN computador ON sala.id_sala = computador.fk_sala
+    WHERE faculdade.id_faculdade = ${idFaculdade} AND sala.id_sala = ${idSala} AND computador.problema_memoria = 1 AND computador.is_ativo = 1; 
+    `;
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrar,
     atualizar,
     excluir,
     listarMaquinasPorFaculdade,
     listarMaquinasPorSala,
-    listarMaquinasComProblemas,
     listarMaquinasPorHostname,
-    validarHostNameExistente
+    validarHostNameExistente,
+    listarMaquinaPorId,
+    listarQuantidadeFiltroMaquinas,
+    listarQuantidadeFiltroMaquinasPorSala,
+    
+    filtrarPorCpu,
+    filtrarPorCpuComSala,
+    filtrarPorDisco,
+    filtrarPorDiscoComSala,
+    filtrarPorFisico,
+    filtrarPorFisicoComSala,
+    filtrarPorMemoria,
+    filtrarPorMemoriaComSala
 };
