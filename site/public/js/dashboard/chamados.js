@@ -16,7 +16,6 @@ function loadTickets() {
             <div class="chamado">
             <div>
                 <p>Data: <span>22/09/2022 08:50</span></p>
-                <p>Categoria do chamado: <span>${categoriaChamado}</span></p>
                 <p>RA do Aluno: <span>${identificadorAluno}</span></p>
                 <p>Andar: <span>${andar}</span></p>
                 <p>Sala: <span>${sala}</span></p>
