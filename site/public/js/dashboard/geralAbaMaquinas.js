@@ -37,7 +37,7 @@ function changeViewMaquinas(params, id) {
             loadFiltros('FACULDADE')
 
             document.getElementById('botaoAdicionar').innerHTML = `
-            <button onclick="adicionarMaquina()" class="add_maquina">Adicionar máquina
+            <button onclick="openModalAddMaquina()" class="add_maquina">Adicionar máquina
             <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
             </button>
             `
@@ -80,7 +80,7 @@ function changeViewMaquinas(params, id) {
             loadFiltros('SALAS', id)
 
             document.getElementById('botaoAdicionar').innerHTML = `
-            <button onclick="adicionarMaquina()" class="add_maquina">Adicionar máquina
+            <button onclick="openModalAddMaquina()" class="add_maquina">Adicionar máquina
             <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
             </button>
             `
@@ -94,7 +94,7 @@ function changeViewMaquinas(params, id) {
             loadMaquinas()
 
             document.getElementById('botaoAdicionar').innerHTML = `
-            <button onclick="adicionarMaquina()" class="add_maquina">Adicionar máquina
+            <button onclick="openModalAddMaquina()" class="add_maquina">Adicionar máquina
             <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
             </button>
             `

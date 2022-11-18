@@ -62,6 +62,22 @@ function loadAcessos() {
 
 function openModalCriar() {
   console.log("abriu o modal")
+  document.getElementById("modal-adicionar-sala").style.display = "block";
+}
+
+// Usuário clica na <span> (x), fecha o modal
+function closeModalCriar() {
+  document.getElementById("modal-adicionar-sala").style.display = "none";
+}
+
+// Usuário clica em qualquer lugar fora do modal, fecha
+window.onclick = function (event) {
+  if (event.target == document.getElementById("modal-adicionar-sala")) {
+      document.getElementById("modal-adicionar-sala").style.display = "none";
+  }
+  if (event.target == document.getElementById("modal-adicionar-maquina")) {
+    document.getElementById("modal-adicionar-maquina").style.display = "none";
+}
 }
 
 function openModalEditar(id_usuario) {

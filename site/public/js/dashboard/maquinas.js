@@ -66,6 +66,15 @@ function loadMaquinasEspecificas(idSala) {
       }
     })
 }
+function openModalAddMaquina(){
+    console.log("abriu o modal")
+    document.getElementById("modal-adicionar-maquina").style.display = "block";
+  }
+  
+  // Usuário clica na <span> (x), fecha o modal
+  function closeModalMaquina() {
+    document.getElementById("modal-adicionar-maquina").style.display = "none";
+  }
 
 function openModalDetalheMaquina(idMaquina) {
   fetch(`/maquinas/listarPorId?idMaquina=${idMaquina}`)
