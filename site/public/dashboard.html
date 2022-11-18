@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./css/dashboard/chamados.css">
     <link rel="stylesheet" href="./css/dashboard/configuracao.css">
     <link rel="stylesheet" href="./css/dashboard/modalCRUD.css">
+    <link rel="stylesheet" href="./css/dashboard/modalCRUD.css">
     <link rel="stylesheet" href="./css/dashboard/maquinas.css">
     <link rel="stylesheet" href="./css/dashboard/graficos.css">
     <link rel="stylesheet" href="./css/dashboard/modalDetalheMaquina.css">
@@ -161,6 +162,8 @@
             <div class="selecionarVisao">
                 <div id="visao-maquinas-filtro" class="active"
                     onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
+                <div id="visao-maquinas-filtro" class="active"
+                    onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
                     <img id="icone-maquinas-white" src="icons/maquina/icon-maquina-white.svg">
                     <img id="icone-maquinas-purple" style="display: none;" src="icons/maquina/icon-maquina-purple.svg">
                     <p>Máquinas com problemas</p>
@@ -250,6 +253,7 @@
 
 
             </div>
+            </div>
             <div id="containerAcessos"></div>
         </div>
     </div>
@@ -267,6 +271,8 @@
                 <div class="filtrar">
                     <span>Filtrar por:</span>
                     <select name="filtrarChamados" id="filtrarChamados" onchange="filtrarChamadosPor()">
+                        <option value="mais_relevante">Mais recentes</option>
+                        <option value="menos_relevante">Menos recentes</option>
                         <option value="mais_relevante">Mais recentes</option>
                         <option value="menos_relevante">Menos recentes</option>
                     </select>
@@ -288,6 +294,8 @@
     </div>
 
     <div id="modalDetalheMaquina" class="modalDetalheMaquina" style="margin-right: -576px;"></div>
+    <div class="backgroundCloseOffCanvaDetalheMaquina" id="backgroundCloseOffCanvaDetalheMaquina"
+        onclick="closeModalDetalheMaquina()" style="display: none;"></div>
     <div class="backgroundCloseOffCanvaDetalheMaquina" id="backgroundCloseOffCanvaDetalheMaquina"
         onclick="closeModalDetalheMaquina()" style="display: none;"></div>
 </body>
