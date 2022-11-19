@@ -38,6 +38,7 @@
     <link rel="icon" href="./images/logo_cybervision.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 </head>
 
 <body onload="validarSessao(), setSelected('div_painel'), loadIndicators()">
@@ -271,10 +272,9 @@
                 <div class="filtrar">
                     <span>Filtrar por:</span>
                     <select name="filtrarChamados" id="filtrarChamados" onchange="filtrarChamadosPor()">
-                        <option value="mais_relevante">Mais recentes</option>
-                        <option value="menos_relevante">Menos recentes</option>
-                        <option value="mais_relevante">Mais recentes</option>
-                        <option value="menos_relevante">Menos recentes</option>
+                        <option value="" default >Selecione uma opção</option>
+                        <option value="MAIS-RECENTE">Mais recentes</option>
+                        <option value="MENOS-RECENTE">Menos recentes</option>
                     </select>
                 </div>
             </div>
