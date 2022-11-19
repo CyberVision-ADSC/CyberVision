@@ -160,10 +160,7 @@
         </div>
         <div class="filtrar_maquinas">
             <div class="selecionarVisao">
-                <div id="visao-maquinas-filtro" class="active"
-                    onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
-                <div id="visao-maquinas-filtro" class="active"
-                    onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
+                <div id="visao-maquinas-filtro" class="active" onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
                     <img id="icone-maquinas-white" src="icons/maquina/icon-maquina-white.svg">
                     <img id="icone-maquinas-purple" style="display: none;" src="icons/maquina/icon-maquina-purple.svg">
                     <p>Máquinas com problemas</p>
@@ -178,7 +175,18 @@
 
             <div id="botaoAdicionar"></div>
         </div>
-        <!-- Modal adicionar máquinas -->
+        <div class="container-btn-filter" id="filtrosCategorias">
+            <button style="background-color: #E9DF00">CPU (<span>2</span>)</button>
+            <button style="background-color: #FF7272">Disco (<span>2</span>)</button>
+            <button style="background-color: #E911B9">RAM (<span>2</span>)</button>
+            <button style="background-color: #FFBE72">Físico (<span>2</span>)</button>
+        </div>
+
+        <div id="containerMaquinas"></div>
+        <div id="containerAndares"></div>
+        <div id="containerSalas"></div>
+        <div id="containerMaquinasEspecificas"></div>
+
         <div id="modal-adicionar-maquina" class="modal">
 
             <!-- Conteúdo da modal -->
@@ -205,12 +213,6 @@
 
         </div>
         <div class="container-btn-filter" id="filtrosCategorias"></div>
-
-        <div id="containerMaquinas"></div>
-        <div id="containerAndares"></div>
-        <div id="containerSalas"></div>
-        <div id="containerMaquinasEspecificas"></div>
-        </div>
     </div>
 
     <div id="acessos" style="display: none;">
