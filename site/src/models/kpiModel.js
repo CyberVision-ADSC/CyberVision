@@ -30,8 +30,20 @@ function quantidadeMaquinasProblemas(idFaculdade) {
     return database.executar(instrucao);
 }
 
+function quantidadeChamadosPendentes(idFaculdade) {
+    var instrucao = `
+    SELECT count(computador.id_computador) AS quantidade_chamados FROM andar 
+    JOIN sala ON andar.id_andar = sala.fk_andar
+    JOIN computador ON sala.id_sala = computador.fk_sala
+    JOIN chamados ON chamados.fk_computador = computador.id_computador
+    WHERE andar.fk_faculdade = ${idFaculdade} AND computador.is_ativo = 1 AND chamados.status_chamado = 'Pendente';
+    `;
+    return database.executar(instrucao);
+}
+
 module.exports = {
     quantidadeMaquinasAtivas,
     quantidadeMaquinasInativas,
-    quantidadeMaquinasProblemas
+    quantidadeMaquinasProblemas,
+    quantidadeChamadosPendentes
 };
