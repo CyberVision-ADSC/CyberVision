@@ -141,3 +141,29 @@
     font-size: 14px;
     margin: 10px auto 0 auto;
 }
+
+#associar-maquina-detalhes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #F5F6F8;
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 20px 15px;
+    text-align: center;
+}
+
+#associar-maquina-detalhes p {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+#associar-maquina-detalhes span {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 13px ;
+    margin: 10px 0;
+    text-align: center;
+}

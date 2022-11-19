@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="./css/dashboard/chamados.css">
     <link rel="stylesheet" href="./css/dashboard/configuracao.css">
     <link rel="stylesheet" href="./css/dashboard/modalCRUD.css">
-    <link rel="stylesheet" href="./css/dashboard/modalCRUD.css">
     <link rel="stylesheet" href="./css/dashboard/maquinas.css">
     <link rel="stylesheet" href="./css/dashboard/graficos.css">
     <link rel="stylesheet" href="./css/dashboard/modalDetalheMaquina.css">
@@ -211,6 +210,7 @@
         <div id="containerAndares"></div>
         <div id="containerSalas"></div>
         <div id="containerMaquinasEspecificas"></div>
+        </div>
     </div>
 
     <div id="acessos" style="display: none;">
@@ -254,9 +254,8 @@
 
 
             </div>
-            </div>
-            <div id="containerAcessos"></div>
         </div>
+        <div id="containerAcessos"></div>
     </div>
 
     <div id="chamados" style="display: none;">
@@ -272,7 +271,7 @@
                 <div class="filtrar">
                     <span>Filtrar por:</span>
                     <select name="filtrarChamados" id="filtrarChamados" onchange="filtrarChamadosPor()">
-                        <option value="" default >Selecione uma opção</option>
+                        <option value="" default>Selecione uma opção</option>
                         <option value="MAIS-RECENTE">Mais recentes</option>
                         <option value="MENOS-RECENTE">Menos recentes</option>
                     </select>

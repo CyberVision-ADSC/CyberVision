@@ -73,15 +73,11 @@ function closeModalCriar() {
 // Usuário clica em qualquer lugar fora do modal, fecha
 window.onclick = function (event) {
   if (event.target == document.getElementById("modal-adicionar-sala")) {
-      document.getElementById("modal-adicionar-sala").style.display = "none";
+    document.getElementById("modal-adicionar-sala").style.display = "none";
   }
   if (event.target == document.getElementById("modal-adicionar-maquina")) {
     document.getElementById("modal-adicionar-maquina").style.display = "none";
-}
-}
-
-function openModalEditar(id_usuario) {
-  console.log("abriu o modal")
+  }
 }
 
 function adicionarAcesso() {
@@ -95,7 +91,7 @@ function adicionarAcesso() {
   // var senha = document.getElementById("senhaAdicionarAcesso").innerHTML;
   // var tipoUsuario = document.getElementById("tipoUsuarioAdicionarAcesso").innerHTML;
   var fk_faculdade = sessionStorage.getItem('ID_FACULDADE')
-  
+
   if (nome && email && senha && fk_faculdade) {
     fetch("/acessos/cadastrar", {
       method: "POST",
@@ -156,7 +152,7 @@ function atualizarAcesso(id_usuario) {
   // var email = document.getElementById("emailAdicionarAcesso").innerHTML;
   // var senha = document.getElementById("senhaAdicionarAcesso").innerHTML;
   // var tipoUsuario = document.getElementById("tipoUsuarioAdicionarAcesso").innerHTML;
-  
+
   if (nome && email && senha && tipoUsuario && id_usuario) {
     fetch("/acessos/atualizar", {
       method: "POST",

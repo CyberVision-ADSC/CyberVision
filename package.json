@@ -3,7 +3,10 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-      "start": "node ./site/app.js",
-      "postinstall": "cd site && npm install"
+        "start": "node ./site/app.js",
+        "postinstall": "cd site && npm install"
+    },
+    "dependencies": {
+        "moment": "^2.29.4"
     }
-  }
+}

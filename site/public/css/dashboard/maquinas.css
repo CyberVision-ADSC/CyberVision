@@ -41,7 +41,7 @@
     margin: 0 auto;
 }
 
-#maquinas #inputPesquisaHostName {
+#maquinas #inputPesquisaHostName, #maquinas input  {
     width: calc(100% - 20px);
     outline: none;
     border: none;
