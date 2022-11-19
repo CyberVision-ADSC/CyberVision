@@ -17,8 +17,13 @@ function loadIndicators() {
         document.getElementById("indicadorMaquinasProblema").innerHTML = data[0].quantidade_problema ? data[0].quantidade_problema : 0
     })
 
-    //integração com o JIRA
-    document.getElementById("indicadorChamadosPendentes").innerHTML = 0
+    fetch(`/kpi/quantidade-chamados-pendentes?idFaculdade=${1}`)
+    .then(data => data.json())
+    .then((data) => {
+        console.log(data)
+        document.getElementById("indicadorChamadosPendentes").innerHTML = data[0].quantidade_chamados ? data[0].quantidade_chamados : 0
+    })
+    
 }
 
 function loadGraficos() {

@@ -15,4 +15,8 @@ router.get("/quantidade-maquinas-problemas", function (req, res) {
     kpiController.quantidadeMaquinasProblemas(req, res);
 })
 
+router.get("/quantidade-chamados-pendentes", function (req, res) {
+    kpiController.quantidadeChamadosPendentes(req, res);
+})
+
 module.exports = router;

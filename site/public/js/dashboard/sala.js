@@ -5,6 +5,7 @@ function loadSalas(idAndar) {
   fetch(`/salas/listar?idAndar=${idAndar}`)
     .then(data => data.json())
     .then((data) => {
+      console.log("teste")
       for (var posicao = 0; posicao < data.length; posicao++) {
         if (data[posicao].total_problemas != null && data[posicao].total_problemas > 0) {
           if (data[posicao].id_sala != null && data[posicao].is_ativo == 1) {
