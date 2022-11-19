@@ -4,7 +4,7 @@ function validarSessao() {
     email = sessionStorage.EMAIL_USUARIO
 
     if (idUsuario == null && nome == null && email == null) {
-      window.location = "login.html";
+        window.location = "login.html";
     }
 }
 
@@ -36,6 +36,13 @@ function changeView(view) {
             document.getElementById("configuracao").style.display = 'none'
             loadMaquinas()
             setSelected("div_maquinas")
+            loadFiltros('FACULDADE')
+
+            document.getElementById('botaoAdicionar').innerHTML = `
+            <button onclick="openModalAddMaquina()" class="add_maquina">Adicionar máquina
+            <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
+            </button>
+            `
             break;
         case "acessos":
             document.getElementById("painel").style.display = 'none'
