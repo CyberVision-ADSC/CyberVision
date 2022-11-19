@@ -66,15 +66,15 @@ function loadMaquinasEspecificas(idSala) {
       }
     })
 }
-function openModalAddMaquina(){
-    console.log("abriu o modal")
-    document.getElementById("modal-adicionar-maquina").style.display = "block";
-  }
-  
-  // Usuário clica na <span> (x), fecha o modal
-  function closeModalMaquina() {
-    document.getElementById("modal-adicionar-maquina").style.display = "none";
-  }
+function openModalAddMaquina() {
+  console.log("abriu o modal")
+  document.getElementById("modal-adicionar-maquina").style.display = "flex";
+}
+
+// Usuário clica na <span> (x), fecha o modal
+function closeModalMaquina() {
+  document.getElementById("modal-adicionar-maquina").style.display = "none";
+}
 
 function openModalDetalheMaquina(idMaquina) {
   fetch(`/maquinas/listarPorId?idMaquina=${idMaquina}`)
@@ -124,12 +124,11 @@ function openModalDetalheMaquina(idMaquina) {
           `
         }
       }
-
     })
 
   document.getElementById("modalDetalheMaquina").style.marginRight = 0
   document.getElementById("modalDetalheMaquina").style.visibility = 'visible'
-  document.getElementById("backgroundCloseOffCanvaDetalheMaquina").style.display = 'block'
+  document.getElementById("backgroundCloseOffCanvaDetalheMaquina").style.display = 'flex'
 }
 
 function closeModalDetalheMaquina() {
