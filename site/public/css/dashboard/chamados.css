@@ -99,6 +99,10 @@
     width: 150px;
 }
 
+#filtrarChamados {
+    min-width: 200px
+}
+
 @media screen and (max-width: 900px) {
     #containerChamados {
         padding: 45px 20px;
