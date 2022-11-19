@@ -57,7 +57,7 @@
   margin-left: 30%;
 }
 
-label {
+.modal label {
   color: #073c5a;
 }
 .div_campo_modal {
@@ -65,8 +65,8 @@ label {
   flex-direction: column;
 }
 
-div div input,
-select {
+.modal div div input,
+.modal select {
   height: 45px;
   width: 500px;
   border-radius: 10px;
