@@ -6,6 +6,7 @@ function loadFiltros(tipo, idSala) {
         fetch(`/maquinas/listarQuantidadeFiltroMaquinas?idFaculdade=${idFaculdade}`)
             .then(data => data.json())
             .then((data) => {
+                console.log(data)
                 filtrosCategorias.innerHTML = `
                     <button ${data[2].total == 0 ? 'disabled' : ''} onclick="filtrarPor('CPU')" style="background-color: #E9DF00">CPU (<span>${data[2].total}</span>)</button>
                     <button ${data[1].total == 0 ? 'disabled' : ''} onclick="filtrarPor('DISCO')" style="background-color: #FF7272">Disco (<span>${data[1].total}</span>)</button>

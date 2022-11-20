@@ -68,6 +68,33 @@ function loadMaquinasEspecificas(idSala) {
 }
 
 function openModalAddMaquina() {
+  selectAndarMaquina.innerHTML = `<option value="0">Selecione o andar</option>`
+  selectSalaMaquina.innerHTML = `<option value="0">Selecione a sala</option>`
+  var idFaculdade = sessionStorage.getItem('ID_FACULDADE')
+  
+  fetch(`/andares/listar?idFaculdade=${idFaculdade}`)
+  .then(data => data.json())
+  .then((data) => {
+    for (var i = 0; i < data.length; i ++) {
+      selectAndarMaquina.innerHTML += `
+        <option value="${data[i].id_andar}">${data[i].identificador_andar}</option>
+      `
+    }
+  })
+
+  var idAndar = document.getElementById('selectAndarMaquina').value
+  console.log(idAndar)
+
+  fetch(`/salas/listar?idAndar=${idAndar}`)
+    .then(data => data.json())
+    .then((data) => {
+      for (var i = 0; i < data.length; i ++) {
+        selectSalaMaquina.innerHTML += `
+          <option value="${data[i].id_sala}"><${data[i].identificador_sala}/option>
+        `
+      }
+    })
+
   document.getElementById("modal-adicionar-maquina").style.display = "flex";
 }
 
@@ -89,7 +116,7 @@ function listarPorHostname() {
 }
 
 function adicionarMaquina() {
-  var identificadorComputador = 'teste maquina';
+  var identificadorComputador = document.getElementById('inputHostname');
   var idSala = 1;
   var hostname = '123456789';
 
