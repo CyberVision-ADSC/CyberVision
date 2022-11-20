@@ -66,75 +66,14 @@ function loadMaquinasEspecificas(idSala) {
       }
     })
 }
+
 function openModalAddMaquina() {
-  console.log("abriu o modal")
   document.getElementById("modal-adicionar-maquina").style.display = "flex";
 }
 
 // Usuário clica na <span> (x), fecha o modal
 function closeModalMaquina() {
   document.getElementById("modal-adicionar-maquina").style.display = "none";
-}
-
-function openModalDetalheMaquina(idMaquina) {
-  fetch(`/maquinas/listarPorId?idMaquina=${idMaquina}`)
-    .then(data => data.json())
-    .then((data) => {
-      document.getElementById("modalDetalheMaquina").innerHTML = `
-      <div>
-          <div onclick="closeModalDetalheMaquina()">
-              <img src="icons/maquina/icon-close-modal.svg" alt="fechar">
-          </div>
-          <p>Detalhamento da Máquina</p>
-      </div>
-      <div class="divUsoGrafico">
-          <p>Uso em tempo real</p>
-          <div>
-              <canvas id="grafico3" class="canvas1"></canvas>
-          </div>
-      </div>
-      <div class="divInfoHardware">
-          <p>Informações da máquina</p>
-          <p><span>Hostname: ${data[0].hostname}</span> <span>Sistema operacional: ${data[0].sistema_operacional != null ? data[0].sistema_operacional : 'Não identificado'}</span></p>
-          <p><span>Processador: ${data[0].processador != null ? data[0].processador : 'Não identificado'}</span> <span>Disco: ${data[0].disco != null ? data[0].disco : 'Não identificado'}</span></p>
-          <p><span>arquitetura: ${data[0].arquitetura != null ? data[0].arquitetura : 'Não identificado'}</span> <span>Ram: ${data[0].ram != null ? data[0].ram : 'Não identificado'}</span></p>
-          <p><span>Fabricante: ${data[0].fabricante != null ? data[0].fabricante : 'Não identificado'}</span> <span>Sala: ${data[0].identificador_sala} Andar: ${data[0].identificador_andar}</span></p>
-      </div>
-      <div class="divProcessosTempoReal">
-          <p>Processos em tempo real</p>
-          <div id="listaDeProcessos">
-          </div>
-      </div>
-      `
-
-      for (let index = 0; index < data.length; index++) {
-        const processo = data[index];
-        if (processo != undefined && processo.pid != null && processo.pid != undefined) {
-          document.getElementById("listaDeProcessos").innerHTML += `
-            <div class="itemProcesso">
-            <p>Nome: <span>${processo.nome}</span></p>
-            <div>
-              <img src="./icons/icon-more.svg" alt="ver mais">
-            </div>
-            </div>
-        `
-        } else {
-          document.getElementById("listaDeProcessos").innerHTML = `
-            <p class="errorResponse">Nenhum processo encontrado!</p>
-          `
-        }
-      }
-    })
-
-  document.getElementById("modalDetalheMaquina").style.marginRight = 0
-  document.getElementById("modalDetalheMaquina").style.visibility = 'visible'
-  document.getElementById("backgroundCloseOffCanvaDetalheMaquina").style.display = 'flex'
-}
-
-function closeModalDetalheMaquina() {
-  document.getElementById("modalDetalheMaquina").style.marginRight = "-576px"
-  document.getElementById("modalDetalheMaquina").style.visibility = 'hidden'
-  document.getElementById("backgroundCloseOffCanvaDetalheMaquina").style.display = 'none'
 }
 
 function listarPorHostname() {
