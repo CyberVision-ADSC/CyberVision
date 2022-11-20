@@ -8,7 +8,7 @@ function loadAcessos() {
     .then((data) => {
       for (var posicao = 0; posicao < data.length; posicao++) {
         if (sessionStorage.getItem('TIPO_USUARIO') == 'admin') {
-          
+
           document.getElementById("btnAdicionarAcesso").style.display = "flex"
 
           if (data[posicao].id_usuario == sessionStorage.getItem('ID_USUARIO')) {
@@ -30,7 +30,7 @@ function loadAcessos() {
                         <p>Nível de acesso: <span>${data[posicao].tipo_usuario ? data[posicao].tipo_usuario : "Comum"}</span></p>
                     </div>
                     <div>
-                        <img onclick="openModalEditar(${data[posicao].id_usuario})" src="icons/icon-editar.svg" alt="editar"
+                        <img onclick="openModalAtualizar(${data[posicao].id_usuario})" src="icons/icon-editar.svg" alt="editar"
                             style="margin-left: 5px;">
                         <img onclick="desativarAcesso(${data[posicao].id_usuario})" src="icons/icon-deletar.svg" alt="apagar"
                             style="margin-left: 5px;">
@@ -61,16 +61,13 @@ function loadAcessos() {
 }
 
 function openModalCriar() {
-  console.log("abriu o modal")
-  document.getElementById("modal-adicionar-sala").style.display = "block";
+  document.getElementById("modal-adicionar-acesso").style.display = "block";
 }
 
-// Usuário clica na <span> (x), fecha o modal
 function closeModalCriar() {
-  document.getElementById("modal-adicionar-sala").style.display = "none";
+  document.getElementById("modal-adicionar-acesso").style.display = "none";
 }
 
-// Usuário clica em qualquer lugar fora do modal, fecha
 window.onclick = function (event) {
   if (event.target == document.getElementById("modal-adicionar-sala")) {
     document.getElementById("modal-adicionar-sala").style.display = "none";
@@ -81,18 +78,13 @@ window.onclick = function (event) {
 }
 
 function adicionarAcesso() {
-  var nome = 'julia';
-  var email = 'julia@gmail.com';
-  var senha = '123456';
-  var tipoUsuario = 'admin';
-
-  // var nome =  document.getElementById("nomeAdicionarAcesso").innerHTML;
-  // var email = document.getElementById("emailAdicionarAcesso").innerHTML;
-  // var senha = document.getElementById("senhaAdicionarAcesso").innerHTML;
-  // var tipoUsuario = document.getElementById("tipoUsuarioAdicionarAcesso").innerHTML;
+  var nome = document.getElementById("nomeAdicionarAcesso").value;
+  var email = document.getElementById("emailAdicionarAcesso").value;
+  var senha = document.getElementById("senhaAdicionarAcesso").value;
+  var tipoUsuario = document.getElementById("tipoUsuarioAdicionarAcesso").value;
   var fk_faculdade = sessionStorage.getItem('ID_FACULDADE')
 
-  if (nome && email && senha && fk_faculdade) {
+  if (nome.length > 3 && email && senha.length > 6 && fk_faculdade) {
     fetch("/acessos/cadastrar", {
       method: "POST",
       headers: {
@@ -139,19 +131,46 @@ function adicionarAcesso() {
       });
       console.log(e)
     })
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: 'Preencha corretamente os campos para realizar o cadastro',
+    });
   }
+
+  closeModalCriar()
 }
 
-function atualizarAcesso(id_usuario) {
-  var nome = 'julia Silva';
-  var email = 'juliaMaria@gmail.com';
-  var senha = '12345678';
-  var tipoUsuario = 'admin';
+function openModalAtualizar(id_usuario,) {
+  fetch(`/acessos/listarporid?idAcesso=${id_usuario}`)
+    .then(data => data.json())
+    .then((data) => {
+      var nome = data[0].nome
+      var email = data[0].email
+      var senhaAtual = data[0].senha
+      var tipo_usuario = data[0].tipo_usuario
 
-  // var nome =  document.getElementById("nomeAdicionarAcesso").innerHTML;
-  // var email = document.getElementById("emailAdicionarAcesso").innerHTML;
-  // var senha = document.getElementById("senhaAdicionarAcesso").innerHTML;
-  // var tipoUsuario = document.getElementById("tipoUsuarioAdicionarAcesso").innerHTML;
+      document.getElementById("nomeAtualizarAcesso").value = nome;
+      document.getElementById("emailAtualizarAcesso").value = email;
+      document.getElementById("tipoUsuarioAtualizarAcesso").value = tipo_usuario;
+
+      document.getElementById('btn-atualizar-acesso').innerHTML = `
+      <button  class="btn_add" onclick="atualizarAcesso(${id_usuario}, ${senhaAtual})">Atualizar</button>
+    `
+
+      document.getElementById("modal-atualizar-acesso").style.display = "block";
+    })
+}
+
+function closeModalAtualizar() {
+  document.getElementById("modal-atualizar-acesso").style.display = "none";
+}
+
+function atualizarAcesso(id_usuario, senha) {
+  var nome = document.getElementById("nomeAtualizarAcesso").value;
+  var email = document.getElementById("emailAtualizarAcesso").value;
+  var tipoUsuario = document.getElementById("tipoUsuarioAtualizarAcesso").value;
 
   if (nome && email && senha && tipoUsuario && id_usuario) {
     fetch("/acessos/atualizar", {
@@ -201,6 +220,8 @@ function atualizarAcesso(id_usuario) {
       console.log(e)
     })
   }
+
+  closeModalAtualizar()
 }
 
 function desativarAcesso(id_usuario) {

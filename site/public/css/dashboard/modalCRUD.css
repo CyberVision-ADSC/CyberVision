@@ -55,6 +55,7 @@
   font-size: 30px;
   font-weight: bold;
   margin-left: 30%;
+  text-align: center;
 }
 
 .modal label {
@@ -66,7 +67,7 @@
 }
 
 .modaldiv div input,
-.modal select {
+.modal select, #nomeAdicionarAcesso, #emailAdicionarAcesso, #senhaAdicionarAcesso, #nomeAtualizarAcesso, #emailAtualizarAcesso, #tipoUsuarioAtualizarAcesso {
   height: 45px;
   width: 500px;
   border-radius: 10px;

@@ -24,7 +24,7 @@ async function cadastroUsuario(nome, email, senha, cnpj) {
         var idFaculdade = fkFaculdade[0].id_faculdade
 
         var instrucao = `
-            INSERT INTO usuario(nome, email, senha, fk_faculdade) VALUES ('${nome}', '${email}', '${senha}', ${idFaculdade});
+            INSERT INTO usuario(nome, email, senha, fk_faculdade, is_ativo) VALUES ('${nome}', '${email}', '${senha}', ${idFaculdade}, 1);
         `;
         return await database.executar(instrucao);
     }).catch((err) => {

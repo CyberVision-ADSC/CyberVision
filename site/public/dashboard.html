@@ -161,7 +161,8 @@
         </div>
         <div class="filtrar_maquinas">
             <div class="selecionarVisao">
-                <div id="visao-maquinas-filtro" class="active" onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
+                <div id="visao-maquinas-filtro" class="active"
+                    onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
                     <img id="icone-maquinas-white" src="icons/maquina/icon-maquina-white.svg">
                     <img id="icone-maquinas-purple" style="display: none;" src="icons/maquina/icon-maquina-purple.svg">
                     <p>Máquinas com problemas</p>
@@ -176,7 +177,7 @@
 
             <div id="botaoAdicionar"></div>
         </div>
-        
+
         <div class="container-btn-filter" id="filtrosCategorias"></div>
         <div id="containerMaquinas"></div>
         <div id="containerAndares"></div>
@@ -222,31 +223,64 @@
                     <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
                 </button>
             </div>
-            <!-- Modal adicionar sala -->
-            <div id="modal-adicionar-sala" class="modal">
-
-                <!-- Conteúdo da modal -->
+            <!-- Modal adicionar acesso -->
+            <div id="modal-adicionar-acesso" class="modal">
                 <div class="modal-content">
                     <div class="container_modal">
-                        <span class="titulo_modal">Adicionar uma nova sala</span>
+                        <span class="titulo_modal">Adicionar um novo acesso</span>
                         <span id="x" class="close" onclick="closeModalCriar()">&times;</span>
                     </div>
                     <div class="div_campo_modal">
-                        <label>Identificador da sala</label>
-                        <input id="inputIdSala" placeholder="X">
+                        <label>Nome</label>
+                        <input id="nomeAdicionarAcesso" placeholder="">
                     </div>
                     <div class="div_campo_modal">
-                        <label>Descrição</label>
-                        <input id="inputDescSala" placeholder="X">
+                        <label>Email</label>
+                        <input id="emailAdicionarAcesso" placeholder="">
                     </div>
                     <div class="div_campo_modal">
-                        <label>Andar</label>
-                        <select name="" id="selectAndarSala"></select>
+                        <label>Senha</label>
+                        <input id="senhaAdicionarAcesso" placeholder="">
                     </div>
-                    <button class="btn_add" onclick="adicionarSala()">Adicionar</button>
+                    <div class="div_campo_modal">
+                        <label>Tipo de usuário</label>
+                        <select id="tipoUsuarioAdicionarAcesso">
+                            <option disabled>Selecione um tipo</option>
+                            <option value="comum">Comum</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <button class="btn_add" onclick="adicionarAcesso()">Adicionar</button>
                 </div>
+            </div>
 
+             <!-- Modal atualizar acesso -->
+             <div id="modal-atualizar-acesso" class="modal">
+                <div class="modal-content">
+                    <div class="container_modal">
+                        <span class="titulo_modal">Atualizar acesso</span>
+                        <span id="x" class="close" onclick="closeModalAtualizar()">&times;</span>
+                    </div>
+                    <div class="div_campo_modal">
+                        <label>Nome</label>
+                        <input id="nomeAtualizarAcesso" placeholder="">
+                    </div>
+                    <div class="div_campo_modal">
+                        <label>Email</label>
+                        <input id="emailAtualizarAcesso" placeholder="">
+                    </div>
+                    <div class="div_campo_modal">
+                        <label>Tipo de usuário</label>
+                        <select id="tipoUsuarioAtualizarAcesso">
+                            <option disabled>Selecione um tipo</option>
+                            <option value="comum">Comum</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
 
+                    <div id="btn-atualizar-acesso"></div>
+                </div>
             </div>
         </div>
         <div id="containerAcessos"></div>
