@@ -68,37 +68,51 @@ function loadMaquinasEspecificas(idSala) {
 }
 
 function openModalAddMaquina() {
+  var idFaculdade = sessionStorage.getItem('ID_FACULDADE')
+
   selectAndarMaquina.innerHTML = `<option value="0">Selecione o andar</option>`
   selectSalaMaquina.innerHTML = `<option value="0">Selecione a sala</option>`
-  var idFaculdade = sessionStorage.getItem('ID_FACULDADE')
-  
+  selectSalaMaquina.disabled = true
+
   fetch(`/andares/listar?idFaculdade=${idFaculdade}`)
-  .then(data => data.json())
-  .then((data) => {
-    for (var i = 0; i < data.length; i ++) {
-      selectAndarMaquina.innerHTML += `
-        <option value="${data[i].id_andar}">${data[i].identificador_andar}</option>
-      `
-    }
-  })
-
-  var idAndar = document.getElementById('selectAndarMaquina').value
-  console.log(idAndar)
-
-  fetch(`/salas/listar?idAndar=${idAndar}`)
     .then(data => data.json())
     .then((data) => {
-      for (var i = 0; i < data.length; i ++) {
-        selectSalaMaquina.innerHTML += `
-          <option value="${data[i].id_sala}"><${data[i].identificador_sala}/option>
-        `
+      console.log(data)
+      for (var i = 0; i < data.length; i++) {
+        selectAndarMaquina.innerHTML += `
+        <option value=${data[i].id_andar}>${data[i].identificador_andar}</option>
+      `
       }
     })
 
   document.getElementById("modal-adicionar-maquina").style.display = "flex";
 }
 
-// Usuário clica na <span> (x), fecha o modal
+function myFunction() {
+  var x = document.getElementById("selectAndarMaquina").value;
+  console.log(x, "id do andar")
+  document.getElementById("demo").innerHTML = "You selected: " + x;
+}
+
+async function loadSalasByAndar() {
+  selectSalaMaquina.innerHTML = ''
+
+  var idAndar = await document.getElementById("selectAndarMaquina").value;
+  fetch(`/salas/listar?idAndar=${idAndar}`)
+    .then(data => data.json())
+    .then((data) => {
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].id_sala != null && data[i].identificador_sala != null) {
+          selectSalaMaquina.innerHTML += `
+          <option value="${data[i].id_sala}">${data[i].identificador_sala}</option>
+        `
+        }
+      }
+
+      selectSalaMaquina.disabled = false
+    })
+}
+
 function closeModalMaquina() {
   document.getElementById("modal-adicionar-maquina").style.display = "none";
 }
@@ -109,16 +123,16 @@ function listarPorHostname() {
   fetch(`/maquinas/listarPorHostname?hostname=${hostname}`)
     .then(data => data.json())
     .then((data) => {
-      console.log(data)
+
     }).catch(function (e) {
       console.log(e)
     })
 }
 
 function adicionarMaquina() {
-  var identificadorComputador = document.getElementById('inputHostname');
-  var idSala = 1;
-  var hostname = '123456789';
+  var identificadorComputador = document.getElementById('inputIdentificador').value;
+  var idSala = document.getElementById('selectSalaMaquina').value;
+  var hostname = gerarHostname();
 
   if (identificadorComputador && idSala && !hostnameExiste(hostname)) {
     fetch("/maquinas/cadastrar", {
@@ -165,7 +179,19 @@ function adicionarMaquina() {
       });
       console.log(e)
     })
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Digite os campos corretamente",
+    });
   }
+
+  closeModalMaquina()
+}
+
+function gerarHostname() {
+  return (performance.now().toString(36) + Math.random().toString(36)).replace(/\./g, "");
 }
 
 function editarMaquina() {

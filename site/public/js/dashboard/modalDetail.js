@@ -2,6 +2,7 @@ function openModalDetalheMaquina(idMaquina) {
     fetch(`/maquinas/listarPorId?idMaquina=${idMaquina}`)
         .then(data => data.json())
         .then((data) => {
+            console.log(data)
             document.getElementById("modalDetalheMaquina").innerHTML = `
         <div>
             <div onclick="closeModalDetalheMaquina()">
@@ -25,6 +26,11 @@ function openModalDetalheMaquina(idMaquina) {
         <div class="divProcessosTempoReal">
             <p>Processos em tempo real</p>
             <div id="listaDeProcessos"></div>
+        </div>
+
+        <div class="btn-modificar-modalMaquina">
+            <button onclick="openModalEditarMaquina(${idMaquina}, ${data[0].id_andar}, ${data[0].fk_sala}, '${data[0].identificador_computador}')">Editar maquina<img src="icons/icon-editar.svg""></button>
+            <button onclick="apagarMaquina(${idMaquina})">Apagar maquina<img src="icons/icon-deletar.svg""></button>
         </div>
         `
 
@@ -50,11 +56,12 @@ function openModalDetalheMaquina(idMaquina) {
                 </div>
               </div>
               </div>
-          `
+              `
                 } else {
                     document.getElementById("listaDeProcessos").innerHTML = `
               <p class="errorResponse">Nenhum processo encontrado!</p>
             `
+
                 }
             }
         })
@@ -68,6 +75,127 @@ function closeModalDetalheMaquina() {
     document.getElementById("modalDetalheMaquina").style.marginRight = "-576px"
     document.getElementById("modalDetalheMaquina").style.visibility = 'hidden'
     document.getElementById("backgroundCloseOffCanvaDetalheMaquina").style.display = 'none'
+}
+
+function openModalEditarMaquina(idMaquina, idAndar, idSala, identificador) {
+    var idFaculdade = sessionStorage.getItem('ID_FACULDADE')
+    document.getElementById("modal-atualizar-maquina").style.display = 'flex'
+
+    fetch(`/andares/listar?idFaculdade=${idFaculdade}`)
+        .then(data => data.json())
+        .then((data) => {
+            for (var i = 0; i < data.length; i++) {
+                selectAndarMaquinaAtualizar.innerHTML += `
+        <option value=${data[i].id_andar}>${data[i].identificador_andar}</option>
+      `
+            }
+        })
+
+    document.getElementById("modal-atualizar-maquina").innerHTML = `
+    <div class="modal-content">
+                <div class="container_modal">
+                    <span class="titulo_modal">Atualizar máquina</span>
+                    <span id="x" class="close" onclick="closeModalAtualizarMaquina()">&times;</span>
+                </div>
+                <div class="div_campo_modal">
+                    <label>Identificador do computador</label>
+                    <input id="inputIdentificadorAtualizar" value='${identificador}' placeholder="">
+                </div>
+                <div class="div_campo_modal">
+                    <label>Andar</label>
+                    <select name="" selected="${idAndar}" id="selectAndarMaquinaAtualizar" onchange="loadSalasByAndarAtualizar()"></select>
+                </div>
+                <div class="div_campo_modal">
+                    <label>Sala</label>
+                    <select name="" selected="${idSala}" id="selectSalaMaquinaAtualizar"></select>
+                </div>
+                <p id="demo"></p>
+                <button class="btn_add" onclick="atualizarMaquina(${idMaquina})">Adicionar</button>
+            </div>
+    `;
+
+    document.getElementById('selectSalaMaquinaAtualizar').disabled = true
+    loadSalasByAndarAtualizar(idAndar)
+}
+
+async function loadSalasByAndarAtualizar(idAndar) {
+
+    if (idAndar == null) {
+        idAndar = document.getElementById('selectAndarMaquinaAtualizar').value
+    }
+
+    selectSalaMaquinaAtualizar.innerHTML = ''
+
+    fetch(`/salas/listar?idAndar=${idAndar}`)
+        .then(data => data.json())
+        .then((data) => {
+            if (data) {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].id_sala != null && data[i].identificador_sala != null) {
+                        selectSalaMaquinaAtualizar.innerHTML += `
+                    <option value="${data[i].id_sala}">${data[i].identificador_sala}</option>
+                    `
+                    }
+                }
+
+                selectSalaMaquinaAtualizar.disabled = false
+            }
+        })
+}
+
+function atualizarMaquina(idMaquina) {
+    var identificador = document.getElementById('inputIdentificadorAtualizar').value
+    var idSala = document.getElementById('selectSalaMaquinaAtualizar').value
+
+    fetch(`/maquinas/atualizar`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            identificadorComputadorServer: identificador,
+            idSalaServer: idSala,
+            idMaquinaServer: idMaquina,
+        })
+    }).then(function (resposta) {
+        if (resposta.status == 200) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Maquina atualizada com sucesso!'
+            })
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+            })
+            Toast.fire({
+                icon: 'error',
+                title: "Oops...",
+                text: 'Houve um erro ao atualizar a maquina!',
+            })
+        }
+    }).catch(function (e) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: 'Houve um erro ao atualizar a maquina!',
+        });
+        console.log(e)
+    })
+}
+
+function closeModalAtualizarMaquina() {
+    document.getElementById("modal-atualizar-maquina").style.display = "none";
 }
 
 function AbrirmodalNotificarOuMatar(idModal) {
@@ -173,4 +301,47 @@ function notificarAluno(idModal, idMaquina) {
     })
 
     fecharModalNotificarOuMatar(idModal)
+}
+
+function apagarMaquina(idMaquina) {
+    swal.fire({
+        title: 'Você tem certeza?',
+        text: "Você não será capaz de reverter isso!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, quero apagar!',
+        cancelButtonText: 'Não, cancelar!',
+        confirmButtonColor: '#FF5353',
+        cancelButtonColor: '#14B424',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            if (result.isConfirmed) {
+                fetch("/maquinas/excluir", {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        idComputadorServer: idMaquina
+                    })
+                }).then(function (resposta) {
+                    if (resposta.status == 200) {
+                        Swal.fire(
+                            'OK!',
+                            'Maquina excluida com sucesso!',
+                            'success'
+                        )
+                    }
+                }).catch(function (erro) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Houve um erro ao apagar a maquina!",
+                    });
+                    console.log(erro);
+                })
+            }
+        }
+    })
 }

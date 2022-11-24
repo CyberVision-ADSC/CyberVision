@@ -192,20 +192,23 @@
                     <span id="x" class="close" onclick="closeModalMaquina()">&times;</span>
                 </div>
                 <div class="div_campo_modal">
-                    <label>Hostname</label>
-                    <input id="inputHostname" placeholder="X">
+                    <label>Identificador do computador</label>
+                    <input id="inputIdentificador" placeholder="">
                 </div>
                 <div class="div_campo_modal">
                     <label>Andar</label>
-                    <select name="" id="selectAndarMaquina"></select>
+                    <select name="" id="selectAndarMaquina" onchange="loadSalasByAndar()"></select>
                 </div>
                 <div class="div_campo_modal">
                     <label>Sala</label>
                     <select name="" id="selectSalaMaquina"></select>
                 </div>
+                <p id="demo"></p>
                 <button class="btn_add" onclick="adicionarMaquina()">Adicionar</button>
             </div>
         </div>
+
+        <div id="modal-atualizar-maquina" class="modal"></div>
     </div>
 
     <div id="acessos" style="display: none;">
