@@ -51,7 +51,7 @@ function changeViewMaquinas(params, id) {
             loadAndares()
 
             document.getElementById('botaoAdicionar').innerHTML = `
-            <button onclick="adicionarAndar()" class="add_maquina">Adicionar andar
+            <button onclick="openModalAdicionarAndar()" class="add_maquina">Adicionar andar
             <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
             </button>
             `

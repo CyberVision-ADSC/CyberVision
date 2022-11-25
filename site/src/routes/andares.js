@@ -7,6 +7,10 @@ router.get("/listar", function (req, res) {
     andarController.listar(req, res);
 })
 
+router.get("/listarPorId", function (req, res) {
+    andarController.listarPorId(req, res);
+})
+
 router.post("/cadastrar", function (req, res) {
     andarController.cadastrar(req, res);
 })

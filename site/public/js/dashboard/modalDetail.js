@@ -110,7 +110,7 @@ function openModalEditarMaquina(idMaquina, idAndar, idSala, identificador) {
                     <select name="" selected="${idSala}" id="selectSalaMaquinaAtualizar"></select>
                 </div>
                 <p id="demo"></p>
-                <button class="btn_add" onclick="atualizarMaquina(${idMaquina})">Adicionar</button>
+                <button class="btn_add" onclick="atualizarMaquina(${idMaquina})">Atualizar</button>
             </div>
     `;
 

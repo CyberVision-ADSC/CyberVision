@@ -234,6 +234,26 @@
         </div>
         <div id="modal-atualizar-sala" class="modal"></div>
 
+        <div id="modal-adicionar-andar" class="modal">
+            <div class="modal-content">
+                <div class="container_modal">
+                    <span class="titulo_modal">Adicionar uma novo andar</span>
+                    <span id="x" class="close" onclick="closeModal('modal-adicionar-andar')">&times;</span>
+                </div>
+                <div class="div_campo_modal">
+                    <label>Identificador do andar</label>
+                    <input id="inputIdentificadorAndar" placeholder="">
+                </div>
+                <div class="div_campo_modal">
+                    <label>descrição do andar</label>
+                    <input id="inputDescricaoAndar" placeholder="">
+                </div>
+               
+                <p id="demo"></p>
+                <button class="btn_add" onclick="adicionarAndar()">Adicionar</button>
+            </div>
+        </div>
+        <div id="modal-atualizar-andar" class="modal"></div>
     </div>
 
     <div id="acessos" style="display: none;">

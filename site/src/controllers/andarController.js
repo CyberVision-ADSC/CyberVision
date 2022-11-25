@@ -19,6 +19,25 @@ function listar(req, res) {
     );
 }
 
+function listarPorId(req, res) {
+    var idAndar = req.query.idAndar
+
+    andarModel.listarPorId(idAndar)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(404).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
 function cadastrar(req, res) {
     var numeroAndar = req.body.numeroAndarServer;
     var descricaoAndar = req.body.descricaoServer;
@@ -107,5 +126,6 @@ module.exports = {
     listar,
     cadastrar,
     atualizar,
-    excluir
+    excluir,
+    listarPorId
 }
