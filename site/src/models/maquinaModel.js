@@ -17,7 +17,7 @@ function listarMaquinasPorHostname(hostname) {
     inner join andar on faculdade.id_faculdade = andar.fk_faculdade
     inner join sala on  andar.id_andar = sala.fk_andar
     inner join computador on sala.id_sala = computador.fk_sala
-    where computador.hostname like '%${hostname}%';
+    where computador.identificador_computador like '%${hostname}%';
     `;
     return database.executar(instrucao);
 }
