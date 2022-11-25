@@ -69,7 +69,6 @@ function loadMaquinasEspecificas(idSala) {
 
 function openModalAddMaquina() {
   var idFaculdade = sessionStorage.getItem('ID_FACULDADE')
-
   selectAndarMaquina.innerHTML = `<option value="0">Selecione o andar</option>`
   selectSalaMaquina.innerHTML = `<option value="0">Selecione a sala</option>`
   selectSalaMaquina.disabled = true
@@ -111,14 +110,6 @@ async function loadSalasByAndar() {
 
       selectSalaMaquina.disabled = false
     })
-}
-
-function closeModalMaquina() {
-  document.getElementById("modal-adicionar-maquina").style.display = "none";
-}
-
-function fechaListaHostname() {
-  document.getElementById("modal_pesquisa_hostname").style.display = "none";
 }
 
 function listarPorHostname() {
@@ -209,7 +200,7 @@ function adicionarMaquina() {
     });
   }
 
-  closeModalMaquina()
+  closeModal('modal-adicionar-maquina')
 }
 
 function gerarHostname() {

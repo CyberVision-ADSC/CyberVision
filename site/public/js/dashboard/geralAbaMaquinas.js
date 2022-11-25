@@ -65,7 +65,7 @@ function changeViewMaquinas(params, id) {
             loadSalas(id)
 
             document.getElementById('botaoAdicionar').innerHTML = `
-            <button onclick="adicionarSala()" class="add_maquina">Adicionar sala
+            <button onclick="openModalAdicionarSala()" class="add_maquina">Adicionar sala
             <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
             </button>
             `
