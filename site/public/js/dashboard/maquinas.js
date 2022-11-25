@@ -117,7 +117,29 @@ function closeModalMaquina() {
   document.getElementById("modal-adicionar-maquina").style.display = "none";
 }
 
+function fechaListaHostname() {
+  document.getElementById("modal_pesquisa_hostname").style.display = "none";
+}
+
 function listarPorHostname() {
+  var a = inputPesquisaHostName.value;
+  document.getElementById("modal_pesquisa_hostname").style.display = "flex";
+  listagem_maquinas.innerHTML = "";
+  for (var i = 0; i < a; i++) {
+    listagem_maquinas.innerHTML += `    
+        <div id="maquinas_lista">
+          <div style="display: flex;">
+              <div class="maquinas_caracteristicas">
+                  <span>Apelido</span>
+                  <span>#DT59E8S</span>
+              </div>
+          </div>
+          <div class="maquinas_caracteristicas">
+              <span>Andar 11</span>
+              <span>Sala 12</span>
+         </div>
+        </div>`;
+      }
   var hostname = document.getElementById("inputPesquisaHostName").value
 
   fetch(`/maquinas/listarPorHostname?hostname=${hostname}`)
