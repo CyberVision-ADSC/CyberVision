@@ -155,7 +155,7 @@
             <h1>Máquinas <span id="tituloMaquinas"></span></h1>
             <div class="input">
                 <input type="text" id="inputPesquisaHostName" onkeyup="listarPorHostname()"
-                onblur="fechaListaHostname()" placeholder="Pesquisar por hostname">
+                onblur="closeModal('modal_pesquisa_hostname')" placeholder="Pesquisar por hostname">
                 <img class="imgInput" src="./icons/icon-search.svg">
             </div>  
         </div>
@@ -190,13 +190,12 @@
         <div id="containerAndares"></div>
         <div id="containerSalas"></div>
         <div id="containerMaquinasEspecificas"></div>
-        <!-- Modal adicionar máquina -->
+
         <div id="modal-adicionar-maquina" class="modal">
-            <!-- Conteúdo da modal -->
             <div class="modal-content">
                 <div class="container_modal">
                     <span class="titulo_modal">Adicionar uma nova máquina</span>
-                    <span id="x" class="close" onclick="closeModalMaquina()">&times;</span>
+                    <span id="x" class="close" onclick="closeModal('modal-adicionar-maquina')">&times;</span>
                 </div>
                 <div class="div_campo_modal">
                     <label>Identificador do computador</label>
@@ -214,33 +213,7 @@
                 <button class="btn_add" onclick="adicionarMaquina()">Adicionar</button>
             </div>
         </div>
-
         <div id="modal-atualizar-maquina" class="modal"></div>
-
-        <!-- Modal adicionar sala -->
-        <div id="modal-adicionar-andar" class="modal">
-            <!-- Conteúdo da modal -->
-            <div class="modal-content">
-                <div class="container_modal">
-                    <span class="titulo_modal">Adicionar uma novo andar</span>
-                    <span id="x" class="close" onclick="closeModalAndar()">&times;</span>
-                </div>
-                <div class="div_campo_modal">
-                    <label>Identificador da sala</label>
-                    <input id="inputIdentificador" placeholder="">
-                </div>
-                <div class="div_campo_modal">
-                    <label>Descrição</label>
-                    <input id="inputIdentificador" placeholder="">
-                </div>
-                <div class="div_campo_modal">
-                    <label>Andar</label>
-                    <select name="" id="selectAndarSala"></select>
-                </div>
-                <p id="demo"></p>
-                <button class="btn_add" onclick="adicionarAndar()">Adicionar</button>
-            </div>
-        </div>
     </div>
 
     <div id="acessos" style="display: none;">
@@ -258,12 +231,11 @@
                     <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
                 </button>
             </div>
-            <!-- Modal adicionar acesso -->
             <div id="modal-adicionar-acesso" class="modal">
                 <div class="modal-content">
                     <div class="container_modal">
                         <span class="titulo_modal">Adicionar um novo acesso</span>
-                        <span id="x" class="close" onclick="closeModalCriar()">&times;</span>
+                        <span id="x" class="close" onclick="closeModal('modal-adicionar-acesso')">&times;</span>
                     </div>
                     <div class="div_campo_modal">
                         <label>Nome</label>
@@ -289,13 +261,11 @@
                     <button class="btn_add" onclick="adicionarAcesso()">Adicionar</button>
                 </div>
             </div>
-
-             <!-- Modal atualizar acesso -->
              <div id="modal-atualizar-acesso" class="modal">
                 <div class="modal-content">
                     <div class="container_modal">
                         <span class="titulo_modal">Atualizar acesso</span>
-                        <span id="x" class="close" onclick="closeModalAtualizar()">&times;</span>
+                        <span id="x" class="close" onclick="closeModal('modal-atualizar-acesso')">&times;</span>
                     </div>
                     <div class="div_campo_modal">
                         <label>Nome</label>

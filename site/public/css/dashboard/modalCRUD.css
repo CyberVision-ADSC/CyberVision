@@ -85,7 +85,16 @@
 #emailAtualizarAcesso,
 #tipoUsuarioAtualizarAcesso,
 #inputHostname,
-#inputIdentificador, #inputIdentificadorAtualizar {
+#inputIdentificador,
+#inputIdentificadorAtualizar,
+#inputIdentificadorAtualizarSala,
+#inputDescricaoAtualizarSala,
+#inputIdentificadorSala,
+#inputDescricaoSala,
+#inputIdentificadorAndar,
+#inputDescricaoAndar,
+#inputIdentificadorAtualizarAndar,
+#inputDescricaoAtualizarAndar {
   height: 45px;
   width: 500px;
   border-radius: 10px;

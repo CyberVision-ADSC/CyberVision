@@ -64,10 +64,6 @@ function openModalCriar() {
   document.getElementById("modal-adicionar-acesso").style.display = "block";
 }
 
-function closeModalCriar() {
-  document.getElementById("modal-adicionar-acesso").style.display = "none";
-}
-
 window.onclick = function (event) {
   if (event.target == document.getElementById("modal-adicionar-sala")) {
     document.getElementById("modal-adicionar-sala").style.display = "none";
@@ -139,7 +135,7 @@ function adicionarAcesso() {
     });
   }
 
-  closeModalCriar()
+  closeModal('modal-adicionar-acesso')
 }
 
 function openModalAtualizar(id_usuario,) {
@@ -161,10 +157,6 @@ function openModalAtualizar(id_usuario,) {
 
       document.getElementById("modal-atualizar-acesso").style.display = "block";
     })
-}
-
-function closeModalAtualizar() {
-  document.getElementById("modal-atualizar-acesso").style.display = "none";
 }
 
 function atualizarAcesso(id_usuario, senha) {
@@ -221,7 +213,7 @@ function atualizarAcesso(id_usuario, senha) {
     })
   }
 
-  closeModalAtualizar()
+  closeModal('modal-atualizar-acesso')
 }
 
 function desativarAcesso(id_usuario) {

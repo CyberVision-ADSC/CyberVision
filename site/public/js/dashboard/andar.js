@@ -19,7 +19,7 @@ function loadAndares() {
                               <p><span>Salas cadastradas: ${data[posicao].total_sala != null ? data[posicao].total_sala : 0}</span><span>Maquinas cadastradas: ${data[posicao].total_computador != null ? data[posicao].total_computador : 0}</span></p>
                           </div>
                           <div>
-                              <img src="icons/icon-editar.svg" onclick="editarAndar(${data[posicao].id_andar})">
+                              <img src="icons/icon-editar.svg" onclick="openModalAtualizarAndar(${data[posicao].id_andar})">
                               <img src="icons/icon-deletar.svg" onclick="apagarAndar(${data[posicao].id_andar})">
                           </div>
                       </div>
@@ -38,7 +38,7 @@ function loadAndares() {
                               <p><span>Salas cadastradas: ${data[posicao].total_sala != null ? data[posicao].total_sala : 0}</span><span>Maquinas cadastradas: ${data[posicao].total_computador != null ? data[posicao].total_computador : 0}</span></p>
                           </div>
                           <div>
-                              <img src="icons/icon-editar.svg" onclick="editarAndar(${data[posicao].id_andar})">
+                              <img src="icons/icon-editar.svg" onclick="openModalAtualizarAndar(${data[posicao].id_andar})">
                               <img src="icons/icon-deletar.svg" onclick="apagarAndar(${data[posicao].id_andar})">
                           </div>
                       </div>
@@ -50,11 +50,15 @@ function loadAndares() {
     })
 }
 
+function openModalAdicionarAndar() {
+  document.getElementById('modal-adicionar-andar').style.display = 'flex'
+}
+
 function adicionarAndar() {
   document.getElementById("modal-adicionar-andar").style.display = "block";
-  var identificadorAndar = '5º Andar';
-  var descricaoAndar = 'teste de adicionar andar';
-  var idFaculdade = 1;
+  var identificadorAndar = document.getElementById('inputIdentificadorAndar').value;
+  var descricaoAndar = document.getElementById('inputDescricaoAndar').value;
+  var idFaculdade = sessionStorage.getItem('ID_FACULDADE');
 
   if (identificadorAndar && descricaoAndar && idFaculdade) {
     fetch("/andares/cadastrar", {
@@ -93,6 +97,8 @@ function adicionarAndar() {
           title: 'Houve um erro ao cadastrar o andar!'
         })
       }
+
+      closeModal('modal-adicionar-andar')
     }).catch(function (e) {
       Swal.fire({
         icon: "error",
@@ -102,10 +108,6 @@ function adicionarAndar() {
       console.log(e)
     })
   }
-}
-
-function closeModalAndar(){
-  document.getElementById("modal-adicionar-andar").style.display = "none";
 }
 
 function editarAndar() {
@@ -159,6 +161,8 @@ function editarAndar() {
       console.log(e)
     })
   }
+
+  closeModal('modal-atualizar-andar')
 }
 
 function apagarAndar(idAndar) {

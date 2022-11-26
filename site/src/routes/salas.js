@@ -7,6 +7,10 @@ router.get("/listar", function (req, res) {
     salaController.listar(req, res);
 })
 
+router.get("/listarPorId", function (req, res) {
+    salaController.listarPorId(req, res);
+})
+
 router.post("/cadastrar", function (req, res) {
     salaController.cadastrar(req, res);
 })
