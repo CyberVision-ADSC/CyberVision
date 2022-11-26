@@ -95,7 +95,7 @@ function openModalEditarMaquina(idMaquina, idAndar, idSala, identificador) {
     <div class="modal-content">
                 <div class="container_modal">
                     <span class="titulo_modal">Atualizar máquina</span>
-                    <span id="x" class="close" onclick="closeModalAtualizarMaquina()">&times;</span>
+                    <span id="x" class="close" onclick="closeModal('modal-atualizar-maquina')">&times;</span>
                 </div>
                 <div class="div_campo_modal">
                     <label>Identificador do computador</label>
@@ -170,6 +170,8 @@ function atualizarMaquina(idMaquina) {
                 icon: 'success',
                 title: 'Maquina atualizada com sucesso!'
             })
+
+            closeModal('modal-atualizar-maquina')
         } else {
             const Toast = Swal.mixin({
                 toast: true,
@@ -192,10 +194,6 @@ function atualizarMaquina(idMaquina) {
         });
         console.log(e)
     })
-}
-
-function closeModalAtualizarMaquina() {
-    document.getElementById("modal-atualizar-maquina").style.display = "none";
 }
 
 function AbrirmodalNotificarOuMatar(idModal) {

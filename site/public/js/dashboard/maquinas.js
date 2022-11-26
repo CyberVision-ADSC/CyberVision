@@ -175,6 +175,8 @@ function adicionarMaquina() {
           icon: 'success',
           title: 'Máquina cadastrado com sucesso!'
         })
+
+        closeModal('modal-adicionar-maquina')
       } else {
         const Toast = Swal.mixin({
           toast: true,
@@ -209,59 +211,6 @@ function adicionarMaquina() {
 
 function gerarHostname() {
   return (performance.now().toString(36) + Math.random().toString(36)).replace(/\./g, "");
-}
-
-function editarMaquina() {
-  var identificadorComputador = 'ATUALIZAR MAQUINA';
-  var idMaquina = 1;
-  var hostname = '123456789';
-
-  if (identificadorComputador && idMaquina && !hostnameExiste(hostname)) {
-    fetch("/maquinas/atualizar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        identificadorComputadorServer: identificadorComputador,
-        hostnameServer: hostname,
-        idMaquinaServer: idMaquina,
-      })
-    }).then(function (resposta) {
-      if (resposta.status == 200) {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 1500,
-          timerProgressBar: true,
-        })
-        Toast.fire({
-          icon: 'success',
-          title: 'Máquina cadastrado com sucesso!'
-        })
-      } else {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 1500,
-          timerProgressBar: true,
-        })
-        Toast.fire({
-          icon: 'error',
-          title: 'Houve um erro ao cadastrar a máquina!'
-        })
-      }
-    }).catch(function (e) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: 'Houve um erro ao cadastrar a máquina!',
-      });
-      console.log(e)
-    })
-  }
 }
 
 function excluirMaquina(idMaquina) {
