@@ -49,11 +49,18 @@ function voltarEtapa() {
   desativarCheckbox()
 }
 
+function removeCaracteresEspeciais(texto) {
+  const str = texto
+  const strNum = str.replace(/[^0-9]/g, '')
+  console.log(strNum)
+  return strNum
+}
+
 function cadastrar() {
   const razaoSocial = inputRazaoSocial.value;
   const nomeFantasia = inputNomeFantasia.value;
-  const cnpj = inputCnpj.value;
-  const cep = inputCep.value;
+  const cnpj = removeCaracteresEspeciais(inputCnpj.value);
+  const cep = removeCaracteresEspeciais(inputCep.value);
   const nome = inputNome.value;
   const email = inputEmail.value;
   const senha = inputSenha.value;
