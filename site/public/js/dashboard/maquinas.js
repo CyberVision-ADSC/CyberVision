@@ -122,29 +122,33 @@ function fechaListaHostname() {
 }
 
 function listarPorHostname() {
-  var a = inputPesquisaHostName.value;
+  var hostname = inputPesquisaHostName.value;
   document.getElementById("modal_pesquisa_hostname").style.display = "flex";
   listagem_maquinas.innerHTML = "";
-  for (var i = 0; i < a; i++) {
-    listagem_maquinas.innerHTML += `    
-        <div id="maquinas_lista">
-          <div style="display: flex;">
-              <div class="maquinas_caracteristicas">
-                  <span>Apelido</span>
-                  <span>#DT59E8S</span>
-              </div>
-          </div>
-          <div class="maquinas_caracteristicas">
-              <span>Andar 11</span>
-              <span>Sala 12</span>
-         </div>
-        </div>`;
-      }
-  var hostname = document.getElementById("inputPesquisaHostName").value
 
   fetch(`/maquinas/listarPorHostname?hostname=${hostname}`)
     .then(data => data.json())
     .then((data) => {
+
+console.log(data)
+
+      for (var i = 0; i < data.length; i++) {
+        listagem_maquinas.innerHTML += `    
+            <div id="maquinas_lista">
+              <div style="display: flex;">
+              <img src="../../images/pc.png" height="55px">
+                  <div class="maquinas_caracteristicas">
+                      <span>${data[0].identificador_computador}</span>
+                      <span>#${data[0].hostname}</span>
+                  </div>
+              </div>
+              <div class="maquinas_caracteristicas">
+                  <span>${data[0].identificador_andar}</span>
+                  <span>${data[0].identificador_sala}</span>
+             </div>
+            </div>
+            <div id="linha_maquinas"></div>`;
+          }
 
     }).catch(function (e) {
       console.log(e)

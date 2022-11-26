@@ -51,6 +51,7 @@ function loadAndares() {
 }
 
 function adicionarAndar() {
+  document.getElementById("modal-adicionar-andar").style.display = "block";
   var identificadorAndar = '5º Andar';
   var descricaoAndar = 'teste de adicionar andar';
   var idFaculdade = 1;
@@ -101,6 +102,10 @@ function adicionarAndar() {
       console.log(e)
     })
   }
+}
+
+function closeModalAndar(){
+  document.getElementById("modal-adicionar-andar").style.display = "none";
 }
 
 function editarAndar() {

@@ -154,16 +154,18 @@
         <div class="header">
             <h1>Máquinas <span id="tituloMaquinas"></span></h1>
             <div class="input">
-                <input type="number" id="inputPesquisaHostName" onkeyup="listarPorHostname()"
+                <input type="text" id="inputPesquisaHostName" onkeyup="listarPorHostname()"
                 onblur="fechaListaHostname()" placeholder="Pesquisar por hostname">
                 <img class="imgInput" src="./icons/icon-search.svg">
             </div>  
         </div>
+        <!--  -->
         <div id="container_lista_hostaname">
             <div id="modal_pesquisa_hostname">
                 <div id="listagem_maquinas"></div>
             </div>
         </div>
+        <!--  -->
         <div class="filtrar_maquinas">
             <div class="selecionarVisao">
                 <div id="visao-maquinas-filtro" class="active"
@@ -214,6 +216,31 @@
         </div>
 
         <div id="modal-atualizar-maquina" class="modal"></div>
+
+        <!-- Modal adicionar sala -->
+        <div id="modal-adicionar-andar" class="modal">
+            <!-- Conteúdo da modal -->
+            <div class="modal-content">
+                <div class="container_modal">
+                    <span class="titulo_modal">Adicionar uma novo andar</span>
+                    <span id="x" class="close" onclick="closeModalAndar()">&times;</span>
+                </div>
+                <div class="div_campo_modal">
+                    <label>Identificador da sala</label>
+                    <input id="inputIdentificador" placeholder="">
+                </div>
+                <div class="div_campo_modal">
+                    <label>Descrição</label>
+                    <input id="inputIdentificador" placeholder="">
+                </div>
+                <div class="div_campo_modal">
+                    <label>Andar</label>
+                    <select name="" id="selectAndarSala"></select>
+                </div>
+                <p id="demo"></p>
+                <button class="btn_add" onclick="adicionarAndar()">Adicionar</button>
+            </div>
+        </div>
     </div>
 
     <div id="acessos" style="display: none;">
