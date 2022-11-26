@@ -111,6 +111,7 @@
     width: 100%;
     border-bottom: 1px solid #B7B7B7;
     padding: 15px;
+    position: relative;
 }
 
 .itemProcesso p {
@@ -163,7 +164,67 @@
 #associar-maquina-detalhes span {
     font-family: 'Montserrat';
     font-weight: 400;
-    font-size: 13px ;
+    font-size: 13px;
     margin: 10px 0;
     text-align: center;
+}
+
+.subModal {
+    display: flex;
+    flex-direction: column;
+    width: 232px;
+    height: 130px;
+    background-color: #FFF;
+    border-radius: 15px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    z-index: 4;
+}
+
+.subModal div {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.subModal div:first-child {
+    height: 30px;
+}
+
+.subModal div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.subModal div:nth-child(2) {
+    width: 100%;
+    background-color: #EBEBEB;
+}
+
+.subModal div span {
+    font-family: 'Montserrat';
+    font-weight: 300;
+    font-size: 14px;
+    text-align: center;
+}
+
+.closeDetailProcesso {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 23%;
+}
+
+.closeDetailProcesso:hover,
+.closeDetailProcesso:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

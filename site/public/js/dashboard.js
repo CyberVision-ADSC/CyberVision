@@ -193,3 +193,7 @@ function loggout() {
     sessionStorage.clear()
     window.location.href = 'login.html'
 }
+
+function closeModal(idModal) {
+    document.getElementById(`${idModal}`).style.display = 'none'
+}

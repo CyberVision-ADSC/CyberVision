@@ -33,6 +33,7 @@
     <script src="./js/dashboard/graficos.js"></script>
     <script src="./js/dashboard/geralAbaMaquinas.js"></script>
     <script src="./js/dashboard/filtrosMaquina.js"></script>
+    <script src="./js/dashboard/modalDetail.js"></script>
 
     <link rel="icon" href="./images/logo_cybervision.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -154,13 +155,21 @@
             <h1>Máquinas <span id="tituloMaquinas"></span></h1>
             <div class="input">
                 <input type="text" id="inputPesquisaHostName" onkeyup="listarPorHostname()"
-                    placeholder="Pesquisar por hostname">
+                onblur="closeModal('modal_pesquisa_hostname')" placeholder="Pesquisar por hostname">
                 <img class="imgInput" src="./icons/icon-search.svg">
+            </div>  
+        </div>
+        <!--  -->
+        <div id="container_lista_hostaname">
+            <div id="modal_pesquisa_hostname">
+                <div id="listagem_maquinas"></div>
             </div>
         </div>
+        <!--  -->
         <div class="filtrar_maquinas">
             <div class="selecionarVisao">
-                <div id="visao-maquinas-filtro" class="active" onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
+                <div id="visao-maquinas-filtro" class="active"
+                    onclick="changeViewMaquinas('maquinasComProblemas'), alterarVisao('maquinas')">
                     <img id="icone-maquinas-white" src="icons/maquina/icon-maquina-white.svg">
                     <img id="icone-maquinas-purple" style="display: none;" src="icons/maquina/icon-maquina-purple.svg">
                     <p>Máquinas com problemas</p>
@@ -175,44 +184,76 @@
 
             <div id="botaoAdicionar"></div>
         </div>
-        <div class="container-btn-filter" id="filtrosCategorias">
-            <button style="background-color: #E9DF00">CPU (<span>2</span>)</button>
-            <button style="background-color: #FF7272">Disco (<span>2</span>)</button>
-            <button style="background-color: #E911B9">RAM (<span>2</span>)</button>
-            <button style="background-color: #FFBE72">Físico (<span>2</span>)</button>
-        </div>
 
+        <div class="container-btn-filter" id="filtrosCategorias"></div>
         <div id="containerMaquinas"></div>
         <div id="containerAndares"></div>
         <div id="containerSalas"></div>
         <div id="containerMaquinasEspecificas"></div>
 
         <div id="modal-adicionar-maquina" class="modal">
-
-            <!-- Conteúdo da modal -->
             <div class="modal-content">
                 <div class="container_modal">
                     <span class="titulo_modal">Adicionar uma nova máquina</span>
-                    <span id="x" class="close" onclick="closeModalMaquina()">&times;</span>
+                    <span id="x" class="close" onclick="closeModal('modal-adicionar-maquina')">&times;</span>
                 </div>
                 <div class="div_campo_modal">
-                    <label>Hostname</label>
-                    <input id="inputHostname" placeholder="X">
+                    <label>Identificador do computador</label>
+                    <input id="inputIdentificador" placeholder="">
                 </div>
                 <div class="div_campo_modal">
                     <label>Andar</label>
-                    <select name="" id="selectAndarMaquina"></select>
+                    <select name="" id="selectAndarMaquina" onchange="loadSalasByAndar()"></select>
                 </div>
                 <div class="div_campo_modal">
                     <label>Sala</label>
                     <select name="" id="selectSalaMaquina"></select>
                 </div>
+                <p id="demo"></p>
                 <button class="btn_add" onclick="adicionarMaquina()">Adicionar</button>
             </div>
-
-
         </div>
-        <div class="container-btn-filter" id="filtrosCategorias"></div>
+        <div id="modal-atualizar-maquina" class="modal"></div>
+        <div id="modal-adicionar-sala" class="modal">
+            <div class="modal-content">
+                <div class="container_modal">
+                    <span class="titulo_modal">Adicionar uma nova sala</span>
+                    <span id="x" class="close" onclick="closeModal('modal-adicionar-sala')">&times;</span>
+                </div>
+                <div class="div_campo_modal">
+                    <label>Identificador da sala</label>
+                    <input id="inputIdentificadorSala" placeholder="">
+                </div>
+                <div class="div_campo_modal">
+                    <label>descrição da sala</label>
+                    <input id="inputDescricaoSala" placeholder="">
+                </div>
+
+                <p id="demo"></p>
+                <button class="btn_add" onclick="adicionarSala()">Adicionar</button>
+            </div>
+        </div>
+        <div id="modal-atualizar-sala" class="modal"></div>
+        <div id="modal-adicionar-andar" class="modal">
+            <div class="modal-content">
+                <div class="container_modal">
+                    <span class="titulo_modal">Adicionar uma novo andar</span>
+                    <span id="x" class="close" onclick="closeModal('modal-adicionar-andar')">&times;</span>
+                </div>
+                <div class="div_campo_modal">
+                    <label>Identificador do andar</label>
+                    <input id="inputIdentificadorAndar" placeholder="">
+                </div>
+                <div class="div_campo_modal">
+                    <label>descrição do andar</label>
+                    <input id="inputDescricaoAndar" placeholder="">
+                </div>
+
+                <p id="demo"></p>
+                <button class="btn_add" onclick="adicionarAndar()">Adicionar</button>
+            </div>
+        </div>
+        <div id="modal-atualizar-andar" class="modal"></div>
     </div>
 
     <div id="acessos" style="display: none;">
@@ -230,31 +271,61 @@
                     <img src="./icons/icon-circlePlus.svg" alt="Adicionar" style="margin-left: 5px;">
                 </button>
             </div>
-            <!-- Modal adicionar sala -->
-            <div id="modal-adicionar-sala" class="modal">
-
-                <!-- Conteúdo da modal -->
+            <div id="modal-adicionar-acesso" class="modal">
                 <div class="modal-content">
                     <div class="container_modal">
-                        <span class="titulo_modal">Adicionar uma nova sala</span>
-                        <span id="x" class="close" onclick="closeModalCriar()">&times;</span>
+                        <span class="titulo_modal">Adicionar um novo acesso</span>
+                        <span id="x" class="close" onclick="closeModal('modal-adicionar-acesso')">&times;</span>
                     </div>
                     <div class="div_campo_modal">
-                        <label>Identificador da sala</label>
-                        <input id="inputIdSala" placeholder="X">
+                        <label>Nome</label>
+                        <input id="nomeAdicionarAcesso" placeholder="">
                     </div>
                     <div class="div_campo_modal">
-                        <label>Descrição</label>
-                        <input id="inputDescSala" placeholder="X">
+                        <label>Email</label>
+                        <input id="emailAdicionarAcesso" placeholder="">
                     </div>
                     <div class="div_campo_modal">
-                        <label>Andar</label>
-                        <select name="" id="selectAndarSala"></select>
+                        <label>Senha</label>
+                        <input id="senhaAdicionarAcesso" placeholder="">
                     </div>
-                    <button class="btn_add" onclick="adicionarSala()">Adicionar</button>
+                    <div class="div_campo_modal">
+                        <label>Tipo de usuário</label>
+                        <select id="tipoUsuarioAdicionarAcesso">
+                            <option disabled>Selecione um tipo</option>
+                            <option value="comum">Comum</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <button class="btn_add" onclick="adicionarAcesso()">Adicionar</button>
                 </div>
+            </div>
+             <div id="modal-atualizar-acesso" class="modal">
+                <div class="modal-content">
+                    <div class="container_modal">
+                        <span class="titulo_modal">Atualizar acesso</span>
+                        <span id="x" class="close" onclick="closeModal('modal-atualizar-acesso')">&times;</span>
+                    </div>
+                    <div class="div_campo_modal">
+                        <label>Nome</label>
+                        <input id="nomeAtualizarAcesso" placeholder="">
+                    </div>
+                    <div class="div_campo_modal">
+                        <label>Email</label>
+                        <input id="emailAtualizarAcesso" placeholder="">
+                    </div>
+                    <div class="div_campo_modal">
+                        <label>Tipo de usuário</label>
+                        <select id="tipoUsuarioAtualizarAcesso">
+                            <option disabled>Selecione um tipo</option>
+                            <option value="comum">Comum</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
 
-
+                    <div id="btn-atualizar-acesso"></div>
+                </div>
             </div>
         </div>
         <div id="containerAcessos"></div>

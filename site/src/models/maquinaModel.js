@@ -17,7 +17,7 @@ function listarMaquinasPorHostname(hostname) {
     inner join andar on faculdade.id_faculdade = andar.fk_faculdade
     inner join sala on  andar.id_andar = sala.fk_andar
     inner join computador on sala.id_sala = computador.fk_sala
-    where computador.hostname like '%${hostname}%';
+    where computador.identificador_computador like '%${hostname}%';
     `;
     return database.executar(instrucao);
 }
@@ -35,7 +35,7 @@ function listarMaquinasPorSala(idSala) {
 
 function listarMaquinaPorId(idMaquina) {
     var instrucao = `
-    SELECT computador.*, sala.identificador_sala, andar.identificador_andar, processo.* FROM faculdade
+    SELECT computador.*, sala.identificador_sala, andar.id_andar, andar.identificador_andar, processo.* FROM faculdade
     INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
     INNER JOIN sala ON andar.id_andar = sala.fk_andar
     INNER JOIN computador ON sala.id_sala = computador.fk_sala
@@ -50,8 +50,8 @@ function cadastrar(identificadorComputador, idSala, hostname) {
     return database.executar(instrucao);
 }
 
-function atualizar(identificadorComputador, idMaquina, hostname) {
-    var instrucao = `UPDATE computador SET identificador_computador = '${identificadorComputador}', hostname = '${hostname}' WHERE id_computador = ${idMaquina}`;
+function atualizar(identificadorComputador, idSala, idMaquina) {
+    var instrucao = `UPDATE computador SET identificador_computador = '${identificadorComputador}', fk_sala = ${idSala} where id_computador = ${idMaquina}; `;
     return database.executar(instrucao);
 }
 

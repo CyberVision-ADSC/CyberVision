@@ -13,10 +13,21 @@ function listar(idMaquina) {
 }
 
 function kill(idMaquina, pid) {
-    var instrucao = ``;
+    var instrucao = `
+        INSERT INTO processo_matar (pid_processo, is_executado, fk_computador) values (${pid}, 0, ${idMaquina});
+    `;
+    return database.executar(instrucao);
+}
+
+function notificarAluno(idMaquina) {
+    var instrucao = `
+        INSERT INTO notificar_aluno (titulo, is_executado, descricao, fk_computador) values ("Seu computador está lento?", 0, "Olá aluno, percemos que um processo está afetando o processamento do seu computador, você deseja encerrar o processo?", ${idMaquina});
+    `;
     return database.executar(instrucao);
 }
 
 module.exports = {
-    listar
+    listar,
+    kill,
+    notificarAluno
 };

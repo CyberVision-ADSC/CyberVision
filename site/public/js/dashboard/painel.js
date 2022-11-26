@@ -20,7 +20,6 @@ function loadIndicators() {
     fetch(`/kpi/quantidade-chamados-pendentes?idFaculdade=${1}`)
     .then(data => data.json())
     .then((data) => {
-        console.log(data)
         document.getElementById("indicadorChamadosPendentes").innerHTML = data[0].quantidade_chamados ? data[0].quantidade_chamados : 0
     })
     

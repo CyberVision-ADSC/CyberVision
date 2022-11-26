@@ -1,11 +1,13 @@
+let idAndarGlobal = ''
+
 function loadSalas(idAndar) {
+  idAndarGlobal = idAndar
   document.getElementById("tituloMaquinas").innerHTML = " /  andar 1 / visão geral das salas"
 
   containerSalas.innerHTML = ""
   fetch(`/salas/listar?idAndar=${idAndar}`)
     .then(data => data.json())
     .then((data) => {
-      console.log("teste")
       for (var posicao = 0; posicao < data.length; posicao++) {
         if (data[posicao].total_problemas != null && data[posicao].total_problemas > 0) {
           if (data[posicao].id_sala != null && data[posicao].is_ativo == 1) {
@@ -20,7 +22,7 @@ function loadSalas(idAndar) {
                             <p><span>Maquinas cadastradas: ${data[posicao].total_computador != null ? data[posicao].total_computador : 0}</span></p>
                         </div>
                         <div>
-                            <img src="icons/icon-editar.svg" onclick="editarSala(${data[posicao].id_sala})">
+                            <img src="icons/icon-editar.svg" onclick="openModalAtualizarSala(${data[posicao].id_sala})">
                             <img src="icons/icon-deletar.svg" onclick="apagarSala(${data[posicao].id_sala})">
                         </div>
                     </div>
@@ -39,7 +41,7 @@ function loadSalas(idAndar) {
                             <p><span>Maquinas cadastradas: ${data[posicao].total_computador != null ? data[posicao].total_computador : 0}</span></p>
                         </div>
                         <div>
-                            <img src="icons/icon-editar.svg" onclick="editarSala(${data[posicao].id_sala})">
+                            <img src="icons/icon-editar.svg" onclick="openModalAtualizarSala(${data[posicao].id_sala})">
                             <img src="icons/icon-deletar.svg" onclick="apagarSala(${data[posicao].id_sala})">
                         </div>
                     </div>
@@ -50,13 +52,15 @@ function loadSalas(idAndar) {
     })
 }
 
+function openModalAdicionarSala() {
+  document.getElementById('modal-adicionar-sala').style.display = 'flex'
+}
+
 function adicionarSala() {
-  var identificadorSala = 'POS GRADUACAO';
-  var descricaoSala = 'sala bacana';
-  var idAndar = 1;
+  var identificadorSala = document.getElementById('inputIdentificadorSala').value;
+  var descricaoSala = document.getElementById('inputDescricaoSala').value;
 
-
-  if (identificadorSala && descricaoSala && idAndar) {
+  if (identificadorSala && descricaoSala && idAndarGlobal) {
     fetch("/salas/cadastrar", {
       method: "POST",
       headers: {
@@ -65,7 +69,7 @@ function adicionarSala() {
       body: JSON.stringify({
         numeroSalaServer: identificadorSala,
         descricaoServer: descricaoSala,
-        idAndarServer: idAndar,
+        idAndarServer: idAndarGlobal,
       })
     }).then(function (resposta) {
       if (resposta.status == 200) {
@@ -102,12 +106,41 @@ function adicionarSala() {
       console.log(e)
     })
   }
+
+  closeModal('modal-adicionar-sala')
 }
 
-function editarSala() {
-  var identificadorSala = 'POS GRADUACAO';
-  var descricaoSala = 'sala bacana';
-  var idSala = 1;
+function openModalAtualizarSala(idSala) {
+  document.getElementById('modal-atualizar-sala').style.display = 'flex'
+
+  fetch(`/salas/listarPorId?idSala=${idSala}`)
+    .then(data => data.json())
+    .then((data) => {
+      document.getElementById('modal-atualizar-sala').innerHTML = `
+              <div class="modal-content">
+                  <div class="container_modal">
+                      <span class="titulo_modal">Atualizar sala</span>
+                      <span id="x" class="close" onclick="closeModal('modal-atualizar-sala')">&times;</span>
+                  </div>
+                  <div class="div_campo_modal">
+                      <label>Identificador da sala</label>
+                      <input value="${data[0].identificador_sala}" id="inputIdentificadorAtualizarSala" placeholder="">
+                  </div>
+                  <div class="div_campo_modal">
+                      <label>descrição da sala</label>
+                      <input value="${data[0].descricao_sala}" id="inputDescricaoAtualizarSala" placeholder="">
+                  </div>
+                 
+                  <p id="demo"></p>
+                  <button class="btn_add" onclick="editarSala(${data[0].id_sala})">Atualizar</button>
+              </div>
+    `
+    })
+}
+
+function editarSala(idSala) {
+  var identificadorSala = document.getElementById('inputIdentificadorAtualizarSala').value;
+  var descricaoSala = document.getElementById('inputDescricaoAtualizarSala').value;
 
   if (identificadorSala && descricaoSala && idSala) {
     fetch("/salas/atualizar", {
@@ -133,6 +166,8 @@ function editarSala() {
           icon: 'success',
           title: 'Sala atualizada com sucesso!'
         })
+
+        closeModal('modal-atualizar-sala')
       } else {
         const Toast = Swal.mixin({
           toast: true,

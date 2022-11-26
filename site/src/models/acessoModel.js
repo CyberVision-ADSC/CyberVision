@@ -7,7 +7,7 @@ function listar(idFaculdade) {
 
 function listarpPorId(idAcesso) {
     var instrucao = `
-    SELECT faculdade.*, usuario.nome, usuario.id_usuario ,usuario.email, usuario.tipo_usuario FROM faculdade 
+    SELECT faculdade.*, usuario.nome, usuario.id_usuario ,usuario.email, usuario.senha, usuario.tipo_usuario FROM faculdade 
     INNER JOIN usuario on fk_faculdade = id_faculdade 
     WHERE id_usuario = ${idAcesso};`;
     return database.executar(instrucao);
@@ -15,8 +15,8 @@ function listarpPorId(idAcesso) {
 
 function cadastrar(nome, email, senha, tipoUsuario, idFaculdade) {
     var instrucao = `
-        INSERT INTO usuario (nome, email, senha, tipo_usuario, fk_faculdade) 
-        VALUES ('${nome}', '${email}', '${senha}', '${tipoUsuario}', ${idFaculdade});
+        INSERT INTO usuario (nome, email, senha, tipo_usuario, fk_faculdade, is_ativo) 
+        VALUES ('${nome}', '${email}', '${senha}', '${tipoUsuario}', ${idFaculdade}, 1);
     `;
     return database.executar(instrucao);
 }

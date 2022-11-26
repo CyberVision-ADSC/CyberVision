@@ -90,16 +90,16 @@ function cadastrar(req, res) {
 function atualizar(req, res) {
     var identificadorComputador = req.body.identificadorComputadorServer;
     var idMaquina = req.body.idMaquinaServer;
-    var hostname = req.body.hostnameServer;
+    var idSala = req.body.idSalaServer;
 
     if (identificadorComputador == undefined) {
         res.status(400).send("O identificador do computador está undefined!");
     } else if (idMaquina == undefined) {
         res.status(400).send("o id da maquina está undefined!");
-    } else if (hostname == undefined) {
-        res.status(400).send("o hostname está undefined!");
+    } else if (idSala == undefined) {
+        res.status(400).send("o id da sala está undefined!");
     } else {
-        maquinaModel.atualizar(identificadorComputador, idMaquina, hostname)
+        maquinaModel.atualizar(identificadorComputador, idSala, idMaquina)
             .then(
                 function (resultado) {
                     res.json(resultado);
