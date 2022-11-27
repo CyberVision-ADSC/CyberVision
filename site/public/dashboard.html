@@ -154,18 +154,16 @@
         <div class="header">
             <h1>Máquinas <span id="tituloMaquinas"></span></h1>
             <div class="input">
-                <input type="text" id="inputPesquisaHostName" onkeyup="listarPorHostname()"
-                    onblur="closeModal('modal_pesquisa_hostname')" placeholder="Pesquisar por hostname">
+                <input type="text" id="inputPesquisaHostName" onkeyup="listarPorHostname()" placeholder="Pesquisar por apelido">
                 <img class="imgInput" src="./icons/icon-search.svg">
+
+                <div id="container_lista_hostaname">
+                    <div id="modal_pesquisa_hostname">
+                        <div id="listagem_maquinas"></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <!--  -->
-        <div id="container_lista_hostaname">
-            <div id="modal_pesquisa_hostname">
-                <div id="listagem_maquinas"></div>
-            </div>
-        </div>
-        <!--  -->
         <div class="filtrar_maquinas">
             <div class="selecionarVisao">
                 <div id="visao-maquinas-filtro" class="active"

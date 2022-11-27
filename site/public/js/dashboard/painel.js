@@ -91,7 +91,7 @@ function obterDadosGraficoAndar(idFaculdade) {
 }
 
 let proximaAtualizacao3;
-function obterDadosGraficoTempoReal(idFaculdade) {
+function obterDadosGraficoTempoReal(idFaculdade, hostname) {
     if (proximaAtualizacao3 != undefined) {
         clearTimeout(proximaAtualizacao3);
     }
@@ -117,8 +117,13 @@ function obterDadosGraficoTempoReal(idFaculdade) {
                 plotarGraficoTempoReal(resposta, idFaculdade);
             });
         } if (response.status == 204) {
-            alert("Sem dados")
-            // COLOCAR ALGO DE ERRO
+            Swal.fire({
+                title: 'Está maquina ainda não está associada!',
+                icon: 'info',
+                html:
+                  `Baixe nossa aplicação na <a href="/index.html#downloadArea">Página inicial</a> e Utilize o hostname <b>${hostname}</b> para iniciar a captura dos dados.`,
+              })
+              
         } else {
             console.error(' erro na API');
         }

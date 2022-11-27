@@ -35,7 +35,7 @@ function alterarStatus(idChamado) {
         text: "Você não será capaz de reverter isso!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Sim, quero finalizar o processo!',
+        confirmButtonText: 'Sim, quero finalizar o chamado!',
         cancelButtonText: 'Não, cancelar!',
         confirmButtonColor: '#FF5353',
         cancelButtonColor: '#14B424',

@@ -67,7 +67,7 @@ function quantidadeProblemasAndar(idFaculdade) {
     LEFT JOIN relatorio ON relatorio.fk_computador = computador.id_computador
     LEFT JOIN (select id_relatorio, count(*) as total, fk_computador from relatorio
      where (uso_cpu >= 90 or uso_disco >= 90 or uso_ram >= 90) 
-     AND DATE(data_hora) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -10 DAY) AND CURRENT_DATE()) as rel_geral 
+     AND DATE(data_hora) BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -10 DAY) AND CURRENT_DATE() group by fk_computador) as rel_geral 
     on rel_geral.fk_computador = computador.id_computador
     WHERE andar.fk_faculdade = ${idFaculdade} group by andar.id_andar;
     `;
@@ -76,14 +76,10 @@ function quantidadeProblemasAndar(idFaculdade) {
 }
 
 function grafTempoReal(idFaculdade) {
-
     var instrucao = `
-
     SELECT uso_cpu, uso_disco, uso_ram,fk_computador FROM relatorio JOIN sala ON fk_sala = id_sala JOIN                  
     andar ON fk_andar = id_andar JOIN faculdade ON fk_faculdade = id_faculdade WHERE fk_computador = ${idFaculdade} ORDER BY id_relatorio DESC LIMIT 1;     
-
     `;
-
     return database.executar(instrucao);
 }
 

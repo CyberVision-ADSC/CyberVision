@@ -39,60 +39,105 @@
   padding: 0 15px;
   background-color: #fff;
   margin: 0 auto;
+  position: relative;
 }
+
 /* ***********************************************************************************************8 */
 #container_lista_hostaname {
-  position: fixed;
+  position: absolute;
   z-index: 1;
-  margin-top: 6%;
-  margin-left: 36%;
-  width: 25%;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 #modal_pesquisa_hostname {
   width: 100%;
-  min-height: 20vh;
+  min-height: 60px;
+  max-height: 300px;
   display: none;
   background-color: #ffff;
   align-items: center;
   justify-content: center;
   padding: 5px;
   border-radius: 20px;
+  overflow-y: scroll;
+}
+
+#modal_pesquisa_hostname::-webkit-scrollbar {
+  display: none;
 }
 
 #listagem_maquinas {
+  width: 100%;
+  align-items: center;
+}
+
+.maquinas_item {
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 15px;
+}
+
+.maquinas_item >div {
+  display: flex;
+  height: 100%;
+}
+
+.maquinas_item >div:last-child {
+  flex-direction: column;
+}
+
+.maquinas_item >div div {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
 }
 
-#maquinas_lista {
+.maquinas_item p {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 0;
+}
+
+.maquinas_item span {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 12px;
+  color: #C2C2C2;
+}
+
+.nenhumitemlista {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  /* padding: 5px; */
-  height: 50%;
-  border-radius: 20px;
 }
 
-#linha_maquinas {
+.nenhumitemlista p {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 14px;
+  color: #C2C2C2;
+  margin-bottom: 0;
+}
+
+.linha_maquinas {
   height: 1px;
   background: #C2C2C2;
   width: 90%;
   margin-bottom: 1%;
 }
 
-#maquinas_lista span {
-  max-width: 150px;
-  overflow-wrap: break-word;
-}
 /* ***********************************************************************************************8 */
 
 .maquinas_caracteristicas {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 }
@@ -216,7 +261,7 @@
   display: flex;
 }
 
-.selecionarVisao > div {
+.selecionarVisao>div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -227,12 +272,12 @@
   height: 30px;
 }
 
-.selecionarVisao > div:first-child {
+.selecionarVisao>div:first-child {
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
 }
 
-.selecionarVisao > div:last-child {
+.selecionarVisao>div:last-child {
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
 }

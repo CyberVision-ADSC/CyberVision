@@ -16,13 +16,15 @@ function kill(idMaquina, pid) {
     var instrucao = `
         INSERT INTO processo_matar (pid_processo, is_executado, fk_computador) values (${pid}, 0, ${idMaquina});
     `;
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 
 function notificarAluno(idMaquina) {
     var instrucao = `
-        INSERT INTO notificar_aluno (titulo, is_executado, descricao, fk_computador) values ("Seu computador está lento?", 0, "Olá aluno, percemos que um processo está afetando o processamento do seu computador, você deseja encerrar o processo?", ${idMaquina});
+        INSERT INTO notificar_aluno (is_executado,fk_computador) values (0, ${idMaquina});
     `;
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 

@@ -27,6 +27,7 @@ function cadastrar(numeroSala, descricaoSala, idAndar) {
         INSERT INTO sala (identificador_sala, descricao_sala, fk_andar, is_ativo)
         VALUES ('${numeroSala}', '${descricaoSala}', ${idAndar}, 1);
     `;
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 
@@ -35,7 +36,7 @@ function atualizar(numeroSala, descricaoSala, idSala) {
         UPDATE sala SET identificador_sala = '${numeroSala}', descricao_sala = '${descricaoSala}' 
         WHERE id_sala = ${idSala};
     `;
-
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 
@@ -43,6 +44,7 @@ function excluir(idSala) {
     var instrucao = `
         UPDATE sala SET is_ativo = 0 WHERE id_sala = ${idSala};
     `;
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 

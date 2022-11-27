@@ -2,7 +2,8 @@ function openModalDetalheMaquina(idMaquina) {
     fetch(`/maquinas/listarPorId?idMaquina=${idMaquina}`)
         .then(data => data.json())
         .then((data) => {
-            console.log(data)
+            hostnameMaquinaClicada = data[0].hostname
+
             document.getElementById("modalDetalheMaquina").innerHTML = `
         <div>
             <div onclick="closeModalDetalheMaquina()">
@@ -33,7 +34,7 @@ function openModalDetalheMaquina(idMaquina) {
             <button onclick="apagarMaquina(${idMaquina})">Apagar maquina<img src="icons/icon-deletar.svg""></button>
         </div>
         `
-        obterDadosGraficoTempoReal(idMaquina)
+        obterDadosGraficoTempoReal(idMaquina, data[0].hostname)
             for (let index = 0; index < data.length; index++) {
                 const processo = data[index];
                 if (processo != undefined && processo.pid != null && processo.pid != undefined) {

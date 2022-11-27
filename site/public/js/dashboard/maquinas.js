@@ -114,36 +114,55 @@ async function loadSalasByAndar() {
 
 function listarPorHostname() {
   var hostname = inputPesquisaHostName.value;
-  document.getElementById("modal_pesquisa_hostname").style.display = "flex";
-  listagem_maquinas.innerHTML = "";
-
-  fetch(`/maquinas/listarPorHostname?hostname=${hostname}`)
-    .then(data => data.json())
-    .then((data) => {
-
-console.log(data)
-
-      for (var i = 0; i < data.length; i++) {
-        listagem_maquinas.innerHTML += `    
-            <div id="maquinas_lista">
-              <div style="display: flex;">
-              <img src="../../images/pc.png" height="55px">
-                  <div class="maquinas_caracteristicas">
-                      <span>${data[0].identificador_computador}</span>
-                      <span>#${data[0].hostname}</span>
+  if (hostname.length >= 2) {
+    fetch(`/maquinas/listarPorHostname?hostname=${hostname}`)
+      .then(data => data.json())
+      .then((data) => {
+        listagem_maquinas.innerHTML = "";
+        if (data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
+            listagem_maquinas.innerHTML += `    
+              <div class="maquinas_item" onclick="openModalDetalheMaquina(${data[i].id_computador})">
+              <div>
+                  <div>
+                      <img style="margin-right: 10px; width: 30px; height: 30px;"
+                          src="../../images/pc.png" height="55px">
+                  </div>
+                  <div>
+                      <p>${data[i].identificador_computador}</p>
+                      <span>#${data[i].hostname}</span>
                   </div>
               </div>
-              <div class="maquinas_caracteristicas">
-                  <span>${data[0].identificador_andar}</span>
-                  <span>${data[0].identificador_sala}</span>
-             </div>
-            </div>
-            <div id="linha_maquinas"></div>`;
+              <div>
+                  <span>${data[i].identificador_andar}</span>
+                  <span>${data[i].identificador_sala}</span>
+              </div>
+          </div>
+          <div class="linha_maquinas"></div>
+              `
           }
+        } else {
+          listagem_maquinas.innerHTML = `    
+              <div id="maquinas_item">
+              <p>Nenhum item encontrado</p>
+              </div>`
+        }
+      }).catch(function (e) {
+        listagem_maquinas.innerHTML = `    
+              <div id="maquinas_item">
+              <div class="nenhumitemlista"><p>Nenhum item encontrado</p></div>
+              </div>`
+        console.log(e)
+      })
 
-    }).catch(function (e) {
-      console.log(e)
-    })
+    document.getElementById("modal_pesquisa_hostname").style.display = "flex";
+  }
+}
+
+window.onclick = function (event) {
+  if (event.target != document.getElementById("modal_pesquisa_hostname") && event.target != document.getElementById("maquinas_item") && event.target != document.getElementById("listagem_maquinas")) {
+    closeModal('modal_pesquisa_hostname')
+  }
 }
 
 function adicionarMaquina() {
