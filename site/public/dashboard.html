@@ -125,7 +125,7 @@
                             <span><img src="icons/icon-check.svg"> Últimos 10 dias</span>
                         </div>
                     </div>
-                    <div class="divGrafico1">
+                    <div id="div_gf_1" class="divGrafico1">
                         <canvas id="grafico1" class="canvas1"></canvas>
                     </div>
                 </div>
@@ -155,9 +155,9 @@
             <h1>Máquinas <span id="tituloMaquinas"></span></h1>
             <div class="input">
                 <input type="text" id="inputPesquisaHostName" onkeyup="listarPorHostname()"
-                onblur="closeModal('modal_pesquisa_hostname')" placeholder="Pesquisar por hostname">
+                    onblur="closeModal('modal_pesquisa_hostname')" placeholder="Pesquisar por hostname">
                 <img class="imgInput" src="./icons/icon-search.svg">
-            </div>  
+            </div>
         </div>
         <!--  -->
         <div id="container_lista_hostaname">
@@ -301,7 +301,7 @@
                     <button class="btn_add" onclick="adicionarAcesso()">Adicionar</button>
                 </div>
             </div>
-             <div id="modal-atualizar-acesso" class="modal">
+            <div id="modal-atualizar-acesso" class="modal">
                 <div class="modal-content">
                     <div class="container_modal">
                         <span class="titulo_modal">Atualizar acesso</span>
@@ -371,114 +371,5 @@
     <div class="backgroundCloseOffCanvaDetalheMaquina" id="backgroundCloseOffCanvaDetalheMaquina"
         onclick="closeModalDetalheMaquina()" style="display: none;"></div>
 </body>
-
-<script>
-    const ctx = document.getElementById('grafico1');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['1º Andar', '2º Andar', '3º Andar', '4º Andar', '5º Andar', '6º Andar'],
-            datasets: [{
-                label: 'Problemas',
-                data: [10, 19, 2, 5, 2, 20],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-</script>
-
-<script>
-    const ctx2 = document.getElementById('grafico2');
-    const myChart2 = new Chart(ctx2, {
-        type: 'pie',
-        data: {
-            labels: ['CPU', 'RAM', 'DISCO', 'FÍSICO'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-</script>
-
-<script>
-    const ctx3 = document.getElementById('grafico3');
-    const myChart3 = new Chart(ctx3, {
-        type: 'bar',
-        data: {
-            labels: ['CPU', 'RAM', 'DISCO', 'FÍSICO'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-</script>
 
 </html>

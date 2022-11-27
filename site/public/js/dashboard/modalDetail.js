@@ -12,7 +12,7 @@ function openModalDetalheMaquina(idMaquina) {
         </div>
         <div class="divUsoGrafico">
             <p>Uso em tempo real</p>
-            <div>
+            <div id="div_gf_3">
                 <canvas id="grafico3" class="canvas1"></canvas>
             </div>
         </div>
@@ -33,7 +33,7 @@ function openModalDetalheMaquina(idMaquina) {
             <button onclick="apagarMaquina(${idMaquina})">Apagar maquina<img src="icons/icon-deletar.svg""></button>
         </div>
         `
-
+        obterDadosGraficoTempoReal(idMaquina)
             for (let index = 0; index < data.length; index++) {
                 const processo = data[index];
                 if (processo != undefined && processo.pid != null && processo.pid != undefined) {
@@ -75,6 +75,7 @@ function closeModalDetalheMaquina() {
     document.getElementById("modalDetalheMaquina").style.marginRight = "-576px"
     document.getElementById("modalDetalheMaquina").style.visibility = 'hidden'
     document.getElementById("backgroundCloseOffCanvaDetalheMaquina").style.display = 'none'
+    clearTimeout(proximaAtualizacao3);
 }
 
 function openModalEditarMaquina(idMaquina, idAndar, idSala, identificador) {
