@@ -12,6 +12,7 @@ async function cadastrar(nomeFantasia, razao, cnpj, cep, nome, email, senha) {
     var instrucao = `
     INSERT INTO faculdade (nome_fantasia, razao_social, cnpj, cep) VALUES ('${nomeFantasia}', '${razao}', '${cnpj}', '${cep}');
     `;
+    await database.executarAzure(instrucao);
     await database.executar(instrucao);
     return cadastroUsuario(nome, email, senha, cnpj)
 }
@@ -26,6 +27,7 @@ async function cadastroUsuario(nome, email, senha, cnpj) {
         var instrucao = `
             INSERT INTO usuario(nome, email, senha, fk_faculdade, is_ativo) VALUES ('${nome}', '${email}', '${senha}', ${idFaculdade}, 1);
         `;
+        await database.executarAzure(instrucao);
         return await database.executar(instrucao);
     }).catch((err) => {
         console.log(err)
@@ -36,7 +38,7 @@ function atualizar(nome, email, idAcesso) {
     var instrucao = `
         UPDATE usuario SET nome = '${nome}', email = '${email}' WHERE id_usuario = ${idAcesso};
     `;
-
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 

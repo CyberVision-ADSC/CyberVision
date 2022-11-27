@@ -25,7 +25,15 @@ var mySqlConfig = {
     password: "Cpf52355271860",
 };
 
-function executar(instrucao) {
+
+var mySqlConfigAws = {
+    host: "cybervision.c6w91j4rybl4.us-east-1.rds.amazonaws.com",
+    database: "cybervision",
+    user: "admin",
+    password: "#Gfgrupo4",
+};
+
+function executarAzure(instrucao) {
     // VERIFICA A VARIÁVEL DE AMBIENTE SETADA EM app.js
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         return new Promise(function (resolve, reject) {
@@ -64,6 +72,26 @@ function executar(instrucao) {
     }
 }
 
+function executar(instrucao) {
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        return new Promise(function (resolve, reject) {
+            var conexao = mysql.createConnection(mySqlConfigAws);
+            conexao.connect();
+            conexao.query(instrucao, function (erro, resultados) {
+                conexao.end();
+                if (erro) {
+                    reject(erro);
+                }
+                resolve(resultados);
+            });
+            conexao.on('error', function (erro) {
+                return ("ERRO NO MySQL WORKBENCH (aws): ", erro.sqlMessage);
+            });
+        });
+    }
+}
+
 module.exports = {
-    executar
+    executar,
+    executarAzure
 }

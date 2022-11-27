@@ -19,4 +19,16 @@ router.get("/quantidade-chamados-pendentes", function (req, res) {
     kpiController.quantidadeChamadosPendentes(req, res);
 })
 
+router.get("/quantidade-problemas/:idFaculdade", function (req, res) {
+    kpiController.quantidadeProblemas(req, res);
+})
+
+router.get("/quantidade-problemas-andar/:idFaculdade", function (req, res) {
+    kpiController.quantidadeProblemasAndar(req, res);
+})
+
+router.get("/tempo-real/:idFaculdade", function (req, res) {
+    kpiController.grafTempoReal(req, res);
+})
+
 module.exports = router;

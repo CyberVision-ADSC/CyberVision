@@ -27,6 +27,7 @@ function cadastrar(numeroAndar, descricaoAndar, idFaculdade) {
         INSERT INTO andar (identificador_andar, descricao_andar, fk_faculdade, is_ativo)
         VALUES ('${numeroAndar}', '${descricaoAndar}', ${idFaculdade}, 1);
     `;
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 
@@ -35,7 +36,7 @@ function atualizar(idAndar, numeroAndar, descricaoAndar) {
         UPDATE andar SET identificador_andar = '${numeroAndar}', descricao_andar = '${descricaoAndar}' 
         WHERE id_andar = ${idAndar};
     `;
-
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 
@@ -43,6 +44,7 @@ function excluir(idAndar) {
     var instrucao = `
         UPDATE andar SET is_ativo = 0 WHERE id_andar = ${idAndar};
     `;
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 

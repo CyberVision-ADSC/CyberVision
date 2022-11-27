@@ -18,6 +18,7 @@ function cadastrar(nome, email, senha, tipoUsuario, idFaculdade) {
         INSERT INTO usuario (nome, email, senha, tipo_usuario, fk_faculdade, is_ativo) 
         VALUES ('${nome}', '${email}', '${senha}', '${tipoUsuario}', ${idFaculdade}, 1);
     `;
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 
@@ -26,7 +27,7 @@ function atualizar(nome, email, senha, tipoUsuario, idAcesso) {
         UPDATE usuario SET nome = '${nome}', email = '${email}', tipo_usuario = '${tipoUsuario}',  senha = '${senha}' 
         WHERE id_usuario = ${idAcesso};
     `;
-
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 
@@ -34,6 +35,7 @@ function excluir(idAcesso) {
     var instrucao = `
         UPDATE usuario SET is_ativo = 0 where id_usuario = ${idAcesso}
     `;
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 

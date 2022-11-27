@@ -6,7 +6,7 @@ function listarMaquinasPorFaculdade(idFaculdade) {
     INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
     INNER JOIN sala ON andar.id_andar = sala.fk_andar
     INNER JOIN computador ON sala.id_sala = computador.fk_sala
-    WHERE faculdade.id_faculdade = ${idFaculdade};
+    WHERE faculdade.id_faculdade = ${idFaculdade} AND (computador.problema_cpu = 1 OR computador.problema_disco = 1 OR computador.problema_memoria = 1 OR computador.problema_fisico = 1);
     `;
     return database.executar(instrucao);
 }
@@ -47,16 +47,19 @@ function listarMaquinaPorId(idMaquina) {
 
 function cadastrar(identificadorComputador, idSala, hostname) {
     var instrucao = `INSERT INTO computador (identificador_computador, hostname, fk_sala, is_ativo) VALUES ('${identificadorComputador}', '${hostname}', ${idSala}, 1)`;
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 
 function atualizar(identificadorComputador, idSala, idMaquina) {
     var instrucao = `UPDATE computador SET identificador_computador = '${identificadorComputador}', fk_sala = ${idSala} where id_computador = ${idMaquina}; `;
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 
 function excluir(idComputador) {
     var instrucao = `UPDATE computador SET is_ativo = 0 where id_computador = ${idComputador}`;
+    database.executarAzure(instrucao);
     return database.executar(instrucao);
 }
 
