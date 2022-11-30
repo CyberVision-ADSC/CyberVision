@@ -23,7 +23,6 @@ function loadIndicators() {
     fetch(`/kpi/quantidade-chamados-pendentes?idFaculdade=${idFaculdade}`)
         .then(data => data.json())
         .then((data) => {
-            console.log(data)
             document.getElementById("indicadorChamadosPendentes").innerHTML = data[0].quantidade_chamados ? data[0].quantidade_chamados : 0
         })
 
@@ -38,9 +37,6 @@ function obterDadosGrafico(idFaculdade) {
     fetch(`/kpi/quantidade-problemas/${idFaculdade}`).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                console.log(idFaculdade)
-
                 plotarGrafico(resposta, idFaculdade);
             });
         } if (response.status == 204) {
@@ -73,12 +69,8 @@ function obterDadosGraficoAndar(idFaculdade) {
     }
 
     fetch(`/kpi/quantidade-problemas-andar/${idFaculdade}`).then(function (response) {
-        console.log("----")
         if (response.ok) {
             response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                console.log(idFaculdade)
-                console.log("OBTIVE O GRAFICOOOOOOOOOOOOOOOOOOOOOOOOOOO")
                 plotarGraficoAndar(resposta, idFaculdade);
             });
         } if (response.status == 204) {
@@ -111,12 +103,8 @@ function obterDadosGraficoTempoReal(idFaculdade, hostname) {
     }
 
     fetch(`/kpi/tempo-real/${idFaculdade}`).then(function (response) {
-        console.log("----")
         if (response.ok) {
             response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                console.log()
-
                 plotarGraficoTempoReal(resposta, idFaculdade);
             });
         } if (response.status == 204) {
@@ -124,8 +112,8 @@ function obterDadosGraficoTempoReal(idFaculdade, hostname) {
                 title: 'Está maquina ainda não está associada!',
                 icon: 'info',
                 html:
-                  `Baixe nossa aplicação na <a href="/index.html#downloadArea">Página inicial</a> e Utilize o hostname <b>${hostname}</b> para iniciar a captura dos dados.`,
-              })
+                    `Baixe nossa aplicação na <a href="/index.html#downloadArea">Página inicial</a> e Utilize o hostname <b>${hostname}</b> para iniciar a captura dos dados.`,
+            })
               
         } else {
             console.error(' erro na API');
@@ -140,8 +128,6 @@ function obterDadosGraficoTempoReal(idFaculdade, hostname) {
 // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
 // A função *plotarGrafico* também invoca a função *atualizarGrafico*
 function plotarGrafico(resposta, idFaculdade) {
-    console.log('iniciando plotagem do gráfico...');
-
     let dados = {
         labels: ["RAM", "DISCO", "CPU", "FISICO"],
         datasets: [{
@@ -161,21 +147,10 @@ function plotarGrafico(resposta, idFaculdade) {
         }]
     };
 
-    console.log(resposta[0].ram)
     dados.datasets[0].data.push(resposta[0].ram);
     dados.datasets[0].data.push(resposta[1].ram);
     dados.datasets[0].data.push(resposta[2].ram);
     dados.datasets[0].data.push(resposta[3].ram);
-
-    console.log('----------------------------------------------')
-    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta)
-    // Inserindo valores recebidos em estrutura para plotar o gráfico
-    console.log('----------------------------------------------')
-    console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Dados:')
-    console.log(dados.datasets)
-    console.log('----------------------------------------------')
 
     // Criando estrutura para plotar gráfico - config
     const config = {
@@ -192,7 +167,6 @@ function plotarGrafico(resposta, idFaculdade) {
 }
 
 function plotarGraficoAndar(resposta, idFaculdade) {
-    console.log('iniciando plotagem do gráfico...');
     var labeiu = []
     for (let c = 0; c < resposta.length; c++) {
         labeiu.push(resposta[c].andar)
@@ -228,15 +202,7 @@ function plotarGraficoAndar(resposta, idFaculdade) {
         dados.datasets[i].label = 'Andares' // incluir uma nova medida de umidade
         // incluir uma nova medida de umidade
     }
-    console.log('----------------------------------------------')
-    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta)
-    // Inserindo valores recebidos em estrutura para plotar o gráfico
-    console.log('----------------------------------------------')
-    console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Dados:')
-    console.log(dados.datasets)
-    console.log('----------------------------------------------')
+
     // Criando estrutura para plotar gráfico - config
     const config2 = {
         type: 'bar',
@@ -251,7 +217,6 @@ function plotarGraficoAndar(resposta, idFaculdade) {
     setTimeout(() => atualizarGraficoAndar(idFaculdade, dados, myChart2), 6000);
 }
 function plotarGraficoTempoReal(resposta, idFaculdade) {
-    console.log('iniciando plotagem do gráfico...');
     let dados = {
         labels: ["CPU", "DISCO", "RAM"],
         datasets: [{
@@ -269,21 +234,13 @@ function plotarGraficoTempoReal(resposta, idFaculdade) {
             ],
         }]
     };
-    console.log(resposta)
+
     for (let i = 0; i < resposta.length; i++) {
         dados.datasets[0].data.push(resposta[i].uso_cpu);
         dados.datasets[0].data.push(resposta[i].uso_disco);
         dados.datasets[0].data.push(resposta[i].uso_ram);
     }
-    console.log('----------------------------------------------')
-    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta)
-    // Inserindo valores recebidos em estrutura para plotar o gráfico
-    console.log('----------------------------------------------')
-    console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Dados:')
-    console.log(dados.datasets)
-    console.log('----------------------------------------------')
+
     // Criando estrutura para plotar gráfico - config
     const config3 = {
         type: 'bar',
@@ -306,9 +263,6 @@ function atualizarGrafico(idFaculdade, dados, myChart) {
     fetch(`/kpi/quantidade-problemas/${idFaculdade}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                console.log(`Dados atuais do gráfico:`);
-                console.log(dados);
                 // tirando e colocando valores no gráfico
                 dados.datasets[0].data.shift();
                 dados.datasets[0].data.shift();
@@ -339,9 +293,7 @@ function atualizarGraficoAndar(idFaculdade, dados, myChart2) {
     fetch(`/kpi/quantidade-problemas-andar/${idFaculdade}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                console.log(`Dados atuais do gráfico:`);
-                console.log(dados);
+
                 // tirando e colocando valores no gráfico
                 for (let i = 0; i < dados.datasets.length; i++) {
                     dados.datasets[i].data.shift();
@@ -369,9 +321,7 @@ function atualizarGraficoTempoReal(idFaculdade, dados, myChart3) {
     fetch(`/kpi/tempo-real/${idFaculdade}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                console.log(`Dados atuais do gráfico:`);
-                console.log(dados);
+
                 dados.datasets[0].data.shift();
                 dados.datasets[0].data.shift();
                 dados.datasets[0].data.shift();

@@ -14,7 +14,7 @@ function loadTickets() {
                     <p>RA do Aluno: <span>${data[posicao].ra_aluno}</span></p>
                     <p>Andar: <span>${data[posicao].identificador_andar}</span></p>
                     <p>Sala: <span>${data[posicao].identificador_sala}</span></p>
-                    <p>Identificador da máquina: <span>#${data[posicao].hostname}</span></p>
+                    <p>Apelido da máquina: <span>#${data[posicao].hostname}</span></p>
                     <p>Sistema operacional: <span>${data[posicao].sistema_operacional}</span></p>
                     <p>Descrição: <span>${data[posicao].descricao_ocorrido}</span></p>
                 </div>

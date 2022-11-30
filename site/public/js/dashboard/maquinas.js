@@ -76,7 +76,6 @@ function openModalAddMaquina() {
   fetch(`/andares/listar?idFaculdade=${idFaculdade}`)
     .then(data => data.json())
     .then((data) => {
-      console.log(data)
       for (var i = 0; i < data.length; i++) {
         selectAndarMaquina.innerHTML += `
         <option value=${data[i].id_andar}>${data[i].identificador_andar}</option>

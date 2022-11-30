@@ -11,6 +11,10 @@ router.get("/listarPorId", function (req, res) {
     andarController.listarPorId(req, res);
 })
 
+router.get("/listarProblemasPorAndar", function (req, res) {
+    andarController.listarProblemasPorAndar(req, res);
+})
+
 router.post("/cadastrar", function (req, res) {
     andarController.cadastrar(req, res);
 })
