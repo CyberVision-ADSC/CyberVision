@@ -19,7 +19,7 @@ function setViewConfig() {
                 </div>
                 <div>
                     <label>Nível de acesso</label>
-                    <input type="text" disabled value='${data[0].tipo_usuario}'>
+                    <input type="text" disabled value='${data[0].tipo_usuario && data[0].tipo_usuario != null ? data[0].tipo_usuario : "Comum"}'>
                 </div>
         
                 <button onclick="atualizarUsuario(${data[0].id_usuario})">Atualizar informações</button>

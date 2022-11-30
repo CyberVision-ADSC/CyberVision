@@ -52,7 +52,6 @@ function voltarEtapa() {
 function removeCaracteresEspeciais(texto) {
   const str = texto
   const strNum = str.replace(/[^0-9]/g, '')
-  console.log(strNum)
   return strNum
 }
 

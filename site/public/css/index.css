@@ -226,7 +226,11 @@ a {
     margin: 0 2px;
 }
 
-.downloadArea button {
+.downloadArea a {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 80%;
     max-width: 297px;
     height: 55px;

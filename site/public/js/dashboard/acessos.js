@@ -17,7 +17,7 @@ function loadAcessos() {
                     <div>
                         <p>Nome: <span>${data[posicao].nome}</span></p>
                         <p>Email: <span>${data[posicao].email}</span></p>
-                        <p>Nível de acesso: <span>${data[posicao].tipo_usuario ? data[posicao].tipo_usuario : "Comum"}</span></p>
+                        <p>Nível de acesso: <span>${data[posicao].tipo_usuario && data[posicao].tipo_usuario != null ? data[posicao].tipo_usuario : "Comum"}</span></p>
                     </div>
                 </div>
               `

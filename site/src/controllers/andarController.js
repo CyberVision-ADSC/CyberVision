@@ -19,6 +19,25 @@ function listar(req, res) {
     );
 }
 
+function listarProblemasPorAndar(req, res) {
+    var id_andar = req.query.idAndar
+
+    andarModel.listarProblemasPorAndar(id_andar)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(404).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
 function listarPorId(req, res) {
     var idAndar = req.query.idAndar
 
@@ -127,5 +146,6 @@ module.exports = {
     cadastrar,
     atualizar,
     excluir,
-    listarPorId
+    listarPorId,
+    listarProblemasPorAndar
 }
